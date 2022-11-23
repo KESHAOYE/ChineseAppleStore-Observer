@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "axios": "^0.27.2",
-    "core-js": "^3.6.5",
+    "core-js": "^3.26.1",
     "element-ui": "^2.15.10",
+    "moment": "^2.29.4",
     "nanoid": "^4.0.0",
     "node-sass": "4.14.1",
     "sass-loader": "10.x",

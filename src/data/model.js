@@ -4,6 +4,8 @@ export const SKU = [{
         canUse: true,
         category: 'iPhone',
         chinese: '手机',
+        sku1: {title: '外观', tips: '选择你喜欢的颜色'},
+        sku2: {title:'存储容量',tips:'你要多大的容量?'},
         model: [{
                 name: 'iPhone14',
                 icon: 'https://www.apple.com.cn/v/iphone/home/bj/images/chapternav/iphone_14_light__fwknsxkf80uq_large.svg',

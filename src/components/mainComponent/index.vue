@@ -7,10 +7,9 @@
   <div>
     <el-tabs @tab-click="handleClick">
       <el-tab-pane v-for="item in category" :key="item.category" :label="item.category" :name="String(item.id)">
-        <modelPicker v-if="categoryIndex!=-1"></modelPicker>
-        <cityPicker v-if="tag"></cityPicker>
-        <shopPicker v-if="tag"></shopPicker>
-        <submit v-if="tag"></submit>
+        <modelPicker @updateInfo='updateModel'></modelPicker>
+        <cityPicker @updateInfo="updateStore" v-if="selectTypeId != -1"></cityPicker>
+        <submit :modelInfo="selectInfo" :storeInfo="storeInfo" v-if="selectTypeId != -1"></submit>
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -19,8 +18,7 @@
 <script>
 import { SKU } from '../../data/model'
 import modelPicker from './modelPicker.vue'
-import cityPicker from './cityPicker.vue'
-import shopPicker from './shopPicker.vue'
+import cityPicker from './cityAndStorePicker.vue'
 import submit from './submit.vue'
 import {mapMutations, mapState} from 'vuex'
 
@@ -30,26 +28,28 @@ export default {
     return {
       category: [],
       nowCategory: null,
-      tag:false
+      selectInfo: {
+        selectColor: null,
+        selectModel: null,
+        selectRom: null,
+        selectSku: null
+      },
+      storeInfo:{
+        city: null,
+        province: null,
+        id: null,
+        label: null,
+        value: null
+      }
     }
   },
   computed: {
-    ...mapState(['categoryIndex', 'canGetStore'])
+    ...mapState(['selectTypeId', 'categoryIndex'])
   },
   components: {
     modelPicker,
     cityPicker,
-    shopPicker,
     submit
-  },
-  watch: {
-    '$store.state.selectSku'(newVal) {
-      if(newVal != null) {
-        this.tag = true
-      } else {
-        this.tag = false
-      }
-    }
   },
   methods: {
     ...mapMutations(['changeCategoryIndex']),
@@ -66,7 +66,15 @@ export default {
       }
     },
     handleClick(tab) {
+      this.nowCategory = Number(tab.name)
       this.changeCategoryIndex(Number(tab.name))
+    },
+    updateModel(e) {
+      this.selectInfo = e
+    },
+    updateStore(e) {
+      console.log(e)
+      this.storeInfo = e
     }
   },
   mounted() {
