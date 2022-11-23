@@ -54,12 +54,16 @@ const store =  new vuex.Store({
       return (sku, storeId)=> {
         var tag = true
         state.task.map(task=>{
-          if(task.shopInfo.sku == sku && task.storeInfo.id == storeId) {
+          if(task.shopInfo.selectSku == sku && task.storeInfo.id == storeId) {
+            console.log(11)
             tag = false
           }
         })
         return tag
       }
+    },
+    taskCount(state) {
+      return state.task.length
     }
   }
 })

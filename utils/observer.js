@@ -12,6 +12,7 @@ import {
     nanoid
 } from 'nanoid'
 import Vue from 'vue'
+import { MAX_TASK_LIST } from '../src/constant'
 
 /**
  * @Author: KESHAOYE
@@ -27,6 +28,10 @@ export function beginObserve(selectInfo, storeInfo, useServerChan) {
         // 判断同商店是否有相同任务在运行
         if (!store.getters.isExistTask(selectInfo.selectSku, storeInfo.id)) {
             reject('该任务正在运行中,请不要重复添加')
+            return
+        }
+        if(store.getters.taskCount >= MAX_TASK_LIST) {
+            reject('当前已达任务上限,请终止部分任务后继续')
             return
         }
         Vue.prototype.$message.success('开始监控啦!')

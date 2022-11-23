@@ -77,7 +77,6 @@ export default {
     selectInfo: {
       deep: true,
       handler(newval) {
-        console.log(newval)
         this.$emit('updateInfo', newval)
       }
     }
@@ -163,6 +162,8 @@ export default {
     createRom(id, chinese) {
       this.roms = []
       this.selectInfo.selectColor = chinese
+      this.selectInfo.selectSku = null
+      this.selectInfo.selectRom = null
       this.nowImage = this.models[this.modelIndex].skus[id].image
       for(let s of this.models[this.modelIndex].skus[id].ids) {
         this.roms.push(s)

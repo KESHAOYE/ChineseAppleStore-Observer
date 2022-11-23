@@ -25,6 +25,11 @@
         <template slot-scope="scope">{{scope.row.beginTime | timeCount(scope.row.endTime, scope.row.status)}}</template>
       </el-table-column>
       <el-table-column prop="count" label="监控次数" width="200"></el-table-column>
+      <el-table-column label="操作">
+      <template slot-scope="scope">
+        <el-button type="danger" size="mini" @click="stopTasks(scope.row.task)">结束任务</el-button>
+      </template>
+    </el-table-column>
     </el-table>
   </el-dialog>
 </template>
@@ -32,6 +37,7 @@
 <script>
 import { mapState } from 'vuex'
 import moment from 'moment'
+import { stopTask } from '../../../../utils/observer'
 export default {
   data(){
     return {
@@ -72,6 +78,9 @@ export default {
   methods: {
     closeDialog() {
       this.$emit('update:dialogVisible',false)
+    },
+    stopTasks(taskId) {
+      stopTask(taskId)
     }
   },
   mounted() {
