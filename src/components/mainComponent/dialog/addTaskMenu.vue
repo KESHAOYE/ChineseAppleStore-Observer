@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import {beginObserve,stopTask} from '../../../../utils/observer'
+import {beginObserve} from '../../../../utils/observer'
 export default {
   data(){
     return {
@@ -46,9 +46,8 @@ export default {
     storeInfo: Object
   },
   methods: {
-    async add() {
-      this.closeDialog()
-      await beginObserve(this.modelInfo, this.storeInfo, this.checked).then(data=>{
+    add() {
+      beginObserve(this.modelInfo, this.storeInfo, this.checked).then(data=>{
         if(data?.pickupDisplay === 'available') {
           this.$message({
             type: 'success',
@@ -56,15 +55,18 @@ export default {
             duration: 15000,
             showClose: true
           })
-          stopTask(data.intelval)
+          // stopTask(data.intelval)
         }
       }).catch(err => {
         console.error(err)
         this.$message.error(err)
       })
+      this.closeDialog()
     },
     closeDialog() {
       this.$emit('update:dialogVisible',false)
+      this.$EventBus.$emit('clearInfo')
+      this.$EventBus.$emit('toggleTaskList', true)
     }
   },
   mounted() {

@@ -19,8 +19,10 @@ import { MAX_TASK_LIST } from '../src/constant'
  * @Date: 2022-11-20 15:42:49
  * @describes: 商城模式监听
  */
-export function beginObserve(selectInfo, storeInfo, useServerChan) {
+export function beginObserve(e, t, useServerChan) {
     return new Promise((resolve, reject) => {
+        const selectInfo = e
+        const storeInfo = t
         let name = nanoid(),
             arr = {}
         let nowTime = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`
@@ -31,10 +33,11 @@ export function beginObserve(selectInfo, storeInfo, useServerChan) {
             return
         }
         if(store.getters.taskCount >= MAX_TASK_LIST) {
-            reject('当前已达任务上限,请终止部分任务后继续')
+            reject(`当前已达任务上限,请终止部分任务后继续(任务上限制为${MAX_TASK_LIST})`)
             return
         }
         Vue.prototype.$message.success('开始监控啦!')
+        console.log(1)
         store.commit("addTask", {
             task: null,
             taskId: name,
@@ -63,15 +66,13 @@ export function beginObserve(selectInfo, storeInfo, useServerChan) {
                     let p = body.stores[index].partsAvailability[selectInfo.selectSku]
                     store.commit('addTaskLog', {
                         name,
-                        status: 'observering',
                         result: {
-                            pickupDisplay: p.pickupDisplay,
-                            time: p.pickupSearchQuote
+                            status: p.pickupDisplay,
+                            info: p.pickupSearchQuote
                         }
                     })
                     if (p.pickupDisplay == 'available') {
-                        stopTask(arr[name])
-                        store.commit('stopTask', name)
+                        stopTask(arr[name], name, 'success')
                         audioMessage()
                         if (useServerChan) {
                             sendMessage(selectInfo, storeInfo, p.pickupSearchQuote)
@@ -107,6 +108,7 @@ function audioMessage() {
     player.play()
 }
 
-export function stopTask(id) {
-    clearInterval(id)
+export function stopTask(task, taskId, status, message='任务已完成,自动结束') {
+    store.commit('stopTask', [taskId, message, status])
+    clearInterval(task)
 }

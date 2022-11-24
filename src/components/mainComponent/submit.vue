@@ -10,18 +10,16 @@
       <el-input-number v-model="intelval" :step="5" controls-position="right" :min="5" step-strictly></el-input-number>秒
     </div>
     <div class="buttons">
-      <el-button type="primary" @click='openAddMenu'>添加任务</el-button>
-      <el-button type="danger" @click="dialogTaskListVisible = true">任务列表</el-button>
+      <el-button type="primary" @click='openAddMenu' :disabled='!submitFlag'>添加任务</el-button>
+      <el-button type="danger" @click="$EventBus.$emit('toggleTaskList', true)">任务列表</el-button>
     </div>
     <addTaskMenu :modelInfo="modelInfo" :storeInfo="storeInfo" v-if="submitFlag" :dialogVisible.sync="dialogAddTaskVisible"></addTaskMenu>
-    <taskList :dialogVisible.sync="dialogTaskListVisible"></taskList>
   </div>
 </template>
 
 <script>
 import store from '../../../utils/store'
 import addTaskMenu from './dialog/addTaskMenu.vue'
-import taskList from './dialog/taskList.vue'
 export default {
   name: 'submit',
   data() {
@@ -29,7 +27,6 @@ export default {
       store: null,
       intelval: 5,
       dialogAddTaskVisible: false,
-      dialogTaskListVisible:false,
       submitFlag: false
     }
   },
@@ -60,7 +57,7 @@ export default {
       deep: true
     }
   },
-  components: {addTaskMenu, taskList},
+  components: {addTaskMenu},
   methods: {
     openAddMenu() {
       if(this.submitFlag) {

@@ -177,6 +177,15 @@ export default {
 },
   mounted() {
     this.readType()
+    this.$EventBus.$on('clearInfo', ()=>{
+      this.modelIndex = -1
+      this.selectInfo = {
+        selectModel: '',
+        selectRom: null,
+        selectColor: null,
+        selectSku: null
+      }
+    })
   }
 }
 </script>

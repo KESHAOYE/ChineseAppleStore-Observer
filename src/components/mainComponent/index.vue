@@ -10,6 +10,7 @@
         <modelPicker @updateInfo='updateModel'></modelPicker>
         <cityPicker @updateInfo="updateStore" v-if="selectTypeId != -1"></cityPicker>
         <submit :modelInfo="selectInfo" :storeInfo="storeInfo" v-if="selectTypeId != -1"></submit>
+        <taskList></taskList>
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -20,6 +21,7 @@ import { SKU } from '../../data/model'
 import modelPicker from './modelPicker.vue'
 import cityPicker from './cityAndStorePicker.vue'
 import submit from './submit.vue'
+import taskList from './dialog/taskList.vue'
 import {mapMutations, mapState} from 'vuex'
 
 export default {
@@ -49,7 +51,8 @@ export default {
   components: {
     modelPicker,
     cityPicker,
-    submit
+    submit,
+    taskList
   },
   methods: {
     ...mapMutations(['changeCategoryIndex']),
@@ -73,7 +76,6 @@ export default {
       this.selectInfo = e
     },
     updateStore(e) {
-      console.log(e)
       this.storeInfo = e
     }
   },

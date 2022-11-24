@@ -41,12 +41,14 @@ const store =  new vuex.Store({
       state.task[index].count++
       state.task[index].log.push({time: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`, result: result.result})
     },
-    stopTask(state, id) {
+    stopTask(state, [id, message, status = 'stop']) {
       let index = state.task.findIndex(el=>el.taskId==id)
       let time = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`
       state.task[index].endTime = time
-      state.task[index].state = 'stop'
-      state.task[index].log.push({time, result:'任务已完成'})
+      state.task[index].state = status
+      state.task[index].log.push({time, result: {
+        status: 'stop',
+        info:message}})
     }
   },
   getters: {
@@ -54,8 +56,7 @@ const store =  new vuex.Store({
       return (sku, storeId)=> {
         var tag = true
         state.task.map(task=>{
-          if(task.shopInfo.selectSku == sku && task.storeInfo.id == storeId) {
-            console.log(11)
+          if(task.shopInfo.selectSku == sku && task.storeInfo.id == storeId && task.state!='stop' && task.state!='success') {
             tag = false
           }
         })
@@ -63,7 +64,7 @@ const store =  new vuex.Store({
       }
     },
     taskCount(state) {
-      return state.task.length
+      return state.task.filter(e=>e.state == 'observering').length
     }
   }
 })
