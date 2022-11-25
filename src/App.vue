@@ -1,3 +1,7 @@
+<!--
+ * @Author: KESHAOYE
+ * @Date: 2022-11-21 00:21:51
+-->
 <template>
   <div id="app">
     <mainComponent></mainComponent>
@@ -34,6 +38,7 @@ export default {
     }
     #app{
       background: #f9f9f9;
+      min-width: 1024px;
     }
   }
 </style>

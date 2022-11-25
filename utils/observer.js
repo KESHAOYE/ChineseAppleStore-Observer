@@ -19,10 +19,8 @@ import { MAX_TASK_LIST } from '../src/constant'
  * @Date: 2022-11-20 15:42:49
  * @describes: 商城模式监听
  */
-export function beginObserve(e, t, useServerChan) {
+export function beginObserve(selectInfo, storeInfo, useServerChan) {
     return new Promise((resolve, reject) => {
-        const selectInfo = e
-        const storeInfo = t
         let name = nanoid(),
             arr = {}
         let nowTime = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`
@@ -109,6 +107,11 @@ function audioMessage() {
 }
 
 export function stopTask(task, taskId, status, message='任务已完成,自动结束') {
-    store.commit('stopTask', [taskId, message, status])
-    clearInterval(task)
+    let index = store.state.task.findIndex(el=>el.taskId==taskId)
+    if(store.state.task[index].count > 0) {
+      store.commit('stopTask', [taskId, message, status])
+      clearInterval(task)
+    } else {
+      this.$message.error('暂不能取消')
+    }
 }

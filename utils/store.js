@@ -38,8 +38,10 @@ const store =  new vuex.Store({
     },
     addTaskLog(state, result) {
       let index = state.task.findIndex(el=>el.taskId==result.name)
-      state.task[index].count++
-      state.task[index].log.push({time: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`, result: result.result})
+      if(state.task[index].state!='stop' && state.task[index].state!='success') {
+        state.task[index].count++
+        state.task[index].log.push({time: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`, result: result.result})
+      }
     },
     stopTask(state, [id, message, status = 'stop']) {
       let index = state.task.findIndex(el=>el.taskId==id)

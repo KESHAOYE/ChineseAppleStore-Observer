@@ -108,7 +108,7 @@ export default {
       this.data_visiable = false
     },
     stopTasks(task, taskId) {
-      stopTask(task, taskId,'stop', '用户已手动终止任务')
+      stopTask(task, taskId, 'stop' , '用户已手动终止任务')
     },
     buy(info) {
       this.$notify({
@@ -120,7 +120,7 @@ export default {
       setTimeout(()=>{
         window.open(`https://www.apple.com.cn/shop/buy-iphone/${modelDict[info.shopInfo.selectModel]}/${info.shopInfo.selectSku}`)
       }, 1000)
-    }
+    },
   },
   mounted() {
     this.$EventBus.$on('toggleTaskList', (state)=>{

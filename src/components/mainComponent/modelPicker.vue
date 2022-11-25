@@ -228,16 +228,20 @@ export default {
     justify-content: space-around;
     align-items: center;
     .show_phone{
-      width: 55%;
+      width: 1000px;
+      min-width: 700px;
       img{
         width:auto;
         height: auto;
         max-width: 100%;
         max-height: 100%;
+        min-width: 700px;
+        min-height: 400px;
       }
     }
     .choose_property {
-      width: 38%;
+      width: 550px;
+      min-width: 550px;
       margin-left: 3%;
       .choose_models {
         display: flex;
