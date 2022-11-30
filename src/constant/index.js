@@ -12,5 +12,5 @@ export const modelDict = {
 export const status = {
   'observering': '监控中',
   'success': '有货',
-  'stop': '手动暂停'
+  'stop': '手动结束'
 }

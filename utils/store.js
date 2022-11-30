@@ -11,8 +11,15 @@ const store =  new vuex.Store({
   state:{
     categoryIndex: -1, // 当前品类
     selectTypeId: -1, // 选择机型系列
-    intelval: 5000,
+    interval: 3000,
     task:[],
+    setting: {
+      dialogMessage: true,
+      serverchanMessage:  false,
+      serverchan_sendkey: '',
+      // sendkey_check: false
+    },
+    version: '0.0.0 ALPHA'
   },
   mutations: {
     // 初始化
@@ -26,8 +33,8 @@ const store =  new vuex.Store({
     changeSelectTypeId(state, n) {
       state.selectTypeId = n
     },
-    changeIntelval(state, t) {
-      state.intelval = t
+    changeInterval(state, t) {
+      state.interval = t
     },
     addTask(state, config) {
       state.task.push(config)
@@ -51,6 +58,12 @@ const store =  new vuex.Store({
       state.task[index].log.push({time, result: {
         status: 'stop',
         info:message}})
+    },
+    setMessage(state, [key, val]) {
+      state.setting[key] = val
+    },
+    initSetting(state, setting) {
+      state.setting = setting
     }
   },
   getters: {

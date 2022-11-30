@@ -5,27 +5,25 @@
 <template>
   <div class="submit">
     <div class="info"></div>
-    <span class="tips">间隔时间：<span class="gray">监听的间隔时间</span></span>
-    <div class="intelval">
-      <el-input-number v-model="intelval" :step="5" controls-position="right" :min="5" step-strictly></el-input-number>秒
+    <span class="tips">间隔时间：<span class="gray">监听的间隔时间(秒)</span></span>
+    <div class="interval">
+      <el-input-number v-model="interval" :step="1" controls-position="right" :min="5" step-strictly></el-input-number>
     </div>
     <div class="buttons">
-      <el-button type="primary" @click='openAddMenu' :disabled='!submitFlag'>添加任务</el-button>
-      <el-button type="danger" @click="$EventBus.$emit('toggleTaskList', true)">任务列表</el-button>
+      <el-button type="primary" plain @click='openAddMenu' :disabled='!submitFlag'>添加任务</el-button>
     </div>
-    <addTaskMenu :modelInfo="modelInfo" :storeInfo="storeInfo" v-if="submitFlag" :dialogVisible.sync="dialogAddTaskVisible"></addTaskMenu>
+    <addTaskMenu :modelInfo="modelInfo" :storeInfo="storeInfo" :interval="interval" v-if="submitFlag" :dialogVisible.sync="dialogAddTaskVisible"></addTaskMenu>
   </div>
 </template>
 
 <script>
-import store from '../../../utils/store'
-import addTaskMenu from './dialog/addTaskMenu.vue'
+import addTaskMenu from '../dialog/addTaskMenu.vue'
 export default {
   name: 'submit',
   data() {
     return {
       store: null,
-      intelval: 5,
+      interval: 5,
       dialogAddTaskVisible: false,
       submitFlag: false
     }
@@ -41,8 +39,11 @@ export default {
     }
   },
   watch: {
-    intelval(newval) {
-      store.commit('changeIntelval', newval * 1000)
+    '$store.state.interval': {
+       handler(newval) {
+         this.interval = newval / 1000
+       },
+       deep: true
     },
     modelInfo: {
       handler() {
@@ -77,6 +78,9 @@ export default {
           this.submitFlag = false
         }
     }
+  },
+  mounted() {
+    this.interval = this.$store.state.interval / 1000
   }
 }
 </script>

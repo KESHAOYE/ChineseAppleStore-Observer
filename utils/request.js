@@ -9,7 +9,6 @@
   */
 
 import axios from "axios"
-import vue from 'vue'
 
 const api = axios.create({
     baseURL: '', 
@@ -19,14 +18,13 @@ const api = axios.create({
 api.interceptors.request.use(config => {
    return config 
 }, err => {
-  Promise.reject(err)
+  return Promise.reject(err)
 })
 
 api.interceptors.response.use(res => {
    return Promise.resolve(res.data?.body)
 }, err => {
-   vue.prototype.$message.error('因苹果服务器不稳定,造成请求错误,请重试!')
-   Promise.reject(err)
+   return Promise.reject(err)
 })
 
 export default api;

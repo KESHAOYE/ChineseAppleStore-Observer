@@ -19,7 +19,7 @@ import { MAX_TASK_LIST } from '../src/constant'
  * @Date: 2022-11-20 15:42:49
  * @describes: 商城模式监听
  */
-export function beginObserve(selectInfo, storeInfo, useServerChan) {
+export function beginObserve(selectInfo, storeInfo, useServerChan, interval) {
     return new Promise((resolve, reject) => {
         let name = nanoid(),
             arr = {}
@@ -35,7 +35,9 @@ export function beginObserve(selectInfo, storeInfo, useServerChan) {
             return
         }
         Vue.prototype.$message.success('开始监控啦!')
-        console.log(1)
+        if(state.setting.dialogMessage) {
+          dialogMessage('开始监控啦', '请不要关闭页面，可将页面放至后台运行')
+        }
         store.commit("addTask", {
             task: null,
             taskId: name,
@@ -75,6 +77,9 @@ export function beginObserve(selectInfo, storeInfo, useServerChan) {
                         if (useServerChan) {
                             sendMessage(selectInfo, storeInfo, p.pickupSearchQuote)
                         }
+                        if(state.setting.dialogMessage) {
+                            dialogMessage('有货了!', `您监控的${selectInfo.selectModel} ${selectInfo.selectColor} ${selectInfo.selectRom}有货啦!当前状态为：${p.pickupSearchQuote},店铺为：${storeInfo.label}`)
+                          }
                         resolve({
                             storeInfo: storeInfo,
                             modelInfo: selectInfo,
@@ -84,19 +89,22 @@ export function beginObserve(selectInfo, storeInfo, useServerChan) {
                     }
                 }
             )
-        }, state.intelval)
+        }, interval * 1000)
     })
 }
 
 
-function sendMessage(selectInfo, modelInfo, pickupSearchQuote) {
+function sendMessage(selectInfo, storeInfo, pickupSearchQuote) {
     let sendkey = localStorage.getItem('serverchan_sendkey')
+    // let href = `https://www.apple.com.cn/shop/buy-iphone/${modelDict[selectInfo.selectModel]}/${selectInfo.selectSku}`
     sendServerChan({
         sendkey,
         title: '您监控的商品有货啦!!',
-        content: `您监控的${modelInfo.label} ${selectInfo.selectModel}当前状态为${pickupSearchQuote}`
+        content: `您监控的${selectInfo.selectModel} ${selectInfo.selectColor} ${selectInfo.selectRom}有货啦!当前状态为：${pickupSearchQuote},店铺为：${storeInfo.label}`
     }).then(data => {
-        console.log(data)
+        console.log(`${data}`)
+    }).catch(err=>{
+        Vue.prototype.$message.error(`server酱发生错误，${err.response.data.message}，请检查`)
     })
 }
 
@@ -104,6 +112,18 @@ function audioMessage() {
     let url = require('../src/assets/message.mp3')
     let player = new Audio(url)
     player.play()
+}
+
+function dialogMessage(title, message) {
+    var n
+    Notification.requestPermission(() => {
+      n = new Notification(title, {body: message}) // 显示通知
+    })
+    if(n) {
+        n.onclick = e => {
+          console.log(e)
+        }
+    }
 }
 
 export function stopTask(task, taskId, status, message='任务已完成,自动结束') {

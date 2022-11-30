@@ -3,7 +3,7 @@
  * @Date: 2022-11-23 22:53:34
 -->
 <template>
-  <el-dialog title="任务列表" :visible.sync="data_visiable" :close-on-click-modal="false" :before-close="closeDialog" width="90%">
+  <el-dialog title="任务列表" :visible.sync="data_visiable" :close-on-click-modal="false" :before-close="closeDialog" width="95%">
     <el-table :data="task" style="width: 100%">
       <el-table-column type="expand">
         <template slot-scope="props">
@@ -50,8 +50,8 @@
 <script>
 import { mapState } from 'vuex'
 import moment from 'moment'
-import { stopTask } from '../../../../utils/observer'
-import {modelDict, status} from '../../../constant/index'
+import { stopTask } from '@/../utils/observer'
+import {modelDict, status} from '@/constant/index'
 export default {
   data(){
     return {
@@ -64,7 +64,7 @@ export default {
     } 
   },
   computed: {
-    ...mapState(['task','intelval'])
+    ...mapState(['task','interval'])
 },
   filters: {
      // 解决直辖市的显示问题

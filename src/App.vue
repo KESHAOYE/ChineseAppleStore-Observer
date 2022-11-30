@@ -4,18 +4,32 @@
 -->
 <template>
   <div id="app">
-    <mainComponent></mainComponent>
+    <a-header></a-header>
+    <a-main></a-main>
+    <a-foot></a-foot>
   </div>
 </template>
 
 <script>
 
-import mainComponent from './components/mainComponent/index'
+import aHeader from './components/header/index'
+import aMain from './components/main/index'
+import aFoot from './components/footer/index'
 
 export default {
   name: 'App',
   components: {
-    mainComponent
+    aMain,
+    aHeader,
+    aFoot
+  },
+  beforeCreate() {
+    if(localStorage.getItem('setting')){
+      this.$store.commit('initSetting', JSON.parse(localStorage.getItem('setting')))
+    }
+    if(localStorage.getItem('interval')) {
+      this.$store.commit('changeInterval', localStorage.getItem('interval'))
+    }
   }
 }
 </script>
@@ -27,6 +41,7 @@ export default {
        }
     * {
       font-family: misans;
+      user-select: none;
     }
     .tips {
     font-weight: bolder;
@@ -34,7 +49,8 @@ export default {
     display: block;
     margin: 25px 0;
     .gray {
-      color: rgb(82, 82, 82)
+      color: rgb(94, 94, 94);
+      font-weight:lighter;
     }
     #app{
       background: #f9f9f9;

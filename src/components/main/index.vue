@@ -7,10 +7,11 @@
   <div>
     <el-tabs @tab-click="handleClick">
       <el-tab-pane v-for="item in category" :key="item.category" :label="item.category" :name="String(item.id)">
-        <modelPicker @updateInfo='updateModel'></modelPicker>
-        <cityPicker @updateInfo="updateStore" v-if="selectTypeId != -1"></cityPicker>
-        <submit :modelInfo="selectInfo" :storeInfo="storeInfo" v-if="selectTypeId != -1"></submit>
-        <taskList></taskList>
+        <modelPicker @updateInfo='updateModel'/>
+        <cityPicker @updateInfo="updateStore" v-if="selectTypeId != -1"/>
+        <submit :modelInfo="selectInfo" :storeInfo="storeInfo" v-if="selectTypeId != -1"/>
+        <taskList/>
+        <setting/>
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -18,10 +19,11 @@
 
 <script>
 import { SKU } from '../../data/model'
-import modelPicker from './modelPicker.vue'
-import cityPicker from './cityAndStorePicker.vue'
-import submit from './submit.vue'
-import taskList from './dialog/taskList.vue'
+import modelPicker from './modelPicker'
+import cityPicker from './cityAndStorePicker'
+import submit from './submit'
+import taskList from '../dialog/taskList'
+import setting from '../dialog/setting'
 import {mapMutations, mapState} from 'vuex'
 
 export default {
@@ -52,7 +54,8 @@ export default {
     modelPicker,
     cityPicker,
     submit,
-    taskList
+    taskList,
+    setting
   },
   methods: {
     ...mapMutations(['changeCategoryIndex']),

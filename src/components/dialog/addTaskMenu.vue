@@ -8,7 +8,7 @@
         <el-descriptions-item label="机型信息">{{modelInfo.selectModel}} {{modelInfo.selectRom}} {{modelInfo.selectColor}}</el-descriptions-item>
         <!-- <el-descriptions-item label="SKU信息">{{modelInfo.selectSku}}</el-descriptions-item> -->
         <el-descriptions-item label="商店信息">{{storeInfo.label}}</el-descriptions-item>
-        <el-descriptions-item label="间隔时间">{{$store.state.intelval / 1000}}秒</el-descriptions-item>
+        <el-descriptions-item label="间隔时间">{{this.interval}}秒</el-descriptions-item>
     </el-descriptions>
     <div class="serverchan_config">
         <el-checkbox v-model="checked">成功时通知我(server酱)</el-checkbox>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import {beginObserve} from '../../../../utils/observer'
+import {beginObserve} from '@/../utils/observer'
 export default {
   data(){
     return {
@@ -43,11 +43,12 @@ export default {
       default: false
     },
     modelInfo:  Object,
-    storeInfo: Object
+    storeInfo: Object,
+    interval: Number
   },
   methods: {
     add() {
-      beginObserve(this.modelInfo, this.storeInfo, this.checked).then(data=>{
+      beginObserve(this.modelInfo, this.storeInfo, this.checked, this.interval).then(data=>{
         if(data?.pickupDisplay === 'available') {
           this.$message({
             type: 'success',
@@ -61,16 +62,17 @@ export default {
         console.error(err)
         this.$message.error(err)
       })
+      this.$EventBus.$emit('clearInfo')
+      this.$EventBus.$emit('toggleTaskList', true)
       this.closeDialog()
     },
     closeDialog() {
       this.$emit('update:dialogVisible',false)
-      this.$EventBus.$emit('clearInfo')
-      this.$EventBus.$emit('toggleTaskList', true)
     }
   },
   mounted() {
-    this.sendkey = localStorage.getItem('serverchan_sendkey')
+    this.checked = this.$store.state.setting.serverchanMessage
+    this.sendkey = this.$store.state.setting.serverchan_sendkey
   }
 }
 </script>

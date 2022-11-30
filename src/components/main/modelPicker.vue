@@ -12,7 +12,15 @@
     <!-- 选择机型 -->
    <div class="main_choose" v-if="selectTypeId != -1">
     <div class="show_phone">
-      <img :src="nowImage"/>
+      <el-image :src="nowImage">
+        <div slot="placeholder" class="image_slot">
+          <i class="el-icon-loading"></i>
+          加载中<span class="dot">...</span>
+        </div>
+        <div slot="error" class="image_slot">
+          <i class="el-icon-picture-outline"></i>
+        </div>
+      </el-image>
     </div>
     <div class="choose_property">
       <span class="tips">机型：<span class="gray">选择你中意的机型</span></span>
@@ -177,6 +185,7 @@ export default {
 },
   mounted() {
     this.readType()
+    this.readModel(0)
     this.$EventBus.$on('clearInfo', ()=>{
       this.modelIndex = -1
       this.selectInfo = {
@@ -190,7 +199,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .choose_model {
     display: flex;
     flex-flow: row nowrap;
@@ -215,12 +224,22 @@ export default {
         background-size: 40px 50px;
       }
       &:hover{
-        color:#06c;
+        color: rgb(40, 136, 232)
       }
     }
     .type_select {
-        color: #06c
+        color: rgb(40, 136, 232)
       }
+  }
+  .image_slot {
+    width: 1000px;
+    min-width: 700px;
+    min-height: 400px;
+    background: #f8f8f8;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
   }
   .main_choose{
     display: flex;
@@ -254,13 +273,14 @@ export default {
         .models {
           width: 250px;
           height: 60px;
-          border: 1px solid #d2d2d2;
+          border: 1px solid #e4e4e4;
           border-radius: 15px;
           text-align: center;
           line-height: 60px;
           cursor:pointer;
           margin: 10px 0 0 10px;
           &:hover{
+           transition: .2s;
            border: 1px solid rgb(43, 43, 43);
           }
         }
@@ -273,7 +293,8 @@ export default {
    justify-content: flex-start;
    align-content: center;
     .color_select {
-      border:1px solid #06c !important;
+      transition: .2s;
+      border:1px solid rgb(40, 136, 232) !important;
     }
     .color_ring {
       width: 50px;
