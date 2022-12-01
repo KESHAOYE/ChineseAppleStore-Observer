@@ -37,7 +37,17 @@ export default {
       get() {
         return this.$store.state.setting.dialogMessage
       },
-      set(val) {
+      async set(val) {
+        if(val) {
+          if(Notification.permission!= "granted") {
+            await Notification.requestPermission()
+            if (Notification.permission == 'denied') {
+              this.$message.error('功能不可用,无通知权限,请检查设置')
+              this.dialogMessage = false
+              return;
+            }
+          }
+        }
         localStorage.setItem('setting', JSON.stringify({
           ...JSON.parse(localStorage.getItem('setting')),
           dialogMessage: val

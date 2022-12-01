@@ -14,7 +14,7 @@ const store =  new vuex.Store({
     interval: 3000,
     task:[],
     setting: {
-      dialogMessage: true,
+      dialogMessage: false,
       serverchanMessage:  false,
       serverchan_sendkey: '',
       // sendkey_check: false

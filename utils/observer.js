@@ -12,7 +12,7 @@ import {
     nanoid
 } from 'nanoid'
 import Vue from 'vue'
-import { MAX_TASK_LIST } from '../src/constant'
+import { MAX_TASK_LIST,modelDict } from '../src/constant'
 
 /**
  * @Author: KESHAOYE
@@ -78,7 +78,8 @@ export function beginObserve(selectInfo, storeInfo, useServerChan, interval) {
                             sendMessage(selectInfo, storeInfo, p.pickupSearchQuote)
                         }
                         if(state.setting.dialogMessage) {
-                            dialogMessage('有货了!', `您监控的${selectInfo.selectModel} ${selectInfo.selectColor} ${selectInfo.selectRom}有货啦!当前状态为：${p.pickupSearchQuote},店铺为：${storeInfo.label}`)
+                            let href = `https://www.apple.com.cn/shop/buy-iphone/${modelDict[selectInfo.selectModel]}/${selectInfo.selectSku}`
+                            dialogMessage('有货了!', `您监控的${selectInfo.selectModel} ${selectInfo.selectColor} ${selectInfo.selectRom}有货啦!当前状态为：${p.pickupSearchQuote},店铺为：${storeInfo.label},点击立即前往官网购买`, href)
                           }
                         resolve({
                             storeInfo: storeInfo,
@@ -93,10 +94,8 @@ export function beginObserve(selectInfo, storeInfo, useServerChan, interval) {
     })
 }
 
-
 function sendMessage(selectInfo, storeInfo, pickupSearchQuote) {
     let sendkey = localStorage.getItem('serverchan_sendkey')
-    // let href = `https://www.apple.com.cn/shop/buy-iphone/${modelDict[selectInfo.selectModel]}/${selectInfo.selectSku}`
     sendServerChan({
         sendkey,
         title: '您监控的商品有货啦!!',
@@ -114,15 +113,34 @@ function audioMessage() {
     player.play()
 }
 
-function dialogMessage(title, message) {
-    var n
-    Notification.requestPermission(() => {
-      n = new Notification(title, {body: message}) // 显示通知
-    })
-    if(n) {
-        n.onclick = e => {
-          console.log(e)
-        }
+function dialogMessage(title, message, href) {
+    var Notification = window.Notification || window.mozNotification || window.webkitNotification;
+    if(Notification){
+        Notification.requestPermission(function(status){
+            //status默认值'default'等同于拒绝 'denied' 意味着用户不想要通知 'granted' 意味着用户同意启用通知
+            if("granted" != status){
+                Vue.prototype.$message.error('用户拒绝弹窗')
+                localStorage.setItem('setting', JSON.stringify({
+                    ...JSON.parse(localStorage.getItem('setting')),
+                    dialogMessage: false
+                  }))
+                store.commit('setMessage', ['dialogMessage', false])
+                return;
+            }else{
+                var notify = new Notification( title, {
+                    dir:'auto',
+                    lang:'zh-CN',
+                    requireInteraction: true,
+                    body:message //通知的具体内容
+                })
+                notify.onclick=function(){
+                    notify.close();
+                    if(href) {
+                      window.open(href)
+                    }
+                }
+            }
+        })
     }
 }
 
