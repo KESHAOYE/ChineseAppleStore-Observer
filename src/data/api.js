@@ -13,6 +13,16 @@ export const getStock = (p)=> api({
     params: p
 })
 
+export const getProvide = ()=>api({
+    methods: 'get',
+    url: 'apis/shop/address-lookup'
+})
+
+export const getStore = () => api({
+    methods: 'get',
+    url: 'apis/rsp-web/store-list?locale=zh_CN'
+})
+
 export const sendServerChan = (p) => api({
     methods: 'get',
     url: `https://sctapi.ftqq.com/${p.sendkey}.send?title=${p.title}&desp=${p.content}`

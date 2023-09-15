@@ -22,7 +22,7 @@ api.interceptors.request.use(config => {
 })
 
 api.interceptors.response.use(res => {
-   return Promise.resolve(res.data?.body)
+   return Promise.resolve('body' in res.data? res.data.body: res.data)
 }, err => {
    return Promise.reject(err)
 })

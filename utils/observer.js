@@ -5,24 +5,26 @@
 // 用于监控货源
 import store from './store'
 import {
-    getStock,
     sendServerChan
 } from '../src/data/api'
 import {
     nanoid
 } from 'nanoid'
 import Vue from 'vue'
-import { MAX_TASK_LIST,modelDict } from '../src/constant'
+import { MAX_TASK_LIST,} from '../src/constant'
+import observerWorker from './observer.worker'
 
 /**
  * @Author: KESHAOYE
  * @Date: 2022-11-20 15:42:49
  * @describes: 商城模式监听
  */
+
+let worker = null
+
 export function beginObserve(selectInfo, storeInfo, useServerChan, interval) {
     return new Promise((resolve, reject) => {
-        let name = nanoid(),
-            arr = {}
+        let name = nanoid()
         let nowTime = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`
         let state = store.state
         // 判断同商店是否有相同任务在运行
@@ -41,58 +43,73 @@ export function beginObserve(selectInfo, storeInfo, useServerChan, interval) {
         store.commit("addTask", {
             task: null,
             taskId: name,
+            intervalTime: '00:00:00',
+            interval: null,
             beginTime: nowTime,
             endTime: '',
-            location: `${storeInfo.province} ${storeInfo.city}`,
+            location: `${storeInfo.address.stateName} ${storeInfo.address.city}`,
             storeInfo: storeInfo,
             shopInfo: selectInfo,
             state: 'observering',
             count: 0,
             log: []
         })
-        arr[name] = setInterval(async () => {
-            store.commit('taskValue', {
-                name,
-                task: arr[name]
-            })
-            await getStock({
-                pl: true,
-                'parts.0': selectInfo.selectSku,
-                location: `${storeInfo.province} ${storeInfo.city}`
-            }).then(
-                data => {
-                    let body = data.content.pickupMessage
-                    let index = body.stores.findIndex(el => el.storeNumber == storeInfo.id)
-                    let p = body.stores[index].partsAvailability[selectInfo.selectSku]
-                    store.commit('addTaskLog', {
-                        name,
-                        result: {
-                            status: p.pickupDisplay,
-                            info: p.pickupSearchQuote
-                        }
-                    })
-                    if (p.pickupDisplay == 'available') {
-                        stopTask(arr[name], name, 'success')
-                        audioMessage()
-                        if (useServerChan) {
-                            sendMessage(selectInfo, storeInfo, p.pickupSearchQuote)
-                        }
-                        if(state.setting.dialogMessage) {
-                            let href = `https://www.apple.com.cn/shop/buy-iphone/${modelDict[selectInfo.selectModel]}/${selectInfo.selectSku}`
-                            dialogMessage('有货了!', `您监控的${selectInfo.selectModel} ${selectInfo.selectColor} ${selectInfo.selectRom}有货啦!当前状态为：${p.pickupSearchQuote},店铺为：${storeInfo.label},点击立即前往官网购买`, href)
-                          }
-                        resolve({
-                            storeInfo: storeInfo,
-                            modelInfo: selectInfo,
-                            pickupDisplay: p.pickupDisplay,
-                            time: p.pickupSearchQuote
-                        })
-                    }
-                }
-            )
-        }, interval * 1000)
+        worker = new observerWorker({
+            type: 'module'
+        })
+        worker.postMessage({
+            type: 'beginObserve',
+            name, 
+            useServerChan,
+            useDialogMessage: state.setting.dialogMessage, 
+            interval,
+            selectInfo,
+            storeInfo
+        })
+        worker.onmessage = (event) => {
+          const data = event.data
+          switch(data.type) {
+            // 操作vuex
+            case 'vuexTaskValue': 
+                store.commit('taskValue', {
+                    name: data.name,
+                    task: data.task
+                })
+                break;
+            case 'vuexAddTaskLog':
+                store.commit('addTaskLog', {
+                    name: data.name,
+                    result: data.result
+                })
+                break;
+            case 'stopTask':
+                stopTask(data.intervalTask, data.name, data.message)
+                break;
+            case 'audioMessage':
+                audioMessage()
+                break;
+            case 'serverChan':
+                sendMessage(selectInfo, storeInfo, data.pickupSearchQuote)
+                break;
+            case 'dialogMessage':
+                dialogMessage(data.title, data.message, data.href)
+                break;
+            case 'resolve':
+                resolve({
+                  storeInfo: storeInfo,
+                  modelInfo: selectInfo,
+                  pickupDisplay: data.pickupDisplay,
+                  time: data.time
+                })
+                break;
+            default: console.error(`未捕获事件${data.type}`);
+          }
+        }
     })
 }
+
+// 微信接口号
+function wechatJKMessage(){}
 
 function sendMessage(selectInfo, storeInfo, pickupSearchQuote) {
     let sendkey = localStorage.getItem('serverchan_sendkey')
@@ -148,8 +165,11 @@ export function stopTask(task, taskId, status, message='任务已完成,自动�
     let index = store.state.task.findIndex(el=>el.taskId==taskId)
     if(store.state.task[index].count > 0) {
       store.commit('stopTask', [taskId, message, status])
-      clearInterval(task)
+      worker.postMessage({
+        type: 'stop',
+        intervalTask: task
+    })
     } else {
-      this.$message.error('暂不能取消')
+        Vue.prototype.$message.error('暂不能取消')
     }
 }

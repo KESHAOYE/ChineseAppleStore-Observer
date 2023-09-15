@@ -13,7 +13,7 @@
     "element-ui": "^2.15.10",
     "moment": "^2.29.4",
     "nanoid": "^4.0.0",
-    "node-sass": "4.14.1",
+    "node-sass": "6.0",
     "sass-loader": "10.x",
     "scss": "^0.2.4",
     "vue": "^2.6.11",
@@ -27,7 +27,8 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "worker-loader": "^3.0.8"
   },
   "eslintConfig": {
     "root": true,

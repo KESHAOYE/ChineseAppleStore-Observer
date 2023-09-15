@@ -10,19 +10,21 @@
           <el-option v-for="item in provinces" :key="item.value" :label="item.label" :value="item.value"></el-option>
       </el-select>
       <el-select v-if="stores.length > 0" v-model="nowStore" @change="updateStoreInfo" placeholder="Apple Store" style="margin-left: 20px">
-          <el-option v-for="item in stores" :key="item.id" :label="item.label" :value="item.id"></el-option>
+        <el-option v-for="item in stores[0].store" :key="item.id" :label="item.name" :value="item.id"></el-option>
       </el-select>
-    </div>
+      <el-link style="margin-left: 20px" type="primary" v-if="nowStore" @click="storeDetail()">商店详情</el-link></div>
   </div>
 </template>
 
 <script>
-import {storeList} from '../../data/applestore'
+// import {storeList} from '../../data/applestore'
+import {getStore} from '../../data/api'
 export default {
   name: 'cityPicker',
   data () {
     return {
       provinces: [],
+      allStores: [],
       stores: [],
       storeInfo:null,
       nowProvince: null,
@@ -35,31 +37,39 @@ export default {
   methods: {
     readProvince() {
       this.provinces = []
-      storeList[0].state.forEach(el=>{
-        this.provinces.push({value:el.name,label:el.name})
-      })
-    },
-    readStore() {
-      this.stores= []
-      this.loading = true
-      this.nowStore = null
-      storeList[0].state.forEach(state=>{
-        if(state.name === this.nowProvince) {
-          state.store.forEach(store=> {
-            this.stores.push({
-              province: this.nowProvince,
-              id: store.id,
-              value: store.name,
-              label: `Apple${store.name}店`,
-              city: store.address.city
+      getStore()
+       .then(data => {
+          this.allStores = data.storeListData[0].state
+          data.storeListData[0].state.forEach(el => {
+            this.provinces.push({
+              value:el.name,
+              label:el.name
             })
           })
+       })
+      // this.provinces = []
+      // storeList[0].state.forEach(el=>{
+      //   this.provinces.push({value:el.name,label:el.name})
+      // })
+    },
+    readStore() {
+      this.loading = true
+      this.nowStore = null
+      this.stores = this.allStores.filter(el =>{
+        if(el.name == this.nowProvince) {
+          return el.store
         }
+      })
+      this.stores[0].store.forEach(el => {
+        el.name = `APPLE${el.name}店`
       })
       this.loading = false
     },
+    storeDetail() {
+      window.open(`https://www.apple.com.cn/retail/${this.storeInfo.slug}`)
+    },
     updateStoreInfo(e) {
-      this.storeInfo = this.stores[this.stores.findIndex(el=>el.id == e)]
+      this.storeInfo = this.stores[0].store[this.stores[0].store.findIndex(el => el.id == e )]
       this.$emit('updateInfo', this.storeInfo)
     }
   },
@@ -69,8 +79,11 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
   .cityPicker{
     margin-left: 1%;
+    .storeInfo {
+      margin-top: 25px;
+    }
   }
 </style>

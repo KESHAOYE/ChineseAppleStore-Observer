@@ -7,7 +7,7 @@
     <el-descriptions title="任务概览" :column="2">
         <el-descriptions-item label="机型信息">{{modelInfo.selectModel}} {{modelInfo.selectRom}} {{modelInfo.selectColor}}</el-descriptions-item>
         <!-- <el-descriptions-item label="SKU信息">{{modelInfo.selectSku}}</el-descriptions-item> -->
-        <el-descriptions-item label="商店信息">{{storeInfo.label}}</el-descriptions-item>
+        <el-descriptions-item label="商店信息">{{storeInfo.name}}</el-descriptions-item>
         <el-descriptions-item label="间隔时间">{{this.interval}}秒</el-descriptions-item>
     </el-descriptions>
     <div class="serverchan_config">

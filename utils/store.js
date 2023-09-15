@@ -36,25 +36,37 @@ const store =  new vuex.Store({
     changeInterval(state, t) {
       state.interval = t
     },
+    // 添加表格计时器
+    changeTaskInterval(state, [index, interval]) {
+      state.task[index].interval = interval
+    },
     addTask(state, config) {
+      const event = new Event('addTask')
+      event.taskId = config.taskId
       state.task.push(config)
+      window.dispatchEvent(event)
     },
     taskValue(state, task) {
+      console.log(state.task, task);
       let index = state.task.findIndex(el=>el.taskId==task.name)
       state.task[index].task = task.task
     },
-    addTaskLog(state, result) {
+    addTaskLog(state, result) {;
       let index = state.task.findIndex(el=>el.taskId==result.name)
+      console.log(index);
       if(state.task[index].state!='stop' && state.task[index].state!='success') {
         state.task[index].count++
         state.task[index].log.push({time: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`, result: result.result})
       }
     },
-    stopTask(state, [id, message, status = 'stop']) {
+    stopTask(state, [id, message, status = 'stop']) {;
       let index = state.task.findIndex(el=>el.taskId==id)
       let time = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`
       state.task[index].endTime = time
       state.task[index].state = status
+      const e = new Event('clearRowInterval')
+      e.interval = state.task[index].interval
+      window.dispatchEvent(e)
       state.task[index].log.push({time, result: {
         status: 'stop',
         info:message}})

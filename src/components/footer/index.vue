@@ -4,7 +4,8 @@
 -->
 <template>
   <div class="footer">
-    <div class="item">© 2022 KESHAOYE</div>
+    <div class="item">* 所有价格均来自官网（截止2023年9月15日）</div>
+    <div class="item">© 2022-2023 KESHAOYE</div>
   </div>
 </template>
 

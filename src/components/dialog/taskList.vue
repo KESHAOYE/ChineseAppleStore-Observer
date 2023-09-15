@@ -3,7 +3,7 @@
  * @Date: 2022-11-23 22:53:34
 -->
 <template>
-  <el-dialog title="任务列表" :visible.sync="data_visiable" :close-on-click-modal="false" :before-close="closeDialog" width="95%">
+  <el-dialog title="任务列表" :visible.sync="data_visiable" :close-on-click-modal="false" :before-close="closeDialog" width="95%" style="max-width: 1920px;">
     <el-table :data="task" style="width: 100%">
       <el-table-column type="expand">
         <template slot-scope="props">
@@ -12,7 +12,7 @@
                <div class="status"><i :class="iconDict[log.result.status]"></i></div>
                <div class="info">
                   <div class="time">{{log.time}}</div>
-                  <div class="result" v-if="log.result.status == 'available' || log.result.status == 'unavailable'">{{log.result.info | result(log.result.status)}}</div>
+                  <div class="result" v-if="log.result.status == 'available' || log.result.status == 'unavailable' || log.result.status == 'ineligible'">{{log.result.info | result(log.result.status)}}</div>
                   <div class="result" v-else>信息: {{log.result.info}}</div>
                </div>
             </div>
@@ -26,13 +26,13 @@
         <template slot-scope="scope">{{scope.row.shopInfo.selectModel}} {{scope.row.shopInfo.selectColor}} {{scope.row.shopInfo.selectRom}}</template>
       </el-table-column>
       <el-table-column label="城市" width="180">
-        <template slot-scope="scope">{{scope.row.storeInfo.province | location(scope.row.storeInfo.city)}}</template>
+        <template slot-scope="scope">{{scope.row.storeInfo.address.stateName | location(scope.row.storeInfo.address.city)}}</template>
       </el-table-column>
       <el-table-column label="Apple Store" width="180">
-        <template slot-scope="scope">{{scope.row.storeInfo.label}}</template>
+        <template slot-scope="scope">{{scope.row.storeInfo.name}}</template>
       </el-table-column>
       <el-table-column label="运行时长" width="180">
-        <template slot-scope="scope">{{scope.row.beginTime | timeCount(scope.row.endTime, scope.row.state)}}</template>
+        <template slot-scope="scope">{{scope.row.intervalTime}}</template>
       </el-table-column>
       <el-table-column prop="count" label="监控次数" width="150"></el-table-column>
       <el-table-column label="操作">
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import moment from 'moment'
 import { stopTask } from '@/../utils/observer'
 import {modelDict, status} from '@/constant/index'
@@ -59,12 +59,14 @@ export default {
       iconDict: {
         'available': 'el-icon-success success',
         'unavailable': 'el-icon-error error',
-        'stop': 'el-icon-remove stop'
+        'stop': 'el-icon-remove stop',
+        'ineligible': 'el-icon-error error'
       }
     } 
   },
   computed: {
-    ...mapState(['task','interval'])
+    ...mapState(['task','interval']),
+    ...mapMutations(['changeTaskInterval'])
 },
   filters: {
      // 解决直辖市的显示问题
@@ -74,13 +76,6 @@ export default {
         } else {
           return `${province}省${city}市`
         }
-    },
-    timeCount(startTime, endTime, status) {
-      if(status == 'stop' || status == 'success') {
-        return moment.utc(new Date(endTime) - new Date(startTime)).format('HH:mm:ss')
-      } else {
-        return moment.utc(Date.now() - new Date(startTime)).format('HH:mm:ss') 
-      }
     },
     status(s) {
       return status[s]
@@ -110,6 +105,20 @@ export default {
     stopTasks(task, taskId) {
       stopTask(task, taskId, 'stop' , '用户已手动终止任务')
     },
+    addTimer() {
+      this.task.forEach(el => {
+        this.formatTime(el)
+      })
+    },
+    formatTime(el) {
+      return setInterval(()=>{
+        if(el.status == 'stop' || el.status == 'success') {
+          el.intervalTime = moment.utc(new Date(el.endTime) - new Date(el.beginTime)).format('HH:mm:ss')
+        } else {
+          el.intervalTime = moment.utc(Date.now() - new Date(el.beginTime)).format('HH:mm:ss')
+        }
+      },1000)
+    },
     buy(info) {
       this.$notify({
           title: '警告',
@@ -125,6 +134,15 @@ export default {
   mounted() {
     this.$EventBus.$on('toggleTaskList', (state)=>{
       this.data_visiable = state
+    })
+    window.addEventListener('clearRowInterval',(e)=>{
+      clearInterval(e.interval)
+    })
+    window.addEventListener('addTask', (e)=>{
+      const index = this.task.findIndex(el=> {
+        return el.taskId == e.taskId
+      })
+      this.$store.commit('changeTaskInterval', [index, this.formatTime(this.task[index])])
     })
   }
 }

@@ -12,25 +12,20 @@
     <!-- 选择机型 -->
    <div class="main_choose" v-if="selectTypeId != -1">
     <div class="show_phone">
-      <el-image :src="nowImage">
-        <div slot="placeholder" class="image_slot">
-          <i class="el-icon-loading"></i>
-          加载中<span class="dot">...</span>
-        </div>
-        <div slot="error" class="image_slot">
-          <i class="el-icon-picture-outline"></i>
-        </div>
-      </el-image>
+      <img :src="nowImage" style="width: 100%;"/>
     </div>
     <div class="choose_property">
       <span class="tips">机型：<span class="gray">选择你中意的机型</span></span>
       <div class="choose_models" v-if="models.length > 0">
-         <div class="models" v-for="i in models"  :class="{model_select: i.id == modelIndex}" :key="i.name" @click="readSku(i.id, i.name)">{{i.name}}</div>
+         <div class="models" v-for="i in models"  :class="{model_select: i.id == modelIndex}" :key="i.name" @click="readSku(i.id, i.name)">
+           <span class="model_name">{{i.name}}</span>
+           <span class="model_screen">{{i.screen}}</span>
+         </div>
        </div>
        <el-empty :image-size="50" description="暂无可选机型" v-else></el-empty>
       <!-- SKU1-一般是颜色 -->
       <span class="tips">外观：<span class="gray">选择你喜欢的颜色</span></span>
-      <span class="tips" style="margin:10px 0;font-size:1em"> <span v-if="selectInfo.selectColor !=null">{{this.selectInfo.selectColor}}</span></span>  
+      <span class="tips" style="margin:10px 0;font-size:1em"> <span>{{this.selectInfo.selectColor || '未选择颜色'}}</span></span>  
         <div class="colorPicker" v-if="skus.length>0">
           <div class="color_ring" v-for="i in skus" :key="i.color" :class="{color_select: i.chineseColor == selectInfo.selectColor}">
             <div class="colors"  @click="createRom(i.id, i.chineseColor)" :style="{background: i.value}"></div>
@@ -40,7 +35,13 @@
        <!--sku2 存储-->
        <span class="tips">存储容量：<span class="gray">你要多大的容量？</span></span>
         <div class="choose_models Picker" v-if="roms.length>0">
-          <div class="models rows" :class="{model_select: key == selectInfo.selectRom}" v-for="(i, key) in roms[0]" :key="key" @click="generatorSku(i,key)">{{key}}</div>
+          <div class="models rows" :class="{model_select: key == selectInfo.selectRom}" v-for="(i, key) in roms[0]" :key="key" @click="generatorSku(i.value,key)">
+            <span class="model_name">{{key}}</span>
+            <span class="price">
+              <div>RMB {{Math.ceil(i.price / 24)}}/月或</div>
+              <div>RMB{{i.price}}</div>
+            </span>
+          </div>
         </div>
         <el-empty :image-size="50" description="暂无可选容量" v-else></el-empty>
       </div>
@@ -96,11 +97,13 @@ export default {
       if(this.categoryIndex != -1) {
         for(let id in SKU[this.categoryIndex].model) {
           let type =  SKU[this.categoryIndex].model[id]
-          this.type.push({
-            id: id,
-            name: type.name,
-            icon: type.icon
-          })
+          if(type.use) {
+            this.type.push({
+              id: id,
+              name: type.name,
+              icon: type.icon
+            })
+          }
         }
         this.selectInfo = {
           selectModel: '',
@@ -232,14 +235,10 @@ export default {
       }
   }
   .image_slot {
-    width: 1000px;
+    width: 100%;
     min-width: 700px;
-    min-height: 400px;
-    background: #f8f8f8;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    align-items: center;
+    max-height: 1200px;
+    padding: 1% 5%;
   }
   .main_choose{
     display: flex;
@@ -247,16 +246,10 @@ export default {
     justify-content: space-around;
     align-items: center;
     .show_phone{
-      width: 1000px;
+      width:calc(100% - 10% - 550px );
+      padding: 1% 5%;
       min-width: 700px;
-      img{
-        width:auto;
-        height: auto;
-        max-width: 100%;
-        max-height: 100%;
-        min-width: 700px;
-        min-height: 400px;
-      }
+      min-height: 400px;
     }
     .choose_property {
       width: 550px;
@@ -264,24 +257,49 @@ export default {
       margin-left: 3%;
       .choose_models {
         display: flex;
-        flex-flow: row wrap;
-        justify-content: flex-start;
+        flex-flow: column nowrap;
+        justify-content: center;
         align-items: flex-start;
         .model_select {
-          border: 1px solid #000 !important;
+          border: 2px solid #0071e3 !important;
         }
         .models {
-          width: 250px;
-          height: 60px;
-          border: 1px solid #e4e4e4;
+          width: 350px;
+          padding: 15px;
+          min-height: 60px;
+          border: 1px solid #525151;
           border-radius: 15px;
           text-align: center;
           line-height: 60px;
           cursor:pointer;
-          margin: 10px 0 0 10px;
-          &:hover{
-           transition: .2s;
-           border: 1px solid rgb(43, 43, 43);
+          margin: 10px 0 10px 10px;
+          .model_name {
+            display: block;
+            text-align: left;
+            font-weight: bolder;
+            letter-spacing: 1px;
+            height: 20px;
+            margin-left: 15px;
+          }
+          .model_screen {
+            display: block;
+            text-align: left;
+            font-weight: lighter;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            font-size: 0.8em;
+            margin-left: 15px;
+          }
+          .price {
+            float: right;
+            display: block;
+            margin-right: 15px;
+            line-height: 100%;
+            font-weight: lighter;
+            font-size: 0.8em;
+            div{
+              margin-top: 5px;
+            }
           }
         }
       }
@@ -292,9 +310,10 @@ export default {
    flex-flow: row nowrap;
    justify-content: flex-start;
    align-content: center;
+   min-height: 100px;
     .color_select {
       transition: .2s;
-      border:1px solid rgb(40, 136, 232) !important;
+      border:2px solid #0071e3 !important;
     }
     .color_ring {
       width: 50px;
