@@ -1,23 +1,12 @@
 <!-- 机型及SKU选择组件 -->
 <template>
   <div>
-   <!-- 机型选择 -->
-   <!-- 选择品类 -->
-    <div class="choose_model">
-      <div class="types" :class="{type_select: i.id == selectTypeId}" v-for="i in type" :key="i.name" @click='readModel(i.id)'>
-        <figure class="type_icon" :style="{backgroundImage: `url(${i.icon})`}"></figure>
-        <span class="type_name">{{i.name}}</span>
-      </div>
-    </div>
-    <!-- 选择机型 -->
-   <div class="main_choose" v-if="selectTypeId != -1">
-    <div class="show_phone">
-      <img :src="nowImage" style="width: 100%;"/>
-    </div>
+<!-- 选择机型 -->
+<div class="main_choose" v-if="selectTypeId != -1">
     <div class="choose_property">
       <span class="tips">机型：<span class="gray">选择你中意的机型</span></span>
-      <div class="choose_models" v-if="models.length > 0">
-         <div class="models" v-for="i in models"  :class="{model_select: i.id == modelIndex}" :key="i.name" @click="readSku(i.id, i.name)">
+      <div class="choose_models" v-if="model.models.length > 0">
+         <div class="models" v-for="i in model.models"  :class="{model_select: i.id == modelIndex}" :key="i.name" @click="readSku(i.id, i.name)">
            <span class="model_name">{{i.name}}</span>
            <span class="model_screen">{{i.screen}}</span>
          </div>
@@ -26,16 +15,16 @@
       <!-- SKU1-一般是颜色 -->
       <span class="tips">外观：<span class="gray">选择你喜欢的颜色</span></span>
       <span class="tips" style="margin:10px 0;font-size:1em"> <span>{{this.selectInfo.selectColor || '未选择颜色'}}</span></span>  
-        <div class="colorPicker" v-if="skus.length>0">
-          <div class="color_ring" v-for="i in skus" :key="i.color" :class="{color_select: i.chineseColor == selectInfo.selectColor}">
+        <div class="colorPicker" v-if="model.skus.length>0">
+          <div class="color_ring" v-for="i in model.skus" :key="i.color" :class="{color_select: i.chineseColor == selectInfo.selectColor}">
             <div class="colors"  @click="createRom(i.id, i.chineseColor)" :style="{background: i.value}"></div>
           </div>
         </div>
         <el-empty :image-size="50" description="暂无可选颜色" v-else></el-empty>
        <!--sku2 存储-->
        <span class="tips">存储容量：<span class="gray">你要多大的容量？</span></span>
-        <div class="choose_models Picker" v-if="roms.length>0">
-          <div class="models rows" :class="{model_select: key == selectInfo.selectRom}" v-for="(i, key) in roms[0]" :key="key" @click="generatorSku(i.value,key)">
+        <div class="choose_models Picker" v-if="model.roms.length>0">
+          <div class="models rows" :class="{model_select: key == selectInfo.selectRom}" v-for="(i, key) in model.roms[0]" :key="key" @click="generatorSku(i.value,key)">
             <span class="model_name">{{key}}</span>
             <span class="price">
               <div>RMB {{Math.ceil(i.price / 24)}}/月或</div>
@@ -51,18 +40,12 @@
 
 <script>
 import { mapMutations, mapState } from 'vuex'
-import {SKU} from '../../data/model'
 
 export default {
   name: 'modelPicker',
   data() {
     return {
-      type: [],
-      models:[],
-      skus:[],
-      roms:[],
       modelIndex:-1,
-      nowImage: 'https://www.apple.com.cn/newsroom/images/apple-logo_black.jpg.landing-big.jpg',
       selectInfo: {
         selectModel: '',
         selectRom: null,
@@ -80,7 +63,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['selectTypeId', 'categoryIndex'])
+    ...mapState(['selectTypeId', 'categoryIndex', 'model'])
   },
   watch: {
     selectInfo: {
@@ -91,66 +74,10 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['init', 'changeSelectTypeId']),
-    // 根据品类ID读取机型系列
-    readType() {
-      if(this.categoryIndex != -1) {
-        for(let id in SKU[this.categoryIndex].model) {
-          let type =  SKU[this.categoryIndex].model[id]
-          if(type.use) {
-            this.type.push({
-              id: id,
-              name: type.name,
-              icon: type.icon
-            })
-          }
-        }
-        this.selectInfo = {
-          selectModel: '',
-          selectRom: null,
-          selectColor: null,
-          selectSku: null
-        }
-        this.modelIndex = -1
-        this.nowImage = 'https://www.apple.com.cn/newsroom/images/apple-logo_black.jpg.landing-big.jpg'
-        this.roms = []
-        this.color = []
-      } else {
-        this.$message({
-          message: '出现未知错误!',
-          type: 'error',
-          duration: 1500
-        })
-      }
-    },
-    readModel(id) {
-      this.models = []
-      this.skus = []
-      this.roms =[]
-      this.init()
-      this.changeSelectTypeId(id)
-      for(let mid in SKU[this.categoryIndex].model[id].children) {
-        let model = SKU[this.categoryIndex].model[id].children[mid]
-        this.models.push({
-          id: mid,
-          ...model
-        })
-        this.nowImage = SKU[this.categoryIndex].model[id].children[0].image
-      }
-      this.selectInfo = {
-          selectModel: '',
-          selectRom: null,
-          selectColor: null,
-          selectSku: null
-        }
-        this.modelIndex = -1
-        // this.nowImage = 'https://www.apple.com.cn/newsroom/images/apple-logo_black.jpg.landing-big.jpg'
-        this.roms = []
-        this.color = []
-    },
+    ...mapMutations(['changeModel', 'changeNowImage']),
     // 保存机型，根据机型读取颜色
     readSku(id, name) {
-      this.skus = []
+      this.changeModel(['skus','',true])
       this.modelIndex = id
       this.selectInfo = {
         selectModel: name,
@@ -158,26 +85,25 @@ export default {
         selectSku:null,
         selectRom: null
       }
-      this.nowImage = this.models[id].image
-      for(let sid in this.models[id].skus) {
-        let sku = this.models[id].skus[sid]
-        this.skus.push({
+      this.changeNowImage(this.model.models[id].image)
+      for(let sid in this.model.models[id].skus) {
+        let sku = this.model.models[id].skus[sid]
+        this.changeModel(['skus',{
           id: sid,
           ...sku
-         })
-         this.roms = []
-         this.color = []
+         }, false])
+         this.changeModel(['roms', '', true])
       }
     },
     // 保存颜色，根据颜色读取存储
     createRom(id, chinese) {
-      this.roms = []
+      this.changeModel(['roms', '', true])
       this.selectInfo.selectColor = chinese
       this.selectInfo.selectSku = null
       this.selectInfo.selectRom = null
-      this.nowImage = this.models[this.modelIndex].skus[id].image
-      for(let s of this.models[this.modelIndex].skus[id].ids) {
-        this.roms.push(s)
+      this.changeNowImage(this.model.models[this.modelIndex].skus[id].image)
+      for(let s of this.model.models[this.modelIndex].skus[id].ids) {
+        this.changeModel(['roms', s, false])
      }
   },
   // 生成sku
@@ -187,8 +113,6 @@ export default {
   }
 },
   mounted() {
-    this.readType()
-    this.readModel(0)
     this.$EventBus.$on('clearInfo', ()=>{
       this.modelIndex = -1
       this.selectInfo = {
@@ -203,65 +127,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .choose_model {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-    align-items: center;
-    transition: .5s;
-    cursor:pointer;
-    border-bottom: 1px solid #f6f6f6;
-    margin-bottom: 15px;
-    .types {
-      width: 100px;
-      height: 100px;
-      display: flex;
-      flex-flow: column nowrap;
-      justify-content: center;
-      align-items: center;
-      font-size: .8em;
-      .type_icon{
-        width:40px;
-        height: 50px;
-        display: block;
-        background-size: 40px 50px;
-      }
-      &:hover{
-        color: rgb(40, 136, 232)
-      }
-    }
-    .type_select {
-        color: rgb(40, 136, 232)
-      }
-  }
-  .image_slot {
-    width: 100%;
-    min-width: 700px;
-    max-height: 1200px;
-    padding: 1% 5%;
-  }
   .main_choose{
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-around;
-    align-items: center;
-    .show_phone{
-      width:calc(100% - 10% - 550px );
-      padding: 1% 5%;
-      min-width: 700px;
-      min-height: 400px;
-    }
+    margin-top: 25px;
     .choose_property {
       width: 550px;
       min-width: 550px;
       margin-left: 3%;
       .choose_models {
         display: flex;
-        flex-flow: column nowrap;
-        justify-content: center;
+        flex-flow: row wrap;
+        justify-content: flex-start;
         align-items: flex-start;
         .model_select {
-          border: 2px solid #0071e3 !important;
+          border: $--var-select-border !important;
         }
         .models {
           width: 350px;
@@ -310,10 +188,9 @@ export default {
    flex-flow: row nowrap;
    justify-content: flex-start;
    align-content: center;
-   min-height: 100px;
     .color_select {
       transition: .2s;
-      border:2px solid #0071e3 !important;
+      border:$--var-select-border !important;
     }
     .color_ring {
       width: 50px;
@@ -338,5 +215,5 @@ export default {
       border-radius: 50%;
       cursor: pointer;
   }
-  }
+}
 </style>

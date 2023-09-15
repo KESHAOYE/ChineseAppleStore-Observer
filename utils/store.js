@@ -9,6 +9,12 @@ Vue.use(vuex)
 
 const store =  new vuex.Store({
   state:{
+    model: {
+      skus:[],
+      roms: [],
+      models: []
+    },
+    nowImage: 'https://www.apple.com.cn/newsroom/images/apple-logo_black.jpg.landing-big.jpg',
     categoryIndex: -1, // 当前品类
     selectTypeId: -1, // 选择机型系列
     interval: 3000,
@@ -19,14 +25,10 @@ const store =  new vuex.Store({
       serverchan_sendkey: '',
       // sendkey_check: false
     },
-    version: '0.0.0 ALPHA'
+    version: '1.2.0 ALPHA'
   },
   mutations: {
     // 初始化
-    init(state) {
-      state.selectShop = null // 预留多选店铺
-      state.nowCity = null
-    },
     changeCategoryIndex(state, n) {
       state.categoryIndex = n
     },
@@ -45,6 +47,19 @@ const store =  new vuex.Store({
       event.taskId = config.taskId
       state.task.push(config)
       window.dispatchEvent(event)
+    },
+    changeNowImage(state, val) {
+      state.nowImage = val
+    },
+    changeModel(state, [key ,value, isClear]) {
+      if(isClear) {
+        state.model[key] = []
+      } else {
+        state.model[key].push(value)
+      }
+    },
+    changeVersion(state, val) {
+      state.version = val
     },
     taskValue(state, task) {
       console.log(state.task, task);

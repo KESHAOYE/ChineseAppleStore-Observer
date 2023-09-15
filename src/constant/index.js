@@ -5,9 +5,9 @@
 export const MAX_TASK_LIST = 20
 export const modelDict = {
     'iPhone15': 'iphone-15',
-    'iPhone15 PLUS':'iphone-15',
-    'iPhone15 PRO':'iphone-15-pro',
-    'iPhone15 PRO MAX':'iphone-15-pro',
+    'iPhone15 Plus':'iphone-15',
+    'iPhone15 Pro':'iphone-15-pro',
+    'iPhone15 Pro Max':'iphone-15-pro',
     'iPhone14': 'iphone-14',
     'iPhone14 PLUS':'iphone-14',
     'iPhone14 PRO':'iphone-14-pro',

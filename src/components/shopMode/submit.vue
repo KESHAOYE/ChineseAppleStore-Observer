@@ -85,15 +85,16 @@ export default {
 }
 </script>
 
-<style>
-  .submit {
-    margin-left: 1%;
-  }
-  .interval{
-    font-size: 2em;
-    font-weight: bolder;
-  }
-  .buttons{
-    margin-top: 20px;
-  }
+<style lang="scss" scoped>
+    .submit {
+      min-width: 550px;
+      margin-left: 3%;
+      .interval{
+        font-size: 2em;
+        font-weight: bolder;
+      }
+      .buttons{
+        margin-top: 20px;
+      }
+    }
 </style>

@@ -13,7 +13,7 @@
 <script>
 
 import aHeader from './components/header/index'
-import aMain from './components/main/index'
+import aMain from './components/shopMode/index'
 import aFoot from './components/footer/index'
 
 export default {
@@ -44,10 +44,11 @@ export default {
       user-select: none;
     }
     .tips {
-    font-weight: bolder;
-    font-size: 1.3em;
-    display: block;
-    margin: 25px 0;
+      font-weight: bolder;
+      font-size: 1.3em;
+      display: block;
+      margin: 25px 0;
+      margin-top: 60px;
     .gray {
       color: rgb(94, 94, 94);
       font-weight:lighter;

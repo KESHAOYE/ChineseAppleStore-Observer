@@ -7,11 +7,19 @@
   <div>
     <el-tabs @tab-click="handleClick">
       <el-tab-pane v-for="item in category" :key="item.category" :label="item.category" :name="String(item.id)">
-        <modelPicker @updateInfo='updateModel'/>
-        <cityPicker @updateInfo="updateStore" v-if="selectTypeId != -1"/>
-        <submit :modelInfo="selectInfo" :storeInfo="storeInfo" v-if="selectTypeId != -1"/>
-        <taskList/>
-        <setting/>
+        <modelPicker></modelPicker>
+        <div class="content">
+          <div class="left_content">
+            <showModel></showModel>
+          </div>
+          <div class="right_content">
+            <skuPicker @updateInfo='updateModel'/>
+            <cityPicker @updateInfo="updateStore" v-if="selectTypeId != -1"/>
+            <submit :modelInfo="selectInfo" :storeInfo="storeInfo" v-if="selectTypeId != -1"/>
+          </div>
+          <taskList/>
+          <setting/>
+        </div>
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -21,6 +29,8 @@
 import { SKU } from '../../data/model'
 import modelPicker from './modelPicker'
 import cityPicker from './cityAndStorePicker'
+import skuPicker from './skuPicker.vue'
+import showModel from './showModel.vue'
 import submit from './submit'
 import taskList from '../dialog/taskList'
 import setting from '../dialog/setting'
@@ -55,6 +65,8 @@ export default {
     cityPicker,
     submit,
     taskList,
+    showModel,
+    skuPicker,
     setting
   },
   methods: {
@@ -80,14 +92,39 @@ export default {
     },
     updateStore(e) {
       this.storeInfo = e
+    },
+    countNowPageSize() {
+      const width = document.documentElement.clientWidth
+      const height = document.documentElement.clientHeight
+      let countWidth = width - 630 <= 800 ? 800 : width - 630
+      let countHeight = ((width - 630)/16) * 9
+      if( countHeight > height) {
+        countHeight  = height - 200
+      }
+      // 保证比例为16：9
+      document.getElementsByTagName('body')[0].style.setProperty('--leftImageWidth', `${countWidth}px`)
+      document.getElementsByTagName('body')[0].style.setProperty('--leftImageHeight', `${countHeight}px`)
+      document.getElementsByTagName('body')[0].style.setProperty('--leftImageMarginTop', `calc(${height}-${countHeight}-150px)`)
     }
   },
   mounted() {
     this.readCategory()
     this.changeCategoryIndex(0)
+    this.countNowPageSize()
+    window.onresize = ()=>{
+      this.countNowPageSize()
+    }
   }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+  .content {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    .left_content {
+      margin-top: 50px;
+    }
+  }
 </style>

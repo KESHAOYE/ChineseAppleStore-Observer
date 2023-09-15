@@ -116,7 +116,7 @@ function sendMessage(selectInfo, storeInfo, pickupSearchQuote) {
     sendServerChan({
         sendkey,
         title: '您监控的商品有货啦!!',
-        content: `您监控的${selectInfo.selectModel} ${selectInfo.selectColor} ${selectInfo.selectRom}有货啦!当前状态为：${pickupSearchQuote},店铺为：${storeInfo.label}`
+        content: `您监控的${selectInfo.selectModel} ${selectInfo.selectColor} ${selectInfo.selectRom}有货啦!当前状态为：${pickupSearchQuote},店铺为：${storeInfo.name}`
     }).then(data => {
         console.log(`${data}`)
     }).catch(err=>{

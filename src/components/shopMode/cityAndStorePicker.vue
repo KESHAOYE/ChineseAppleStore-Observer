@@ -80,10 +80,15 @@ export default {
 </script>
 
 <style lang="scss">
-  .cityPicker{
-    margin-left: 1%;
-    .storeInfo {
-      margin-top: 25px;
+
+    .cityPicker {
+      min-width: 550px;
+      margin-left: 3%;
     }
-  }
+    .null_content {
+      width: auto;
+      max-width: 1500px;
+      min-width: 1300px;
+      min-height: 50px;
+    }
 </style>

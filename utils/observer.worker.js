@@ -59,7 +59,7 @@ function run(name, useServerChan, useDialogMessage, interval, selectInfo, storeI
                         self.postMessage({
                           type: 'dialogMessage',
                           title: '有货了!', 
-                          message: `您监控的${selectInfo.selectModel} ${selectInfo.selectColor} ${selectInfo.selectRom}有货啦!当前状态为：${p.pickupSearchQuote},店铺为：${storeInfo.label},点击立即前往官网购买`, 
+                          message: `您监控的${selectInfo.selectModel} ${selectInfo.selectColor} ${selectInfo.selectRom}有货啦!当前状态为：${p.pickupSearchQuote},店铺为：${storeInfo.name},点击立即前往官网购买`, 
                           href
                         })
                       }
@@ -84,6 +84,7 @@ function run(name, useServerChan, useDialogMessage, interval, selectInfo, storeI
 
 function stopInterval(intervalTask) {
   clearInterval(intervalTask)
+  console.log('结束定时任务' + intervalTask);
   self.close()
 }
 
