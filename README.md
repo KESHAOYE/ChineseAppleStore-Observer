@@ -2,7 +2,7 @@
  * @Author: KESHAOYE
  * @Date: 2022-12-04 17:36:16
 -->
-# Apple Store货源监控  :iphone:
+# 大陆Apple Store货源监控  :iphone:
 
 ![alt 徽章](https://img.shields.io/badge/vue-2.6.11+-green.svg)   ![alt 徽章](https://img.shields.io/badge/elementui-2.15.10+-blue.svg) ![alt 徽章](https://img.shields.io/badge/express-4.16.1+-yellow.svg)
 
