@@ -62,13 +62,11 @@ const store =  new vuex.Store({
       state.version = val
     },
     taskValue(state, task) {
-      console.log(state.task, task);
       let index = state.task.findIndex(el=>el.taskId==task.name)
       state.task[index].task = task.task
     },
     addTaskLog(state, result) {;
       let index = state.task.findIndex(el=>el.taskId==result.name)
-      console.log(index);
       if(state.task[index].state!='stop' && state.task[index].state!='success') {
         state.task[index].count++
         state.task[index].log.push({time: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`, result: result.result})

@@ -23,6 +23,8 @@ export default {
       min-width:800px;
       min-height: 500px;
       border-radius: 18px;
+      overflow: hidden;
+      top: 3%;
       img{
         border-radius: 18px;
         width: $--var-left-image-width;

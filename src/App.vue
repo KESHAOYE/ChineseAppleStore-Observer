@@ -30,11 +30,32 @@ export default {
     if(localStorage.getItem('interval')) {
       this.$store.commit('changeInterval', localStorage.getItem('interval'))
     }
+  },
+  methods: {
+    unload(e) {
+      e.preventDefault()
+      e.returnValue = "";
+    }
+  },
+  mounted() {
+    window.addEventListener('beforeunload', this.unload)
+    // window.addEventListener('scroll', (e)=>{
+    //   console.log(document.documentElement.scrollTop);
+    //   // const width = document.documentElement.clientWidth
+    //   // if(e.target.scrollTop > e.target.clientHeight - ((width - 630)/16) * 9) {
+    //   //   document.getElementsByTagName('body')[0].style.setProperty('--bodyOverflow', `scroll`)
+    //   //   document.getElementsByTagName('body')[0].style.setProperty('--rightOverflow', `hidden`)
+    //   //   document.getElementsByTagName('body')[0].style.setProperty('--rightHeight', `100%`)
+    //   // }
+    // })
   }
 }
 </script>
 
 <style lang="scss">
+    // body {
+    //   overflow: $--var-body-overflow;
+    // }
     @font-face{
        font-family:misans;
        src:url('./assets/font/MiSans-Normal.ttf');

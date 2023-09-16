@@ -57,6 +57,7 @@ export default {
     },
     serverchanMessage: {
       get() {
+        console.log(123);
         return this.$store.state.setting.serverchanMessage
       },
       set(val) {
@@ -78,6 +79,7 @@ export default {
           serverchan_sendkey: val
         }))
         this.$store.commit('setMessage', ['serverchan_sendkey', val])
+        this.$message.success('send_key保存成功')
       }
     }
   }

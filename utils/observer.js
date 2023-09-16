@@ -22,7 +22,7 @@ import observerWorker from './observer.worker'
 
 let worker = null
 
-export function beginObserve(selectInfo, storeInfo, useServerChan, interval) {
+export function beginObserve(selectInfo, storeInfo, useServerChan, interval, now) {
     return new Promise((resolve, reject) => {
         let name = nanoid()
         let nowTime = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`
@@ -64,7 +64,8 @@ export function beginObserve(selectInfo, storeInfo, useServerChan, interval) {
             useDialogMessage: state.setting.dialogMessage, 
             interval,
             selectInfo,
-            storeInfo
+            storeInfo,
+            now
         })
         worker.onmessage = (event) => {
           const data = event.data

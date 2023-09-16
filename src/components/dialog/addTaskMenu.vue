@@ -44,11 +44,12 @@ export default {
     },
     modelInfo:  Object,
     storeInfo: Object,
-    interval: Number
+    interval: Number,
+    now: Boolean
   },
   methods: {
     add() {
-      beginObserve(this.modelInfo, this.storeInfo, this.checked, this.interval).then(data=>{
+      beginObserve(this.modelInfo, this.storeInfo, this.checked, this.interval, this.now).then(data=>{
         if(data?.pickupDisplay === 'available') {
           this.$message({
             type: 'success',

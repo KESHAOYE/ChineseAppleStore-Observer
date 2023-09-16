@@ -1,6 +1,10 @@
 $--var-left-image-width: var(--leftImageWidth, 800px);
 $--var-left-image-height: var(--leftImageHeight, 500px);
 $--var-left-image-marginTop: var(--leftImageMarginTop, 20px);
+$--var-right-height: var(--rightHeight, 100%);
+$--var-body-overflow: var(--bodyOverflow, hidden);
+$--var-right-overflow: var(--rightOverflow, scroll);
+
 $--var-success: rgb(65, 211, 102);
 $--var-error: rgb(255, 143, 143);
 $--var-stop:rgb(231, 163, 62);

@@ -8,11 +8,12 @@
     <span class="tips">间隔时间：<span class="gray">监听的间隔时间(秒)</span></span>
     <div class="interval">
       <el-input-number v-model="interval" :step="1" controls-position="right" :min="5" step-strictly></el-input-number>
+      <el-checkbox style="margin-left: 20px;" v-model="now">任务开始时立即执行</el-checkbox>
     </div>
     <div class="buttons">
       <el-button type="primary" plain @click='openAddMenu' :disabled='!submitFlag'>添加任务</el-button>
     </div>
-    <addTaskMenu :modelInfo="modelInfo" :storeInfo="storeInfo" :interval="interval" v-if="submitFlag" :dialogVisible.sync="dialogAddTaskVisible"></addTaskMenu>
+    <addTaskMenu :modelInfo="modelInfo" :storeInfo="storeInfo" :now="now" :interval="interval" v-if="submitFlag" :dialogVisible.sync="dialogAddTaskVisible"></addTaskMenu>
   </div>
 </template>
 
@@ -25,7 +26,8 @@ export default {
       store: null,
       interval: 5,
       dialogAddTaskVisible: false,
-      submitFlag: false
+      submitFlag: false,
+      now: false
     }
   },
   props: {

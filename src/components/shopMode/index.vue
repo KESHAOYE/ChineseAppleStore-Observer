@@ -7,7 +7,9 @@
   <div>
     <el-tabs @tab-click="handleClick">
       <el-tab-pane v-for="item in category" :key="item.category" :label="item.category" :name="String(item.id)">
-        <modelPicker></modelPicker>
+        <div class="head">
+          <modelPicker></modelPicker>
+        </div>
         <div class="content">
           <div class="left_content">
             <showModel></showModel>
@@ -16,9 +18,9 @@
             <skuPicker @updateInfo='updateModel'/>
             <cityPicker @updateInfo="updateStore" v-if="selectTypeId != -1"/>
             <submit :modelInfo="selectInfo" :storeInfo="storeInfo" v-if="selectTypeId != -1"/>
+            <taskList/>
+            <setting/>
           </div>
-          <taskList/>
-          <setting/>
         </div>
       </el-tab-pane>
     </el-tabs>
@@ -96,6 +98,7 @@ export default {
     countNowPageSize() {
       const width = document.documentElement.clientWidth
       const height = document.documentElement.clientHeight
+      document.getElementsByTagName('body')[0].style.setProperty('--rightHeight', `${height - 300}px`)
       let countWidth = width - 630 <= 800 ? 800 : width - 630
       let countHeight = ((width - 630)/16) * 9
       if( countHeight > height) {
@@ -105,7 +108,15 @@ export default {
       document.getElementsByTagName('body')[0].style.setProperty('--leftImageWidth', `${countWidth}px`)
       document.getElementsByTagName('body')[0].style.setProperty('--leftImageHeight', `${countHeight}px`)
       document.getElementsByTagName('body')[0].style.setProperty('--leftImageMarginTop', `calc(${height}-${countHeight}-150px)`)
-    }
+    },
+    // handleScroll(e) {
+    //   const width = document.documentElement.clientWidth
+    //   if(e.target.scrollTop > e.target.clientHeight - ((width - 630)/16) * 9) {
+    //     document.getElementsByTagName('body')[0].style.setProperty('--bodyOverflow', `scroll`)
+    //     document.getElementsByTagName('body')[0].style.setProperty('--rightOverflow', `hidden`)
+    //     document.getElementsByTagName('body')[0].style.setProperty('--rightHeight', `100%`)
+    //   }
+    // }
   },
   mounted() {
     this.readCategory()
@@ -119,12 +130,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    .head {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+    }
   .content {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
     .left_content {
       margin-top: 50px;
+    }
+    .right_content {
+      width: 550px;
     }
   }
 </style>

@@ -71,6 +71,13 @@ export default {
       handler(newval) {
         this.$emit('updateInfo', newval)
       }
+    },
+    modelIndex(newval) {
+      console.log(newval);
+      if(newval == -1) {
+        this.changeModel(['skus', '', true])
+        this.changeModel(['roms', '', true])
+      }
     }
   },
   methods: {
