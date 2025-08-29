@@ -9,7 +9,22 @@
         <div class="content">任务间隔时长</div>
         <div class="descript">默认监听触发时长</div>
       </div>
-      <el-input-number size="mini" v-model="interval" :min="5"></el-input-number>
+      <el-input-number
+        size="mini"
+        v-model="interval"
+        :min="5"
+      ></el-input-number>
+    </div>
+    <div class="setting_item">
+      <div class="tips">
+        <div class="content">立即开始监听</div>
+        <div class="descript">开始任务后马上执行监听</div>
+      </div>
+      <el-switch
+        v-model="startNow"
+        active-text="是"
+        inactive-text="否"
+      ></el-switch>
     </div>
     <!-- <div class="setting_item">
       <div class="tips">模式</div>
@@ -22,26 +37,40 @@
 </template>
 
 <script>
+import { useAppStore } from "@/utils/pinia";
+
 export default {
+  name: "SettingsInterval",
   data() {
     return {
-      mode: 'shop'
-    }
+      mode: "shop",
+    };
   },
   computed: {
+    app() {
+      return useAppStore();
+    },
     interval: {
       get() {
-        return this.$store.state.interval / 1000
+        return Math.floor((this.app.interval || 0) / 1000);
       },
       set(val) {
-        this.$store.commit('changeInterval', val * 1000)
-        localStorage.setItem('interval', val * 1000)
-      }
-    }
-  }
-}
+        const ms = Number(val) * 1000;
+        this.app.changeInterval(ms);
+        // localStorage.setItem("interval", ms);
+      },
+    },
+    startNow: {
+      get() {
+        return this.app.setting.startNow;
+      },
+      set(val) {
+        this.app.changeStartNow(val);
+        // localStorage.setItem("startNow", val);
+      },
+    },
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

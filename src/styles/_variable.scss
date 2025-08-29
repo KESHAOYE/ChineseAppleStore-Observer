@@ -7,6 +7,11 @@ $--var-right-overflow: var(--rightOverflow, scroll);
 
 $--var-success: rgb(65, 211, 102);
 $--var-error: rgb(255, 143, 143);
-$--var-stop:rgb(231, 163, 62);
-$--var-hover-color:rgb(40, 136, 232);
+$--var-stop: rgb(231, 163, 62);
+$--var-hover-color: rgb(40, 136, 232);
 $--var-select-border: 2px solid rgb(40, 136, 232);
+
+.el-badge__content.is-fixed {
+  top: 15px !important;
+  right: 8px !important;
+}

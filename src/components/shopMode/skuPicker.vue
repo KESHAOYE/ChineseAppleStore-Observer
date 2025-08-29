@@ -1,226 +1,317 @@
-<!-- 机型及SKU选择组件 -->
 <template>
   <div>
-<!-- 选择机型 -->
-<div class="main_choose" v-if="selectTypeId != -1">
-    <div class="choose_property">
-      <span class="tips">机型：<span class="gray">选择你中意的机型</span></span>
-      <div class="choose_models" v-if="model.models.length > 0">
-         <div class="models" v-for="i in model.models"  :class="{model_select: i.id == modelIndex}" :key="i.name" @click="readSku(i.id, i.name)">
-           <span class="model_name">{{i.name}}</span>
-           <span class="model_screen">{{i.screen}}</span>
-         </div>
-       </div>
-       <el-empty :image-size="50" description="暂无可选机型" v-else></el-empty>
-      <!-- SKU1-一般是颜色 -->
-      <span class="tips">外观：<span class="gray">选择你喜欢的颜色</span></span>
-      <span class="tips" style="margin:10px 0;font-size:1em"> <span>{{this.selectInfo.selectColor || '未选择颜色'}}</span></span>  
-        <div class="colorPicker" v-if="model.skus.length>0">
-          <div class="color_ring" v-for="i in model.skus" :key="i.color" :class="{color_select: i.chineseColor == selectInfo.selectColor}">
-            <div class="colors"  @click="createRom(i.id, i.chineseColor)" :style="{background: i.value}"></div>
+    <!-- 机型选择 -->
+    <div class="main_choose" v-if="selectTypeId != -1">
+      <div class="choose_property">
+        <span class="tips"
+          >机型：<span class="gray">选择你中意的机型</span></span
+        >
+        <div class="choose_models" v-if="model.models.length > 0">
+          <div
+            class="models"
+            v-for="i in model.models"
+            :key="i.name"
+            :class="{ model_select: i.id == modelIndex }"
+            @click="readSku(i.id, i.name)"
+          >
+            <span class="model_name">{{ i.name }}</span>
+            <span class="model_screen">{{ i.screen }}</span>
           </div>
         </div>
-        <el-empty :image-size="50" description="暂无可选颜色" v-else></el-empty>
-       <!--sku2 存储-->
-       <span class="tips">存储容量：<span class="gray">你要多大的容量？</span></span>
-        <div class="choose_models Picker" v-if="model.roms.length>0">
-          <div class="models rows" :class="{model_select: key == selectInfo.selectRom}" v-for="(i, key) in model.roms[0]" :key="key" @click="generatorSku(i.value,key)">
-            <span class="model_name">{{key}}</span>
+        <el-empty :image-size="50" description="暂无可选机型" v-else />
+
+        <!-- SKU1-一般是颜色 -->
+        <span class="tips"
+          >外观：<span class="gray">选择你喜欢的颜色</span></span
+        >
+        <span class="tips" style="margin: 10px 0; font-size: 1em">
+          <span>{{ selectInfo.selectColor || "未选择颜色" }}</span>
+        </span>
+
+        <div class="colorPicker" v-if="model.skus.length > 0">
+          <div
+            class="color_ring"
+            v-for="i in model.skus"
+            :key="i.color"
+            :class="{ color_select: i.chineseColor == selectInfo.selectColor }"
+          >
+            <img
+              class="colors"
+              :src="i.value"
+              @click="createRom(i.id, i.chineseColor)"
+            />
+          </div>
+        </div>
+        <el-empty
+          :image-size="50"
+          description="暂无可选颜色，请先选择机型"
+          v-else
+        />
+
+        <!-- sku2 存储 -->
+        <span class="tips"
+          >存储容量：<span class="gray">你要多大的容量？</span></span
+        >
+        <div class="choose_models Picker" v-if="model.roms.length > 0">
+          <div
+            class="models rows"
+            v-for="(i, key) in model.roms[0]"
+            :key="key"
+            :class="{ model_select: key == selectInfo.selectRom }"
+            @click="generatorSku(i.value, key)"
+          >
+            <span class="model_name">{{ key }}</span>
             <span class="price">
-              <div>RMB {{Math.ceil(i.price / 24)}}/月或</div>
-              <div>RMB{{i.price}}</div>
+              <div>RMB {{ Math.ceil(i.price / 24) }}/月或</div>
+              <div>RMB{{ i.price }}</div>
             </span>
           </div>
         </div>
-        <el-empty :image-size="50" description="暂无可选容量" v-else></el-empty>
+        <el-empty
+          :image-size="50"
+          description="暂无可选容量，请先选择颜色"
+          v-else
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex'
+import { mapState, mapActions } from "pinia";
+import { useAppStore } from "@/utils/pinia.js";
 
 export default {
-  name: 'modelPicker',
+  name: "modelPicker",
+  props: {
+    category: { type: String, default: "iPhone" },
+  },
   data() {
     return {
-      modelIndex:-1,
+      modelIndex: -1,
       selectInfo: {
-        selectModel: '',
+        selectModel: "",
         selectRom: null,
         selectColor: null,
-        selectSku: null
-      }
-    }
-  },
-  // 组件接收参数
-  props: {
-    // 品类
-    category: {
-      type: String,
-      default: 'iPhone'
-    }
+        selectSku: null,
+      },
+    };
   },
   computed: {
-    ...mapState(['selectTypeId', 'categoryIndex', 'model'])
+    ...mapState(useAppStore, ["selectTypeId", "categoryIndex", "model"]),
   },
   watch: {
     selectInfo: {
       deep: true,
-      handler(newval) {
-        this.$emit('updateInfo', newval)
+      handler(val) {
+        this.$emit("updateInfo", val);
+      },
+    },
+    modelIndex(val) {
+      if (val === -1) {
+        this.changeModel(["skus", "", true]);
+        this.changeModel(["roms", "", true]);
       }
     },
-    modelIndex(newval) {
-      console.log(newval);
-      if(newval == -1) {
-        this.changeModel(['skus', '', true])
-        this.changeModel(['roms', '', true])
-      }
-    }
   },
   methods: {
-    ...mapMutations(['changeModel', 'changeNowImage']),
+    ...mapActions(useAppStore, ["changeModel", "changeNowImage"]),
     // 保存机型，根据机型读取颜色
     readSku(id, name) {
-      this.changeModel(['skus','',true])
-      this.modelIndex = id
+      this.changeModel(["skus", "", true]);
+      this.modelIndex = id;
       this.selectInfo = {
         selectModel: name,
         selectColor: null,
-        selectSku:null,
-        selectRom: null
-      }
-      this.changeNowImage(this.model.models[id].image)
-      for(let sid in this.model.models[id].skus) {
-        let sku = this.model.models[id].skus[sid]
-        this.changeModel(['skus',{
-          id: sid,
-          ...sku
-         }, false])
-         this.changeModel(['roms', '', true])
+        selectSku: null,
+        selectRom: null,
+      };
+      this.changeNowImage(this.model.models[id].image);
+      for (const sid in this.model.models[id].skus) {
+        const sku = this.model.models[id].skus[sid];
+        this.changeModel(["skus", { id: sid, ...sku }, false]);
+        this.changeModel(["roms", "", true]);
       }
     },
     // 保存颜色，根据颜色读取存储
     createRom(id, chinese) {
-      this.changeModel(['roms', '', true])
-      this.selectInfo.selectColor = chinese
-      this.selectInfo.selectSku = null
-      this.selectInfo.selectRom = null
-      this.changeNowImage(this.model.models[this.modelIndex].skus[id].image)
-      for(let s of this.model.models[this.modelIndex].skus[id].ids) {
-        this.changeModel(['roms', s, false])
-     }
+      this.changeModel(["roms", "", true]);
+      this.selectInfo.selectColor = chinese;
+      this.selectInfo.selectSku = null;
+      this.selectInfo.selectRom = null;
+      this.changeNowImage(this.model.models[this.modelIndex].skus[id].image);
+      for (const s of this.model.models[this.modelIndex].skus[id].ids) {
+        this.changeModel(["roms", s, false]);
+      }
+    },
+    // 生成 sku
+    generatorSku(sku, rom) {
+      this.selectInfo.selectSku = sku;
+      this.selectInfo.selectRom = rom;
+    },
   },
-  // 生成sku
-  generatorSku(sku, rom) {
-    this.selectInfo.selectSku = sku
-    this.selectInfo.selectRom = rom
-  }
-},
   mounted() {
-    this.$EventBus.$on('clearInfo', ()=>{
-      this.modelIndex = -1
+    this.$EventBus.$on("clearInfo", () => {
+      this.modelIndex = -1;
       this.selectInfo = {
-        selectModel: '',
+        selectModel: "",
         selectRom: null,
         selectColor: null,
-        selectSku: null
-      }
-    })
-  }
-}
+        selectSku: null,
+      };
+    });
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .main_choose{
-    margin-top: 25px;
-    .choose_property {
-      width: 550px;
-      min-width: 550px;
-      margin-left: 3%;
-      .choose_models {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: flex-start;
-        align-items: flex-start;
-        .model_select {
-          border: $--var-select-border !important;
-        }
-        .models {
-          width: 350px;
-          padding: 15px;
-          min-height: 60px;
-          border: 1px solid #525151;
-          border-radius: 15px;
-          text-align: center;
-          line-height: 60px;
-          cursor:pointer;
-          margin: 10px 0 10px 10px;
-          .model_name {
-            display: block;
-            text-align: left;
-            font-weight: bolder;
-            letter-spacing: 1px;
-            height: 20px;
-            margin-left: 15px;
-          }
-          .model_screen {
-            display: block;
-            text-align: left;
-            font-weight: lighter;
-            letter-spacing: 1px;
-            margin-top: 10px;
-            font-size: 0.8em;
-            margin-left: 15px;
-          }
-          .price {
-            float: right;
-            display: block;
-            margin-right: 15px;
-            line-height: 100%;
-            font-weight: lighter;
-            font-size: 0.8em;
-            div{
-              margin-top: 5px;
-            }
-          }
-        }
-      }
-    }
-  }
-  .colorPicker {
-   display: flex;
-   flex-flow: row nowrap;
-   justify-content: flex-start;
-   align-content: center;
-    .color_select {
-      transition: .2s;
-      border:$--var-select-border !important;
-    }
-    .color_ring {
-      width: 50px;
-      height: 50px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-      margin-left: 15px;
-      border: 1px solid #fff;
-      &:first-child {
-        margin: 0;
-      }
-      &:hover{
-        border:1px solid #e2e2e2;
-      }
-    } 
-    .colors{
-      width: 40px;
-      height: 40px;
-      display: block;
-      border-radius: 50%;
-      cursor: pointer;
+.main_choose {
+  margin-top: 25px;
+
+  /* —— 紧凑自适应参数 —— */
+  --panel-min: 300px; /* 右侧面板最小宽 */
+  --panel-ideal: 420px; /* 常用宽（13~16"） */
+  --panel-max: 560px; /* 大屏上限宽 */
+  --card-ar: 16 / 3; /* 卡片宽高比（越大越扁，高度更小） */
+}
+
+/* 面板宽度随屏幕变化，自适应 */
+.choose_property {
+  inline-size: clamp(var(--panel-min), 34vw, var(--panel-max));
+  max-inline-size: 100%;
+}
+
+/* 机型/容量列表：单列 + 间距自适应 */
+.choose_models,
+.choose_models.Picker {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(10px, 1.1vw, 14px);
+}
+
+/* —— 卡片通用外观（机型 & 容量） —— */
+.choose_models > .models,
+.choose_models.Picker > .models.rows {
+  width: 100% !important; /* 覆盖历史固定宽 */
+  box-sizing: border-box;
+  border: clamp(1px, 0.12vw, 2px) solid #c9c9c9 !important;
+  border-radius: clamp(10px, 0.9vw, 16px);
+  padding: clamp(10px, 1.2vw, 18px) clamp(14px, 1.6vw, 22px);
+  background: #fff;
+  display: grid;
+  grid-template-columns: 1fr auto; /* 左标题/容量，右副标题/价格 */
+  align-items: center;
+  gap: clamp(6px, 0.8vw, 12px);
+  line-height: 1.2;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease,
+    transform 0.06s ease;
+
+  /* 高度按比例自适应，且有最小高度兜底 */
+  aspect-ratio: var(--card-ar);
+  min-block-size: clamp(50px, 7vw, 110px);
+}
+
+.choose_models > .models:hover,
+.choose_models.Picker > .models.rows:hover {
+  border-color: #8e8e8e !important;
+}
+
+.choose_models > .models:active,
+.choose_models.Picker > .models.rows:active {
+  transform: scale(0.997);
+}
+
+/* 选中态：蓝边 + 柔和外晕（两类卡片一致） */
+.choose_models > .models.model_select,
+.choose_models.Picker > .models.rows.model_select {
+  border-color: #0071e3 !important;
+  box-shadow: 0 0 0 clamp(3px, 0.35vw, 5px) rgba(0, 113, 227, 0.15);
+}
+
+/* —— 字体自适应（更克制） —— */
+.choose_models > .models .model_name,
+.choose_models.Picker > .models.rows .model_name {
+  margin: 0;
+  text-align: left;
+  font-weight: 700;
+  font-size: clamp(15px, 1.2vw, 22px) !important; /* 机型名 / 容量名 */
+  letter-spacing: 0.01em;
+}
+
+.choose_models > .models .model_screen {
+  margin: 0;
+  justify-self: end;
+  color: #4b4b4b;
+  font-weight: 500;
+  text-align: right;
+  font-size: clamp(11px, 1vw, 16px) !important; /* 屏幕尺寸 */
+}
+
+/* 容量卡的价格（两行） */
+.choose_models.Picker > .models.rows .price {
+  margin: 0;
+  float: none; /* 清除历史 float 影响布局 */
+  text-align: right;
+  line-height: 1.2;
+  font-size: clamp(11px, 0.95vw, 14px) !important;
+}
+
+/* —— 颜色选择器（双圆环 Apple 风格） —— */
+.colorPicker {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: clamp(8px, 0.9vw, 12px);
+  padding: clamp(4px, 0.6vw, 8px) 0;
+}
+
+.colorPicker .color_ring {
+  width: clamp(28px, 2.6vw, 36px);
+  height: clamp(28px, 2.6vw, 36px);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  /* 内白环 + 外灰环 */
+  transition: box-shadow 0.15s ease, transform 0.06s ease;
+}
+
+.colorPicker .color_ring:hover {
+  box-shadow: 0 0 0 clamp(1.5px, 0.14vw, 2px) #bfbfbf;
+}
+
+.colorPicker .color_ring:active {
+  transform: scale(0.97);
+}
+
+/* 选中：外环变蓝并带柔光 */
+.colorPicker .color_ring.color_select {
+  box-shadow: 0 0 0 clamp(1.5px, 0.14vw, 2px) #0071e3,
+    0 0 0 clamp(4px, 0.45vw, 6px) rgba(0, 113, 227, 0.12);
+}
+
+.colorPicker .color_ring .colors {
+  width: 74%;
+  height: 74%;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+/* —— 响应式边界 —— */
+@media (max-width: 480px) {
+  .choose_property {
+    inline-size: 100%;
+  } /* 窄屏拉满 */
+}
+
+@media (min-width: 1600px) {
+  .main_choose {
+    --panel-ideal: 460px; /* 2K/4K 保持紧凑 */
+    --panel-max: 600px;
+    --card-ar: 20 / 3; /* 更扁 → 高度更小 */
   }
 }
 </style>
