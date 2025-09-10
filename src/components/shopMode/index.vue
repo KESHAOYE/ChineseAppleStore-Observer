@@ -1,26 +1,34 @@
-<!--
- * @Author: KESHAOYE
- * @Date: 2022-09-14 23:03:18
--->
-<!--main组件（引入其他业务组件）-->
 <template>
-  <div>
+  <div class="container" ref="container">
     <el-tabs @tab-click="handleClick">
-      <el-tab-pane v-for="item in category" :key="item.category" :label="item.category" :name="String(item.id)">
+      <el-tab-pane
+        v-for="item in category"
+        :key="item.category"
+        :label="item.category"
+        :name="String(item.id)"
+      >
         <div class="head">
-          <modelPicker></modelPicker>
+          <modelPicker />
         </div>
+
         <div class="content">
-          <div class="left_content">
-            <showModel></showModel>
-          </div>
-          <div class="right_content">
-            <skuPicker @updateInfo='updateModel'/>
-            <cityPicker @updateInfo="updateStore" v-if="selectTypeId != -1"/>
-            <submit :modelInfo="selectInfo" :storeInfo="storeInfo" v-if="selectTypeId != -1"/>
-            <taskList/>
-            <setting/>
-          </div>
+          <!-- 左：固定并垂直居中 -->
+          <section class="left_content">
+            <showModel />
+          </section>
+
+          <!-- 右：正常滚动 -->
+          <aside class="right_content">
+            <skuPicker @updateInfo="updateModel" />
+            <cityPicker @updateInfo="updateStore" v-if="selectTypeId != -1" />
+            <submit
+              :modelInfo="selectInfo"
+              :storeInfo="storeInfo"
+              v-if="selectTypeId != -1"
+            />
+            <taskList />
+            <setting />
+          </aside>
         </div>
       </el-tab-pane>
     </el-tabs>
@@ -28,18 +36,29 @@
 </template>
 
 <script>
-import { SKU } from '../../data/model'
-import modelPicker from './modelPicker'
-import cityPicker from './cityAndStorePicker'
-import skuPicker from './skuPicker.vue'
-import showModel from './showModel.vue'
-import submit from './submit'
-import taskList from '../dialog/taskList'
-import setting from '../dialog/setting'
-import {mapMutations, mapState} from 'vuex'
+import { mapState, mapActions } from "pinia";
+import { useAppStore } from "@/utils/pinia.js";
+
+import { SKU } from "../../data/model";
+import modelPicker from "./modelPicker.vue";
+import cityPicker from "./cityAndStorePicker.vue";
+import skuPicker from "./skuPicker.vue";
+import showModel from "./showModel.vue";
+import submit from "./submit.vue";
+import taskList from "../dialog/taskList.vue";
+import setting from "../dialog/setting/index.vue";
 
 export default {
-  name: 'categorySelect',
+  name: "categorySelect",
+  components: {
+    modelPicker,
+    cityPicker,
+    submit,
+    taskList,
+    showModel,
+    skuPicker,
+    setting,
+  },
   data() {
     return {
       category: [],
@@ -48,102 +67,110 @@ export default {
         selectColor: null,
         selectModel: null,
         selectRom: null,
-        selectSku: null
+        selectSku: null,
       },
-      storeInfo:{
+      storeInfo: {
         city: null,
         province: null,
         id: null,
         label: null,
-        value: null
-      }
-    }
+        value: null,
+      },
+    };
   },
   computed: {
-    ...mapState(['selectTypeId', 'categoryIndex'])
-  },
-  components: {
-    modelPicker,
-    cityPicker,
-    submit,
-    taskList,
-    showModel,
-    skuPicker,
-    setting
+    ...mapState(useAppStore, ["selectTypeId", "categoryIndex"]),
   },
   methods: {
-    ...mapMutations(['changeCategoryIndex']),
-    // 读取加载品类(iPhone等)
+    ...mapActions(useAppStore, ["changeCategoryIndex"]),
+
     readCategory() {
-      for(let i of SKU) {
-        let count = 0
+      let count = 0;
+      for (const i of SKU) {
         this.category.push({
-          id: count,
-          category:i.category,
-          chinese:i.chinese
-        })
-        count++
+          id: count++,
+          category: i.category,
+          chinese: i.chinese,
+        });
       }
     },
     handleClick(tab) {
-      this.nowCategory = Number(tab.name)
-      this.changeCategoryIndex(Number(tab.name))
+      this.nowCategory = Number(tab.name);
+      this.changeCategoryIndex(this.nowCategory);
+      this.updateStickyTop();
     },
     updateModel(e) {
-      this.selectInfo = e
+      this.selectInfo = e;
     },
     updateStore(e) {
-      this.storeInfo = e
+      this.storeInfo = e;
     },
-    countNowPageSize() {
-      const width = document.documentElement.clientWidth
-      const height = document.documentElement.clientHeight
-      document.getElementsByTagName('body')[0].style.setProperty('--rightHeight', `${height - 300}px`)
-      let countWidth = width - 630 <= 800 ? 800 : width - 630
-      let countHeight = ((width - 630)/16) * 9
-      if( countHeight > height) {
-        countHeight  = height - 200
-      }
-      // 保证比例为16：9
-      document.getElementsByTagName('body')[0].style.setProperty('--leftImageWidth', `${countWidth}px`)
-      document.getElementsByTagName('body')[0].style.setProperty('--leftImageHeight', `${countHeight}px`)
-      document.getElementsByTagName('body')[0].style.setProperty('--leftImageMarginTop', `calc(${height}-${countHeight}-150px)`)
+    updateStickyTop() {
+      this.$nextTick(() => {
+        const tabsHeader = this.$el.querySelector(".el-tabs__header");
+        const head = this.$el.querySelector(".head");
+        const top =
+          (tabsHeader?.offsetHeight || 0) + (head?.offsetHeight || 0) + 12;
+        this.$refs.container?.style.setProperty("--sticky-top", `${top}px`);
+      });
     },
-    // handleScroll(e) {
-    //   const width = document.documentElement.clientWidth
-    //   if(e.target.scrollTop > e.target.clientHeight - ((width - 630)/16) * 9) {
-    //     document.getElementsByTagName('body')[0].style.setProperty('--bodyOverflow', `scroll`)
-    //     document.getElementsByTagName('body')[0].style.setProperty('--rightOverflow', `hidden`)
-    //     document.getElementsByTagName('body')[0].style.setProperty('--rightHeight', `100%`)
-    //   }
-    // }
   },
   mounted() {
-    this.readCategory()
-    this.changeCategoryIndex(0)
-    this.countNowPageSize()
-    window.onresize = ()=>{
-      this.countNowPageSize()
-    }
-  }
-}
+    this.readCategory();
+    this.changeCategoryIndex(0);
+    this.updateStickyTop();
+    window.addEventListener("resize", this.updateStickyTop);
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.updateStickyTop);
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-    .head {
-      position: -webkit-sticky;
-      position: sticky;
-      top: 0;
-    }
+:deep(.el-tabs__content) {
+  overflow: visible !important;
+}
+:deep(.el-tab-pane) {
+  overflow: visible !important;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) minmax(320px, 580px);
+  gap: clamp(16px, 2vw, 32px);
+  align-items: start;
+}
+.left_content,
+.right_content {
+  min-width: 0;
+}
+
+.left_content {
+  position: -webkit-sticky;
+  position: sticky;
+  top: clamp(64px, 8vh, 110px);
+  z-index: 0;
+  overflow: visible;
+}
+
+.right_content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 580px;
+}
+
+@media (max-width: 1200px) {
   .content {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-around;
-    .left_content {
-      margin-top: 50px;
-    }
-    .right_content {
-      width: 550px;
-    }
+    grid-template-columns: 1fr;
   }
+  .left_content {
+    position: static;
+    margin-bottom: 12px;
+  }
+  .right_content {
+    max-width: 100%;
+  }
+}
 </style>

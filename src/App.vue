@@ -1,7 +1,4 @@
-<!--
- * @Author: KESHAOYE
- * @Date: 2022-11-21 00:21:51
--->
+<!-- src/App.vue -->
 <template>
   <div id="app">
     <a-header></a-header>
@@ -11,72 +8,70 @@
 </template>
 
 <script>
+import { useAppStore } from "@/utils/pinia.js";
 
-import aHeader from './components/header/index'
-import aMain from './components/shopMode/index'
-import aFoot from './components/footer/index'
+import aHeader from "./components/header/index.vue";
+import aMain from "./components/shopMode/index.vue";
+import aFoot from "./components/footer/index.vue";
 
 export default {
-  name: 'App',
-  components: {
-    aMain,
-    aHeader,
-    aFoot
-  },
+  name: "App",
+  components: { aMain, aHeader, aFoot },
+
   beforeCreate() {
-    if(localStorage.getItem('setting')){
-      this.$store.commit('initSetting', JSON.parse(localStorage.getItem('setting')))
+    const app = useAppStore();
+
+    const rawSetting = localStorage.getItem("setting");
+    if (rawSetting) {
+      app.initSetting(JSON.parse(rawSetting));
     }
-    if(localStorage.getItem('interval')) {
-      this.$store.commit('changeInterval', localStorage.getItem('interval'))
+
+    const rawInterval = localStorage.getItem("interval");
+    if (rawInterval) {
+      app.changeInterval(Number(rawInterval));
     }
   },
+
   methods: {
     unload(e) {
-      e.preventDefault()
+      e.preventDefault();
       e.returnValue = "";
-    }
+    },
   },
+
   mounted() {
-    window.addEventListener('beforeunload', this.unload)
-    // window.addEventListener('scroll', (e)=>{
-    //   console.log(document.documentElement.scrollTop);
-    //   // const width = document.documentElement.clientWidth
-    //   // if(e.target.scrollTop > e.target.clientHeight - ((width - 630)/16) * 9) {
-    //   //   document.getElementsByTagName('body')[0].style.setProperty('--bodyOverflow', `scroll`)
-    //   //   document.getElementsByTagName('body')[0].style.setProperty('--rightOverflow', `hidden`)
-    //   //   document.getElementsByTagName('body')[0].style.setProperty('--rightHeight', `100%`)
-    //   // }
-    // })
-  }
-}
+    window.addEventListener("beforeunload", this.unload);
+  },
+  beforeDestroy() {
+    window.removeEventListener("beforeunload", this.unload);
+  },
+};
 </script>
 
 <style lang="scss">
-    // body {
-    //   overflow: $--var-body-overflow;
-    // }
-    @font-face{
-       font-family:misans;
-       src:url('./assets/font/MiSans-Normal.ttf');
-       }
-    * {
-      font-family: misans;
-      user-select: none;
-    }
-    .tips {
-      font-weight: bolder;
-      font-size: 1.3em;
-      display: block;
-      margin: 25px 0;
-      margin-top: 60px;
-    .gray {
-      color: rgb(94, 94, 94);
-      font-weight:lighter;
-    }
-    #app{
-      background: #f9f9f9;
-      min-width: 1024px;
-    }
+@font-face {
+  font-family: misans;
+  src: url("./assets/font/MiSans-Normal.ttf");
+}
+* {
+  font-family: misans;
+  user-select: none;
+}
+
+.tips {
+  font-weight: bolder;
+  font-size: 1.3em;
+  display: block;
+  margin: 25px 0;
+  margin-top: 60px;
+
+  .gray {
+    color: rgb(94, 94, 94);
+    font-weight: lighter;
   }
+}
+
+#app {
+  min-width: 1024px;
+}
 </style>

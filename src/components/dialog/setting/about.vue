@@ -9,21 +9,25 @@
         <div class="content">版本信息</div>
         <div class="descript">当前版本号</div>
       </div>
-      <el-tag>{{version}}</el-tag>
+      <el-tag>{{ version }}</el-tag>
     </div>
   </div>
 </template>
 
 <script>
+import { useAppStore } from "@/utils/pinia";
+
 export default {
+  name: "SettingsVersion",
   computed: {
+    app() {
+      return useAppStore();
+    },
     version() {
-      return this.$store.state.version
-    }
-  }
-}
+      return this.app.version || this.app.versionText || "";
+    },
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

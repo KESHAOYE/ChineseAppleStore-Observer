@@ -7,7 +7,9 @@
     <div class="setting_item">
       <div class="tips">
         <div class="content">弹窗通知</div>
-        <div class="descript">默认是否开启全局弹窗通知</div>
+        <div class="descript">
+          默认是否开启全局弹窗通知（请开启浏览器通知权限）
+        </div>
       </div>
       <el-switch v-model="dialogMessage" />
     </div>
@@ -16,99 +18,115 @@
         <div class="content">server酱通知</div>
         <div class="descript">默认是否开启server酱通知(需配置)</div>
       </div>
-      <el-switch v-model="serverchanMessage"  />
+      <el-switch v-model="serverchanMessage" />
     </div>
     <div class="setting_item" v-if="serverchanMessage">
-      <el-input v-model="serverchanKey" style="width:350px" size="mini" placeholder="配置server酱的send_key" />
-      <el-link href="https://sct.ftqq.com/" target="_blank" type="danger">查看教程</el-link>
+      <el-input
+        v-model="serverchanKey"
+        style="width: 350px"
+        size="mini"
+        placeholder="配置server酱的send_key"
+      />
+      <el-link
+        href="https://sct.ftqq.com/sendkey"
+        target="_blank"
+        type="danger"
+      >
+        生成KEY
+      </el-link>
+      <el-link href="https://sct.ftqq.com/" target="_blank" type="danger">
+        查看教程
+      </el-link>
     </div>
   </div>
 </template>
 
 <script>
+import { mapStores } from "pinia";
+import { useAppStore } from "@/utils/pinia";
+
 export default {
+  name: "SettingMessage",
   data() {
     return {
-      serverchan_key: ''
-    }
+      serverchan_key: "",
+    };
   },
+
   computed: {
+    ...mapStores(useAppStore),
     dialogMessage: {
       get() {
-        return this.$store.state.setting.dialogMessage
+        return this.appStore.setting.dialogMessage;
       },
       async set(val) {
-        if(val) {
-          if(Notification.permission!= "granted") {
-            await Notification.requestPermission()
-            if (Notification.permission == 'denied') {
-              this.$message.error('功能不可用,无通知权限,请检查设置')
-              this.dialogMessage = false
-              return;
+        if (val) {
+          try {
+            if (typeof Notification === "undefined") {
+              this.$message.error("当前浏览器不支持通知");
+              val = false;
+            } else if (Notification.permission !== "granted") {
+              const perm = await Notification.requestPermission();
+              if (perm !== "granted") {
+                this.$message.error("功能不可用, 无通知权限");
+                val = false;
+              }
             }
+          } catch (_) {
+            val = false;
           }
         }
-        localStorage.setItem('setting', JSON.stringify({
-          ...JSON.parse(localStorage.getItem('setting')),
-          dialogMessage: val
-        }))
-        this.$store.commit('setMessage', ['dialogMessage', val])
-      }
+        this.appStore.setMessage("dialogMessage", val);
+      },
     },
+
     serverchanMessage: {
       get() {
-        console.log(123);
-        return this.$store.state.setting.serverchanMessage
+        return this.appStore.setting.serverchanMessage;
       },
       set(val) {
-        console.log(val)
-        localStorage.setItem('setting', JSON.stringify({
-          ...JSON.parse(localStorage.getItem('setting')),
-          serverchanMessage: val
-        }))
-        this.$store.commit('setMessage', ['serverchanMessage', val])
-      }
+        this.appStore.setMessage("serverchanMessage", val);
+      },
     },
+
     serverchanKey: {
       get() {
-        return this.$store.state.setting.serverchan_sendkey
+        return this.appStore.setting.serverchan_sendkey;
       },
       set(val) {
-        localStorage.setItem('setting', JSON.stringify({
-          ...JSON.parse(localStorage.getItem('setting')),
-          serverchan_sendkey: val
-        }))
-        this.$store.commit('setMessage', ['serverchan_sendkey', val])
-        this.$message.success('send_key保存成功')
+        this.appStore.setMessage("serverchan_sendkey", val);
+        this.$message.success("send_key保存成功");
+      },
+    },
+  },
+};
+</script>
+
+<style lang="scss">
+.settings {
+  .setting_item_withoutbottom {
+    border: 0 !important;
+  }
+  .setting_item {
+    width: 480px;
+    min-height: 50px;
+    margin-top: 10px;
+    border-bottom: 1px solid #f8f8f8;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    .tips {
+      width: 220px;
+      font-size: 14px;
+      font-weight: lighter;
+      margin-top: 0px;
+      .descript {
+        font-size: 13px;
+        color: #c4c3c3;
+        margin-top: 2px;
       }
     }
   }
 }
-</script>
-
-<style lang="scss">
-  .settings{
-    .setting_item_withoutbottom {
-      border: 0 !important;
-    }
-    .setting_item{
-      width: 480px;
-      min-height: 50px;
-      border-bottom: 1px solid #f8f8f8;
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: space-between;
-      align-items: center;
-      .tips {
-        width: 220px;
-        font-size: 14px;
-        font-weight: lighter;
-        .descript{
-            font-size: 13px;
-            color: #c4c3c3;
-            margin-top: 2px;
-        }
-      }
-    }
-  }
 </style>

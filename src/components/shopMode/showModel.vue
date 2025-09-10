@@ -1,37 +1,39 @@
-<!--
- * @Author: KESHAOYE
- * @Date: 2022-12-04 13:53:19
--->
 <template>
-    <div class="show_phone">
-      <img :src="nowImage" alt="这里是机型图片"/>
-    </div>
+  <figure class="show_phone">
+    <img :src="nowImage" alt="机型预览图" loading="lazy" decoding="async" />
+  </figure>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "pinia";
+import { useAppStore } from "@/utils/pinia.js";
+
 export default {
-  computed: {...mapState(['nowImage'])}
-}
+  name: "ShowModel",
+  computed: {
+    ...mapState(useAppStore, ["nowImage"]),
+  },
+};
 </script>
 
-<style lang="scss">
-    .show_phone{
-      margin-top: $--var-left-image-marginTop;
-      width: 100%;
-      height: 100%;
-      min-width:800px;
-      min-height: 500px;
-      border-radius: 18px;
-      overflow: hidden;
-      top: 3%;
-      img{
-        border-radius: 18px;
-        width: $--var-left-image-width;
-        height: $--var-left-image-height;
-        min-width: 800px;
-        min-height: 500px;
-        transition: .3;
-      }
-    }
+<style lang="scss" scoped>
+.show_phone {
+  display: grid;
+  place-items: center;
+  padding: clamp(8px, 2vw, 24px);
+  min-width: 0 !important;
+  overflow: hidden;
+}
+
+.show_phone img {
+  width: clamp(260px, 60vw, 1280px);
+  max-width: 100%;
+  height: auto;
+  max-height: min(72vh, 1080px);
+  object-fit: contain;
+  border-radius: 18px;
+  image-rendering: auto;
+  -webkit-user-drag: none;
+  user-select: none;
+}
 </style>

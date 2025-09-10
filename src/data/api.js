@@ -1,29 +1,42 @@
-/*
- * @Author: KESHAOYE
- * @Date: 2022-11-21 00:21:52
- */
-// 请求需要的api
+import api from "@/utils/request.js";
+import localStores from "./applestore.json";
 
-import api from '../../utils/request.js'
+/** 库存查询 */
+export function getStock(params) {
+  return api.get("/shop/fulfillment-messages", { params });
+}
 
+/** 地区/地址查询 */
+export function getProvide() {
+  return api.get("/shop/address-lookup");
+}
 
-export const getStock = (p)=> api({
-    methods: 'get',
-    url: 'apis/shop/fulfillment-messages',
-    params: p
-})
+function normalizeStorePayload(raw) {
+  if (!raw) return null;
 
-export const getProvide = ()=>api({
-    methods: 'get',
-    url: 'apis/shop/address-lookup'
-})
+  if (Array.isArray(raw.storeListData)) return raw;
 
-export const getStore = () => api({
-    methods: 'get',
-    url: 'apis/rsp-web/store-list?locale=zh_CN'
-})
+  const states = raw.state || raw.states;
+  if (Array.isArray(states)) {
+    const normStates = states.map((s) => ({
+      name: s.name || s.stateName || "其他地区",
+      store: (s.store || s.stores || [])
+        .map((x) => ({
+          id: String(x.id || x.storeNumber || x.storeId || ""),
+          name: x.name || x.storeName || "",
+          slug: x.slug || x.storeSlug || x.retailStoreSlug || "",
+        }))
+        .filter((x) => x.id && x.name),
+    }));
+    return { storeListData: [{ state: normStates }] };
+  }
 
-export const sendServerChan = (p) => api({
-    methods: 'get',
-    url: `https://sctapi.ftqq.com/${p.sendkey}.send?title=${p.title}&desp=${p.content}`
-})
+  return null;
+}
+
+/** Server酱推送 */
+export function sendServerChan({ sendkey, title, content }) {
+  return api.get(`https://sctapi.ftqq.com/${sendkey}.send`, {
+    params: { title, desp: content },
+  });
+}

@@ -1,0 +1,1224 @@
+{
+  "storeListData": [
+    {
+      "state": [
+        {
+          "name": "江苏",
+          "value": "江苏",
+          "label": "江苏",
+          "store": [
+            {
+              "id": "R643",
+              "name": "虹悦城",
+              "displayName": "APPLE虹悦城店",
+              "slug": "wondercity",
+              "telephone": "400-617-1332",
+              "detailUrl": "https://www.apple.com.cn/retail/wondercity",
+              "province": "江苏",
+              "city": "南京",
+              "locationDisplay": "江苏省南京市",
+              "searchLocation": "江苏 南京",
+              "fullAddress": "南京市雨花台区应天大街 619 号",
+              "postalCode": "210000",
+              "address": {
+                "address1": "南京市雨花台区应天大街 619 号",
+                "address2": "",
+                "city": "南京",
+                "postalCode": "210000",
+                "stateName": "江苏",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R688",
+              "name": "苏州",
+              "displayName": "APPLE苏州店",
+              "slug": "suzhou",
+              "telephone": "400-613-9775",
+              "detailUrl": "https://www.apple.com.cn/retail/suzhou",
+              "province": "江苏",
+              "city": "苏州",
+              "locationDisplay": "江苏省苏州市",
+              "searchLocation": "江苏 苏州",
+              "fullAddress": "苏州市苏州工业园区 苏州中心商场",
+              "postalCode": "215021",
+              "address": {
+                "address1": "苏州市苏州工业园区",
+                "address2": "苏州中心商场",
+                "city": "苏州",
+                "postalCode": "215021",
+                "stateName": "江苏",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R493",
+              "name": "新街口",
+              "displayName": "APPLE新街口店",
+              "slug": "xinjiekou",
+              "telephone": "400-617-1334",
+              "detailUrl": "https://www.apple.com.cn/retail/xinjiekou",
+              "province": "江苏",
+              "city": "南京",
+              "locationDisplay": "江苏省南京市",
+              "searchLocation": "江苏 南京",
+              "fullAddress": "南京市玄武区中山路 100 号",
+              "postalCode": "210008",
+              "address": {
+                "address1": "南京市玄武区中山路 100 号",
+                "address2": "",
+                "city": "南京",
+                "postalCode": "210008",
+                "stateName": "江苏",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R703",
+              "name": "玄武湖",
+              "displayName": "APPLE玄武湖店",
+              "slug": "xuanwulake",
+              "telephone": "400-613-9772",
+              "detailUrl": "https://www.apple.com.cn/retail/xuanwulake",
+              "province": "江苏",
+              "city": "南京",
+              "locationDisplay": "江苏省南京市",
+              "searchLocation": "江苏 南京",
+              "fullAddress": "南京市鼓楼区中央路 201 号",
+              "postalCode": "210009",
+              "address": {
+                "address1": "南京市鼓楼区中央路 201 号",
+                "address2": "",
+                "city": "南京",
+                "postalCode": "210009",
+                "stateName": "江苏",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R574",
+              "name": "无锡恒隆广场",
+              "displayName": "APPLE无锡恒隆广场店",
+              "slug": "center66wuxi",
+              "telephone": "400-617-1325",
+              "detailUrl": "https://www.apple.com.cn/retail/center66wuxi",
+              "province": "江苏",
+              "city": "无锡",
+              "locationDisplay": "江苏省无锡市",
+              "searchLocation": "江苏 无锡",
+              "fullAddress": "无锡市梁溪区 人民中路 139 号",
+              "postalCode": "214000",
+              "address": {
+                "address1": "无锡市梁溪区",
+                "address2": "人民中路 139 号",
+                "city": "无锡",
+                "postalCode": "214000",
+                "stateName": "江苏",
+                "stateCode": null
+              }
+            }
+          ]
+        },
+        {
+          "name": "四川",
+          "value": "四川",
+          "label": "四川",
+          "store": [
+            {
+              "id": "R502",
+              "name": "成都万象城",
+              "displayName": "APPLE成都万象城店",
+              "slug": "mixcchengdu",
+              "telephone": "400-617-1214",
+              "detailUrl": "https://www.apple.com.cn/retail/mixcchengdu",
+              "province": "四川",
+              "city": "成都",
+              "locationDisplay": "四川省成都市",
+              "searchLocation": "四川 成都",
+              "fullAddress": "成都市成华区双庆路 8 号万象城",
+              "postalCode": "610000",
+              "address": {
+                "address1": "成都市成华区双庆路 8 号万象城",
+                "address2": "",
+                "city": "成都",
+                "postalCode": "610000",
+                "stateName": "四川",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R580",
+              "name": "成都太古里",
+              "displayName": "APPLE成都太古里店",
+              "slug": "taikoolichengdu",
+              "telephone": "400-617-1275",
+              "detailUrl": "https://www.apple.com.cn/retail/taikoolichengdu",
+              "province": "四川",
+              "city": "成都",
+              "locationDisplay": "四川省成都市",
+              "searchLocation": "四川 成都",
+              "fullAddress": "成都市锦江区中纱帽街 8 号",
+              "postalCode": "610000",
+              "address": {
+                "address1": "成都市锦江区中纱帽街 8 号",
+                "address2": "",
+                "city": "成都",
+                "postalCode": "610000",
+                "stateName": "四川",
+                "stateCode": null
+              }
+            }
+          ]
+        },
+        {
+          "name": "山东",
+          "value": "山东",
+          "label": "山东",
+          "store": [
+            {
+              "id": "R557",
+              "name": "青岛万象城",
+              "displayName": "APPLE青岛万象城店",
+              "slug": "mixcqingdao",
+              "telephone": "400-617-1285",
+              "detailUrl": "https://www.apple.com.cn/retail/mixcqingdao",
+              "province": "山东",
+              "city": "青岛",
+              "locationDisplay": "山东省青岛市",
+              "searchLocation": "山东 青岛",
+              "fullAddress": "青岛市市南区山东路 6A 号",
+              "postalCode": "266000",
+              "address": {
+                "address1": "青岛市市南区山东路 6A 号",
+                "address2": "",
+                "city": "青岛",
+                "postalCode": "266000",
+                "stateName": "山东",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R648",
+              "name": "济南恒隆广场",
+              "displayName": "APPLE济南恒隆广场店",
+              "slug": "parc66jinan",
+              "telephone": "400-613-9743",
+              "detailUrl": "https://www.apple.com.cn/retail/parc66jinan",
+              "province": "山东",
+              "city": "济南",
+              "locationDisplay": "山东省济南市",
+              "searchLocation": "山东 济南",
+              "fullAddress": "济南市历下区泉城路 188 号",
+              "postalCode": "250011",
+              "address": {
+                "address1": "济南市历下区泉城路 188 号",
+                "address2": "",
+                "city": "济南",
+                "postalCode": "250011",
+                "stateName": "山东",
+                "stateCode": null
+              }
+            }
+          ]
+        },
+        {
+          "name": "浙江",
+          "value": "浙江",
+          "label": "浙江",
+          "store": [
+            {
+              "id": "R531",
+              "name": "天一广场",
+              "displayName": "APPLE天一广场店",
+              "slug": "tianyisquare",
+              "telephone": "400-613-9774",
+              "detailUrl": "https://www.apple.com.cn/retail/tianyisquare",
+              "province": "浙江",
+              "city": "宁波",
+              "locationDisplay": "浙江省宁波市",
+              "searchLocation": "浙江 宁波",
+              "fullAddress": "宁波市海曙区碶闸街 155 号 天一广场",
+              "postalCode": "315000",
+              "address": {
+                "address1": "宁波市海曙区碶闸街 155 号",
+                "address2": "天一广场",
+                "city": "宁波",
+                "postalCode": "315000",
+                "stateName": "浙江",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R766",
+              "name": "温州万象城",
+              "displayName": "APPLE温州万象城店",
+              "slug": "mixcwenzhou",
+              "telephone": "400-000-2385",
+              "detailUrl": "https://www.apple.com.cn/retail/mixcwenzhou",
+              "province": "浙江",
+              "city": "温州市",
+              "locationDisplay": "浙江省温州市市",
+              "searchLocation": "浙江 温州市",
+              "fullAddress": "浙江省温州市瓯海区瓯越大道1999号 温州万象城 L1层",
+              "postalCode": "325000",
+              "address": {
+                "address1": "浙江省温州市瓯海区瓯越大道1999号",
+                "address2": "温州万象城 L1层",
+                "city": "温州市",
+                "postalCode": "325000",
+                "stateName": "浙江",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R471",
+              "name": "西湖",
+              "displayName": "APPLE西湖店",
+              "slug": "westlake",
+              "telephone": "400-617-1302",
+              "detailUrl": "https://www.apple.com.cn/retail/westlake",
+              "province": "浙江",
+              "city": "杭州",
+              "locationDisplay": "浙江省杭州市",
+              "searchLocation": "浙江 杭州",
+              "fullAddress": "杭州市上城区平海路 100 号",
+              "postalCode": "310006",
+              "address": {
+                "address1": "杭州市上城区平海路 100 号",
+                "address2": "",
+                "city": "杭州",
+                "postalCode": "310006",
+                "stateName": "浙江",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R532",
+              "name": "杭州万象城",
+              "displayName": "APPLE杭州万象城店",
+              "slug": "mixchangzhou",
+              "telephone": "400-617-1304",
+              "detailUrl": "https://www.apple.com.cn/retail/mixchangzhou",
+              "province": "浙江",
+              "city": "杭州",
+              "locationDisplay": "浙江省杭州市",
+              "searchLocation": "浙江 杭州",
+              "fullAddress": "杭州市上城区富春路 701 号",
+              "postalCode": "310000",
+              "address": {
+                "address1": "杭州市上城区富春路 701 号",
+                "address2": "",
+                "city": "杭州",
+                "postalCode": "310000",
+                "stateName": "浙江",
+                "stateCode": null
+              }
+            }
+          ]
+        },
+        {
+          "name": "广西壮族自治区",
+          "value": "广西壮族自治区",
+          "label": "广西壮族自治区",
+          "store": [
+            {
+              "id": "R571",
+              "name": "南宁万象城",
+              "displayName": "APPLE南宁万象城店",
+              "slug": "mixcnanning",
+              "telephone": "400-617-1265",
+              "detailUrl": "https://www.apple.com.cn/retail/mixcnanning",
+              "province": "广西壮族自治区",
+              "city": "南宁",
+              "locationDisplay": "广西壮族自治区南宁市",
+              "searchLocation": "广西壮族自治区 南宁",
+              "fullAddress": "南宁市青秀区民族大道 136 号",
+              "postalCode": "530022",
+              "address": {
+                "address1": "南宁市青秀区民族大道 136 号",
+                "address2": "",
+                "city": "南宁",
+                "postalCode": "530022",
+                "stateName": "广西壮族自治区",
+                "stateCode": null
+              }
+            }
+          ]
+        },
+        {
+          "name": "湖南",
+          "value": "湖南",
+          "label": "湖南",
+          "store": [
+            {
+              "id": "R617",
+              "name": "长沙",
+              "displayName": "APPLE长沙店",
+              "slug": "changsha",
+              "telephone": "400-604-3168",
+              "detailUrl": "https://www.apple.com.cn/retail/changsha",
+              "province": "湖南",
+              "city": "长沙",
+              "locationDisplay": "湖南省长沙市",
+              "searchLocation": "湖南 长沙",
+              "fullAddress": "长沙市芙蓉区解放西路 188 号 长沙国金中心一层",
+              "postalCode": "410000",
+              "address": {
+                "address1": "长沙市芙蓉区解放西路 188 号",
+                "address2": "长沙国金中心一层",
+                "city": "长沙",
+                "postalCode": "410000",
+                "stateName": "湖南",
+                "stateCode": null
+              }
+            }
+          ]
+        },
+        {
+          "name": "辽宁",
+          "value": "辽宁",
+          "label": "辽宁",
+          "store": [
+            {
+              "id": "R534",
+              "name": "中街大悦城",
+              "displayName": "APPLE中街大悦城店",
+              "slug": "zhongjiejoycity",
+              "telephone": "400-617-1252",
+              "detailUrl": "https://www.apple.com.cn/retail/zhongjiejoycity",
+              "province": "辽宁",
+              "city": "沈阳",
+              "locationDisplay": "辽宁省沈阳市",
+              "searchLocation": "辽宁 沈阳",
+              "fullAddress": "沈阳市大东区小东路 5 号",
+              "postalCode": "110042",
+              "address": {
+                "address1": "沈阳市大东区小东路 5 号",
+                "address2": "",
+                "city": "沈阳",
+                "postalCode": "110042",
+                "stateName": "辽宁",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R576",
+              "name": "沈阳万象城",
+              "displayName": "APPLE沈阳万象城店",
+              "slug": "mixcshenyang",
+              "telephone": "400-617-1274",
+              "detailUrl": "https://www.apple.com.cn/retail/mixcshenyang",
+              "province": "辽宁",
+              "city": "沈阳",
+              "locationDisplay": "辽宁省沈阳市",
+              "searchLocation": "辽宁 沈阳",
+              "fullAddress": "沈阳市和平区青年大街 288 号",
+              "postalCode": "110000",
+              "address": {
+                "address1": "沈阳市和平区青年大街 288 号",
+                "address2": "",
+                "city": "沈阳",
+                "postalCode": "110000",
+                "stateName": "辽宁",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R478",
+              "name": "百年城",
+              "displayName": "APPLE百年城店",
+              "slug": "parkland",
+              "telephone": "400-056-0921",
+              "detailUrl": "https://www.apple.com.cn/retail/parkland",
+              "province": "辽宁",
+              "city": "大连",
+              "locationDisplay": "辽宁省大连市",
+              "searchLocation": "辽宁 大连",
+              "fullAddress": "大连市中山区解放路 19 号",
+              "postalCode": "116000",
+              "address": {
+                "address1": "大连市中山区解放路 19 号",
+                "address2": "",
+                "city": "大连",
+                "postalCode": "116000",
+                "stateName": "辽宁",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R609",
+              "name": "大连恒隆广场",
+              "displayName": "APPLE大连恒隆广场店",
+              "slug": "olympia66dalian",
+              "telephone": "400-613-9741",
+              "detailUrl": "https://www.apple.com.cn/retail/olympia66dalian",
+              "province": "辽宁",
+              "city": "大连",
+              "locationDisplay": "辽宁省大连市",
+              "searchLocation": "辽宁 大连",
+              "fullAddress": "大连市西岗区五四路 66 号",
+              "postalCode": "116000",
+              "address": {
+                "address1": "大连市西岗区五四路 66 号",
+                "address2": "",
+                "city": "大连",
+                "postalCode": "116000",
+                "stateName": "辽宁",
+                "stateCode": null
+              }
+            }
+          ]
+        },
+        {
+          "name": "湖北",
+          "value": "湖北",
+          "label": "湖北",
+          "store": [
+            {
+              "id": "R575",
+              "name": "武汉",
+              "displayName": "APPLE武汉店",
+              "slug": "wuhan",
+              "telephone": "400-638-3818",
+              "detailUrl": "https://www.apple.com.cn/retail/wuhan",
+              "province": "湖北",
+              "city": "武汉",
+              "locationDisplay": "湖北省武汉市",
+              "searchLocation": "湖北 武汉",
+              "fullAddress": "武汉市江汉区解放大道 690 号 武商 MALL B 座 2F",
+              "postalCode": "430022",
+              "address": {
+                "address1": "武汉市江汉区解放大道 690 号",
+                "address2": "武商 MALL B 座 2F",
+                "city": "武汉",
+                "postalCode": "430022",
+                "stateName": "湖北",
+                "stateCode": null
+              }
+            }
+          ]
+        },
+        {
+          "name": "重庆",
+          "value": "重庆",
+          "label": "重庆",
+          "store": [
+            {
+              "id": "R480",
+              "name": "解放碑",
+              "displayName": "APPLE解放碑店",
+              "slug": "jiefangbei",
+              "telephone": "400-617-1224",
+              "detailUrl": "https://www.apple.com.cn/retail/jiefangbei",
+              "province": "重庆",
+              "city": "重庆",
+              "locationDisplay": "重庆市",
+              "searchLocation": "重庆 重庆",
+              "fullAddress": "重庆市渝中区邹容路 108 号",
+              "postalCode": "400010",
+              "address": {
+                "address1": "重庆市渝中区邹容路 108 号",
+                "address2": "",
+                "city": "重庆",
+                "postalCode": "400010",
+                "stateName": "重庆",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R573",
+              "name": "重庆万象城",
+              "displayName": "APPLE重庆万象城店",
+              "slug": "mixcchongqing",
+              "telephone": "400-617-1215",
+              "detailUrl": "https://www.apple.com.cn/retail/mixcchongqing",
+              "province": "重庆",
+              "city": "重庆",
+              "locationDisplay": "重庆市",
+              "searchLocation": "重庆 重庆",
+              "fullAddress": "重庆市九龙坡区谢家湾正街 55 号",
+              "postalCode": "400050",
+              "address": {
+                "address1": "重庆市九龙坡区谢家湾正街 55 号",
+                "address2": "",
+                "city": "重庆",
+                "postalCode": "400050",
+                "stateName": "重庆",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R476",
+              "name": "重庆北城天街",
+              "displayName": "APPLE重庆北城天街店",
+              "slug": "paradisewalkchongqing",
+              "telephone": "400-617-1240",
+              "detailUrl": "https://www.apple.com.cn/retail/paradisewalkchongqing",
+              "province": "重庆",
+              "city": "重庆",
+              "locationDisplay": "重庆市",
+              "searchLocation": "重庆 重庆",
+              "fullAddress": "重庆市江北区北城天街 8 号",
+              "postalCode": "400020",
+              "address": {
+                "address1": "重庆市江北区北城天街 8 号",
+                "address2": "",
+                "city": "重庆",
+                "postalCode": "400020",
+                "stateName": "重庆",
+                "stateCode": null
+              }
+            }
+          ]
+        },
+        {
+          "name": "云南",
+          "value": "云南",
+          "label": "云南",
+          "store": [
+            {
+              "id": "R670",
+              "name": "昆明",
+              "displayName": "APPLE昆明店",
+              "slug": "kunming",
+              "telephone": "400-639-3602",
+              "detailUrl": "https://www.apple.com.cn/retail/kunming",
+              "province": "云南",
+              "city": "昆明",
+              "locationDisplay": "云南省昆明市",
+              "searchLocation": "云南 昆明",
+              "fullAddress": "昆明市五华区东风西路 11 号  顺城购物中心",
+              "postalCode": "650031",
+              "address": {
+                "address1": "昆明市五华区东风西路 11 号 ",
+                "address2": "顺城购物中心",
+                "city": "昆明",
+                "postalCode": "650031",
+                "stateName": "云南",
+                "stateCode": null
+              }
+            }
+          ]
+        },
+        {
+          "name": "福建",
+          "value": "福建",
+          "label": "福建",
+          "store": [
+            {
+              "id": "R646",
+              "name": "泰禾广场",
+              "displayName": "APPLE泰禾广场店",
+              "slug": "tahoeplaza",
+              "telephone": "400-617-1354",
+              "detailUrl": "https://www.apple.com.cn/retail/tahoeplaza",
+              "province": "福建",
+              "city": "福州",
+              "locationDisplay": "福建省福州市",
+              "searchLocation": "福建 福州",
+              "fullAddress": "福州市晋安区竹屿路 6 号 东二环泰禾广场",
+              "postalCode": "350000",
+              "address": {
+                "address1": "福州市晋安区竹屿路 6 号",
+                "address2": "东二环泰禾广场",
+                "city": "福州",
+                "postalCode": "350000",
+                "stateName": "福建",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R644",
+              "name": "厦门新生活广场",
+              "displayName": "APPLE厦门新生活广场店",
+              "slug": "xiamenlifestylecenter",
+              "telephone": "400-617-1383",
+              "detailUrl": "https://www.apple.com.cn/retail/xiamenlifestylecenter",
+              "province": "福建",
+              "city": "厦门",
+              "locationDisplay": "福建省厦门市",
+              "searchLocation": "福建 厦门",
+              "fullAddress": "厦门市思明区嘉禾路 399 号 SM 新生活广场",
+              "postalCode": "361012",
+              "address": {
+                "address1": "厦门市思明区嘉禾路 399 号",
+                "address2": "SM 新生活广场",
+                "city": "厦门",
+                "postalCode": "361012",
+                "stateName": "福建",
+                "stateCode": null
+              }
+            }
+          ]
+        },
+        {
+          "name": "北京",
+          "value": "北京",
+          "label": "北京",
+          "store": [
+            {
+              "id": "R388",
+              "name": "西单大悦城",
+              "displayName": "APPLE西单大悦城店",
+              "slug": "xidanjoycity",
+              "telephone": "400-617-1204",
+              "detailUrl": "https://www.apple.com.cn/retail/xidanjoycity",
+              "province": "北京",
+              "city": "北京",
+              "locationDisplay": "北京市",
+              "searchLocation": "北京 北京",
+              "fullAddress": "北京市西城区西单北大街 131 号大悦城",
+              "postalCode": "100032",
+              "address": {
+                "address1": "北京市西城区西单北大街 131 号大悦城",
+                "address2": "",
+                "city": "北京",
+                "postalCode": "100032",
+                "stateName": "北京",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R645",
+              "name": "朝阳大悦城",
+              "displayName": "APPLE朝阳大悦城店",
+              "slug": "chaoyangjoycity",
+              "telephone": "400-617-1284",
+              "detailUrl": "https://www.apple.com.cn/retail/chaoyangjoycity",
+              "province": "北京",
+              "city": "北京",
+              "locationDisplay": "北京市",
+              "searchLocation": "北京 北京",
+              "fullAddress": "北京市朝阳区朝阳北路 101 号",
+              "postalCode": "100000",
+              "address": {
+                "address1": "北京市朝阳区朝阳北路 101 号",
+                "address2": "",
+                "city": "北京",
+                "postalCode": "100000",
+                "stateName": "北京",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R448",
+              "name": "王府井",
+              "displayName": "APPLE王府井店",
+              "slug": "wangfujing",
+              "telephone": "400-617-1205",
+              "detailUrl": "https://www.apple.com.cn/retail/wangfujing",
+              "province": "北京",
+              "city": "北京",
+              "locationDisplay": "北京市",
+              "searchLocation": "北京 北京",
+              "fullAddress": "北京市东城区王府井大街 138 号北京 apm",
+              "postalCode": "100006",
+              "address": {
+                "address1": "北京市东城区王府井大街 138 号北京 apm",
+                "address2": "",
+                "city": "北京",
+                "postalCode": "100006",
+                "stateName": "北京",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R479",
+              "name": "华贸购物中心",
+              "displayName": "APPLE华贸购物中心店",
+              "slug": "chinacentralmall",
+              "telephone": "400-617-1210",
+              "detailUrl": "https://www.apple.com.cn/retail/chinacentralmall",
+              "province": "北京",
+              "city": "北京",
+              "locationDisplay": "北京市",
+              "searchLocation": "北京 北京",
+              "fullAddress": "北京市朝阳区建国路 81 号华贸购物中心",
+              "postalCode": "100025",
+              "address": {
+                "address1": "北京市朝阳区建国路 81 号华贸购物中心",
+                "address2": "",
+                "city": "北京",
+                "postalCode": "100025",
+                "stateName": "北京",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R320",
+              "name": "三里屯",
+              "displayName": "APPLE三里屯店",
+              "slug": "sanlitun",
+              "telephone": "400-617-1363",
+              "detailUrl": "https://www.apple.com.cn/retail/sanlitun",
+              "province": "北京",
+              "city": "北京",
+              "locationDisplay": "北京市",
+              "searchLocation": "北京 北京",
+              "fullAddress": "北京市朝阳区三里屯路 19 号院 三里屯太古里南区 7 号楼",
+              "postalCode": "100027",
+              "address": {
+                "address1": "北京市朝阳区三里屯路 19 号院",
+                "address2": "三里屯太古里南区 7 号楼",
+                "city": "北京",
+                "postalCode": "100027",
+                "stateName": "北京",
+                "stateCode": null
+              }
+            }
+          ]
+        },
+        {
+          "name": "天津",
+          "value": "天津",
+          "label": "天津",
+          "store": [
+            {
+              "id": "R637",
+              "name": "天津大悦城",
+              "displayName": "APPLE天津大悦城店",
+              "slug": "tianjinjoycity",
+              "telephone": "400-617-1262",
+              "detailUrl": "https://www.apple.com.cn/retail/tianjinjoycity",
+              "province": "天津",
+              "city": "天津",
+              "locationDisplay": "天津市",
+              "searchLocation": "天津 天津",
+              "fullAddress": "天津市南开区南门外大街 2 号",
+              "postalCode": "300199",
+              "address": {
+                "address1": "天津市南开区南门外大街 2 号",
+                "address2": "",
+                "city": "天津",
+                "postalCode": "300199",
+                "stateName": "天津",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R638",
+              "name": "天津万象城",
+              "displayName": "APPLE天津万象城店",
+              "slug": "mixctianjin",
+              "telephone": "400-613-9745",
+              "detailUrl": "https://www.apple.com.cn/retail/mixctianjin",
+              "province": "天津",
+              "city": "天津",
+              "locationDisplay": "天津市",
+              "searchLocation": "天津 天津",
+              "fullAddress": "天津市河西区乐园道 9 号",
+              "postalCode": "300201",
+              "address": {
+                "address1": "天津市河西区乐园道 9 号",
+                "address2": "",
+                "city": "天津",
+                "postalCode": "300201",
+                "stateName": "天津",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R579",
+              "name": "天津恒隆广场",
+              "displayName": "APPLE天津恒隆广场店",
+              "slug": "riverside66tianjin",
+              "telephone": "400-613-9744",
+              "detailUrl": "https://www.apple.com.cn/retail/riverside66tianjin",
+              "province": "天津",
+              "city": "天津",
+              "locationDisplay": "天津市",
+              "searchLocation": "天津 天津",
+              "fullAddress": "天津市和平区兴安路 166 号",
+              "postalCode": "300041",
+              "address": {
+                "address1": "天津市和平区兴安路 166 号",
+                "address2": "",
+                "city": "天津",
+                "postalCode": "300041",
+                "stateName": "天津",
+                "stateCode": null
+              }
+            }
+          ]
+        },
+        {
+          "name": "安徽",
+          "value": "安徽",
+          "label": "安徽",
+          "store": [
+            {
+              "id": "R765",
+              "name": "合肥万象城",
+              "displayName": "APPLE合肥万象城店",
+              "slug": "mixchefei",
+              "telephone": "400-000-5292",
+              "detailUrl": "https://www.apple.com.cn/retail/mixchefei",
+              "province": "安徽",
+              "city": "合肥",
+              "locationDisplay": "安徽省合肥市",
+              "searchLocation": "安徽 合肥",
+              "fullAddress": "合肥市蜀山区潜山路 111 号 合肥万象城商场一层",
+              "postalCode": "230031",
+              "address": {
+                "address1": "合肥市蜀山区潜山路 111 号",
+                "address2": "合肥万象城商场一层",
+                "city": "合肥",
+                "postalCode": "230031",
+                "stateName": "安徽",
+                "stateCode": null
+              }
+            }
+          ]
+        },
+        {
+          "name": "河南",
+          "value": "河南",
+          "label": "河南",
+          "store": [
+            {
+              "id": "R572",
+              "name": "郑州万象城",
+              "displayName": "APPLE郑州万象城店",
+              "slug": "mixczhengzhou",
+              "telephone": "400-617-1264",
+              "detailUrl": "https://www.apple.com.cn/retail/mixczhengzhou",
+              "province": "河南",
+              "city": "郑州",
+              "locationDisplay": "河南省郑州市",
+              "searchLocation": "河南 郑州",
+              "fullAddress": "郑州市二七区民主路 10 号",
+              "postalCode": "450000",
+              "address": {
+                "address1": "郑州市二七区民主路 10 号",
+                "address2": "",
+                "city": "郑州",
+                "postalCode": "450000",
+                "stateName": "河南",
+                "stateCode": null
+              }
+            }
+          ]
+        },
+        {
+          "name": "上海",
+          "value": "上海",
+          "label": "上海",
+          "store": [
+            {
+              "id": "R683",
+              "name": "环球港",
+              "displayName": "APPLE环球港店",
+              "slug": "globalharbor",
+              "telephone": "400-617-1335",
+              "detailUrl": "https://www.apple.com.cn/retail/globalharbor",
+              "province": "上海",
+              "city": "上海",
+              "locationDisplay": "上海市",
+              "searchLocation": "上海 上海",
+              "fullAddress": "上海市普陀区中山北路 3300 号",
+              "postalCode": "200062",
+              "address": {
+                "address1": "上海市普陀区中山北路 3300 号",
+                "address2": "",
+                "city": "上海",
+                "postalCode": "200062",
+                "stateName": "上海",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R390",
+              "name": "香港广场",
+              "displayName": "APPLE香港广场店",
+              "slug": "hongkongplaza",
+              "telephone": "400-617-1312",
+              "detailUrl": "https://www.apple.com.cn/retail/hongkongplaza",
+              "province": "上海",
+              "city": "上海",
+              "locationDisplay": "上海市",
+              "searchLocation": "上海 上海",
+              "fullAddress": "上海市黄浦区淮海中路 282 号 香港广场北座",
+              "postalCode": "200021",
+              "address": {
+                "address1": "上海市黄浦区淮海中路 282 号",
+                "address2": "香港广场北座",
+                "city": "上海",
+                "postalCode": "200021",
+                "stateName": "上海",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R581",
+              "name": "五角场",
+              "displayName": "APPLE五角场店",
+              "slug": "wujiaochang",
+              "telephone": "400-613-9771",
+              "detailUrl": "https://www.apple.com.cn/retail/wujiaochang",
+              "province": "上海",
+              "city": "上海",
+              "locationDisplay": "上海市",
+              "searchLocation": "上海 上海",
+              "fullAddress": "上海市杨浦区翔殷路 1099 号 上海合生汇",
+              "postalCode": "200433",
+              "address": {
+                "address1": "上海市杨浦区翔殷路 1099 号",
+                "address2": "上海合生汇",
+                "city": "上海",
+                "postalCode": "200433",
+                "stateName": "上海",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R401",
+              "name": "上海环贸 iapm ",
+              "displayName": "APPLE上海环贸 iapm 店",
+              "slug": "shanghaiiapm",
+              "telephone": "400-617-1324",
+              "detailUrl": "https://www.apple.com.cn/retail/shanghaiiapm",
+              "province": "上海",
+              "city": "上海",
+              "locationDisplay": "上海市",
+              "searchLocation": "上海 上海",
+              "fullAddress": "上海市徐汇区淮海中路 999 号 环贸 iapm 商场",
+              "postalCode": "200031",
+              "address": {
+                "address1": "上海市徐汇区淮海中路 999 号",
+                "address2": "环贸 iapm 商场",
+                "city": "上海",
+                "postalCode": "200031",
+                "stateName": "上海",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R389",
+              "name": "浦东",
+              "displayName": "APPLE浦东店",
+              "slug": "pudong",
+              "telephone": "400-617-1305",
+              "detailUrl": "https://www.apple.com.cn/retail/pudong",
+              "province": "上海",
+              "city": "上海",
+              "locationDisplay": "上海市",
+              "searchLocation": "上海 上海",
+              "fullAddress": "上海市浦东新区陆家嘴世纪大道 8 号 上海国金中心 IFC 商场 LG2－27 号店铺",
+              "postalCode": "200120",
+              "address": {
+                "address1": "上海市浦东新区陆家嘴世纪大道 8 号",
+                "address2": "上海国金中心 IFC 商场 LG2－27 号店铺",
+                "city": "上海",
+                "postalCode": "200120",
+                "stateName": "上海",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R678",
+              "name": "静安",
+              "displayName": "APPLE静安店",
+              "slug": "jingan",
+              "telephone": "400-000-3235",
+              "detailUrl": "https://www.apple.com.cn/retail/jingan",
+              "province": "上海",
+              "city": "上海",
+              "locationDisplay": "上海市",
+              "searchLocation": "上海 上海",
+              "fullAddress": "上海市静安区南京西路 1699 号",
+              "postalCode": "200040",
+              "address": {
+                "address1": "上海市静安区南京西路 1699 号",
+                "address2": "",
+                "city": "上海",
+                "postalCode": "200040",
+                "stateName": "上海",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R359",
+              "name": "南京东路",
+              "displayName": "APPLE南京东路店",
+              "slug": "nanjingeast",
+              "telephone": "400-663-9988",
+              "detailUrl": "https://www.apple.com.cn/retail/nanjingeast",
+              "province": "上海",
+              "city": "上海",
+              "locationDisplay": "上海市",
+              "searchLocation": "上海 上海",
+              "fullAddress": "上海市黄浦区南京东路 300 号",
+              "postalCode": "200001",
+              "address": {
+                "address1": "上海市黄浦区南京东路 300 号",
+                "address2": "",
+                "city": "上海",
+                "postalCode": "200001",
+                "stateName": "上海",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R705",
+              "name": "七宝",
+              "displayName": "APPLE七宝店",
+              "slug": "qibao",
+              "telephone": "400-613-9773",
+              "detailUrl": "https://www.apple.com.cn/retail/qibao",
+              "province": "上海",
+              "city": "上海",
+              "locationDisplay": "上海市",
+              "searchLocation": "上海 上海",
+              "fullAddress": "上海市闵行区漕宝路 3366 号  七宝领展广场",
+              "postalCode": "201101",
+              "address": {
+                "address1": "上海市闵行区漕宝路 3366 号 ",
+                "address2": "七宝领展广场",
+                "city": "上海",
+                "postalCode": "201101",
+                "stateName": "上海",
+                "stateCode": null
+              }
+            }
+          ]
+        },
+        {
+          "name": "广东",
+          "value": "广东",
+          "label": "广东",
+          "store": [
+            {
+              "id": "R761",
+              "name": "深圳万象城",
+              "displayName": "APPLE深圳万象城店",
+              "slug": "mixcshenzhen",
+              "telephone": "400-050-1588",
+              "detailUrl": "https://www.apple.com.cn/retail/mixcshenzhen",
+              "province": "广东",
+              "city": "深圳",
+              "locationDisplay": "广东省深圳市",
+              "searchLocation": "广东 深圳",
+              "fullAddress": "深圳市罗湖区宝安南路 1881 号 深圳万象城（一期）B1 层",
+              "postalCode": "518001",
+              "address": {
+                "address1": "深圳市罗湖区宝安南路 1881 号",
+                "address2": "深圳万象城（一期）B1 层",
+                "city": "深圳",
+                "postalCode": "518001",
+                "stateName": "广东",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R639",
+              "name": "珠江新城",
+              "displayName": "APPLE珠江新城店",
+              "slug": "zhujiangnewtown",
+              "telephone": "400-639-3601",
+              "detailUrl": "https://www.apple.com.cn/retail/zhujiangnewtown",
+              "province": "广东",
+              "city": "广州",
+              "locationDisplay": "广东省广州市",
+              "searchLocation": "广东 广州",
+              "fullAddress": "广州珠江新城兴民路 222 号 天汇广场 1 层",
+              "postalCode": "510623",
+              "address": {
+                "address1": "广州珠江新城兴民路 222 号",
+                "address2": "天汇广场 1 层",
+                "city": "广州",
+                "postalCode": "510623",
+                "stateName": "广东",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R484",
+              "name": "深圳益田假日广场",
+              "displayName": "APPLE深圳益田假日广场店",
+              "slug": "holidayplazashenzhen",
+              "telephone": "400-617-1254",
+              "detailUrl": "https://www.apple.com.cn/retail/holidayplazashenzhen",
+              "province": "广东",
+              "city": "深圳",
+              "locationDisplay": "广东省深圳市",
+              "searchLocation": "广东 深圳",
+              "fullAddress": "深圳市南山区深南大道 9028 号益田假日广场",
+              "postalCode": "518000",
+              "address": {
+                "address1": "深圳市南山区深南大道 9028 号益田假日广场",
+                "address2": "",
+                "city": "深圳",
+                "postalCode": "518000",
+                "stateName": "广东",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R577",
+              "name": "天环广场 ",
+              "displayName": "APPLE天环广场 店",
+              "slug": "parccentral",
+              "telephone": "400-613-9742",
+              "detailUrl": "https://www.apple.com.cn/retail/parccentral",
+              "province": "广东",
+              "city": "广州",
+              "locationDisplay": "广东省广州市",
+              "searchLocation": "广东 广州",
+              "fullAddress": "广州市天河区天河路 218 号",
+              "postalCode": "510000",
+              "address": {
+                "address1": "广州市天河区天河路 218 号",
+                "address2": "",
+                "city": "广州",
+                "postalCode": "510000",
+                "stateName": "广东",
+                "stateCode": null
+              }
+            },
+            {
+              "id": "R793",
+              "name": "前海壹方城",
+              "displayName": "APPLE前海壹方城店",
+              "slug": "uniwalkqianhai",
+              "telephone": "400-002-7805",
+              "detailUrl": "https://www.apple.com.cn/retail/uniwalkqianhai",
+              "province": "广东",
+              "city": "深圳",
+              "locationDisplay": "广东省深圳市",
+              "searchLocation": "广东 深圳",
+              "fullAddress": "深圳市宝安区新湖路 99 号 前海壹方城 L1 层",
+              "postalCode": "518101",
+              "address": {
+                "address1": "深圳市宝安区新湖路 99 号",
+                "address2": "前海壹方城 L1 层",
+                "city": "深圳",
+                "postalCode": "518101",
+                "stateName": "广东",
+                "stateCode": null
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "provinces": [
+    { "value": "江苏", "label": "江苏" },
+    { "value": "四川", "label": "四川" },
+    { "value": "山东", "label": "山东" },
+    { "value": "浙江", "label": "浙江" },
+    { "value": "广西壮族自治区", "label": "广西壮族自治区" },
+    { "value": "湖南", "label": "湖南" },
+    { "value": "辽宁", "label": "辽宁" },
+    { "value": "湖北", "label": "湖北" },
+    { "value": "重庆", "label": "重庆" },
+    { "value": "云南", "label": "云南" },
+    { "value": "福建", "label": "福建" },
+    { "value": "北京", "label": "北京" },
+    { "value": "天津", "label": "天津" },
+    { "value": "安徽", "label": "安徽" },
+    { "value": "河南", "label": "河南" },
+    { "value": "上海", "label": "上海" },
+    { "value": "广东", "label": "广东" }
+  ]
+}
