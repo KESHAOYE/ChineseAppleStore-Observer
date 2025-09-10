@@ -42,7 +42,7 @@ pnpm i
 
 ```
 前端：
-pnpm run serve
+pnpm run dev
 ```
 
 #### 开始任务：
