@@ -12,7 +12,7 @@
             v-for="i in model.models"
             :key="i.name"
             :class="{ model_select: i.id == modelIndex }"
-            @click="readSku(i.id, i.name)"
+            @click="readSku(i.id, i.name, i.openDate)"
           >
             <span class="model_name">{{ i.name }}</span>
             <span class="model_screen">{{ i.screen }}</span>
@@ -91,6 +91,7 @@ export default {
       modelIndex: -1,
       selectInfo: {
         selectModel: "",
+        openDate: null,
         selectRom: null,
         selectColor: null,
         selectSku: null,
@@ -117,11 +118,12 @@ export default {
   methods: {
     ...mapActions(useAppStore, ["changeModel", "changeNowImage"]),
     // 保存机型，根据机型读取颜色
-    readSku(id, name) {
+    readSku(id, name, openDate) {
       this.changeModel(["skus", "", true]);
       this.modelIndex = id;
       this.selectInfo = {
         selectModel: name,
+        openDate,
         selectColor: null,
         selectSku: null,
         selectRom: null,
@@ -168,20 +170,17 @@ export default {
 .main_choose {
   margin-top: 25px;
 
-  /* —— 紧凑自适应参数 —— */
-  --panel-min: 300px; /* 右侧面板最小宽 */
-  --panel-ideal: 420px; /* 常用宽（13~16"） */
-  --panel-max: 560px; /* 大屏上限宽 */
-  --card-ar: 16 / 3; /* 卡片宽高比（越大越扁，高度更小） */
+  --panel-min: 300px;
+  --panel-ideal: 420px;
+  --panel-max: 560px;
+  --card-ar: 16 / 3;
 }
 
-/* 面板宽度随屏幕变化，自适应 */
 .choose_property {
   inline-size: clamp(var(--panel-min), 34vw, var(--panel-max));
   max-inline-size: 100%;
 }
 
-/* 机型/容量列表：单列 + 间距自适应 */
 .choose_models,
 .choose_models.Picker {
   display: grid;
@@ -189,17 +188,16 @@ export default {
   gap: clamp(10px, 1.1vw, 14px);
 }
 
-/* —— 卡片通用外观（机型 & 容量） —— */
 .choose_models > .models,
 .choose_models.Picker > .models.rows {
-  width: 100% !important; /* 覆盖历史固定宽 */
+  width: 100% !important;
   box-sizing: border-box;
   border: clamp(1px, 0.12vw, 2px) solid #c9c9c9 !important;
   border-radius: clamp(10px, 0.9vw, 16px);
   padding: clamp(10px, 1.2vw, 18px) clamp(14px, 1.6vw, 22px);
   background: #fff;
   display: grid;
-  grid-template-columns: 1fr auto; /* 左标题/容量，右副标题/价格 */
+  grid-template-columns: 1fr auto;
   align-items: center;
   gap: clamp(6px, 0.8vw, 12px);
   line-height: 1.2;
@@ -207,7 +205,6 @@ export default {
   transition: border-color 0.15s ease, box-shadow 0.15s ease,
     transform 0.06s ease;
 
-  /* 高度按比例自适应，且有最小高度兜底 */
   aspect-ratio: var(--card-ar);
   min-block-size: clamp(50px, 7vw, 110px);
 }
@@ -222,20 +219,18 @@ export default {
   transform: scale(0.997);
 }
 
-/* 选中态：蓝边 + 柔和外晕（两类卡片一致） */
 .choose_models > .models.model_select,
 .choose_models.Picker > .models.rows.model_select {
   border-color: #0071e3 !important;
   box-shadow: 0 0 0 clamp(3px, 0.35vw, 5px) rgba(0, 113, 227, 0.15);
 }
 
-/* —— 字体自适应（更克制） —— */
 .choose_models > .models .model_name,
 .choose_models.Picker > .models.rows .model_name {
   margin: 0;
   text-align: left;
   font-weight: 700;
-  font-size: clamp(15px, 1.2vw, 22px) !important; /* 机型名 / 容量名 */
+  font-size: clamp(15px, 1.2vw, 22px) !important;
   letter-spacing: 0.01em;
 }
 
@@ -245,19 +240,17 @@ export default {
   color: #4b4b4b;
   font-weight: 500;
   text-align: right;
-  font-size: clamp(11px, 1vw, 16px) !important; /* 屏幕尺寸 */
+  font-size: clamp(11px, 1vw, 16px) !important;
 }
 
-/* 容量卡的价格（两行） */
 .choose_models.Picker > .models.rows .price {
   margin: 0;
-  float: none; /* 清除历史 float 影响布局 */
+  float: none;
   text-align: right;
   line-height: 1.2;
   font-size: clamp(11px, 0.95vw, 14px) !important;
 }
 
-/* —— 颜色选择器（双圆环 Apple 风格） —— */
 .colorPicker {
   display: flex;
   flex-flow: row wrap;
@@ -274,8 +267,6 @@ export default {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-
-  /* 内白环 + 外灰环 */
   transition: box-shadow 0.15s ease, transform 0.06s ease;
 }
 
@@ -287,7 +278,6 @@ export default {
   transform: scale(0.97);
 }
 
-/* 选中：外环变蓝并带柔光 */
 .colorPicker .color_ring.color_select {
   box-shadow: 0 0 0 clamp(1.5px, 0.14vw, 2px) #0071e3,
     0 0 0 clamp(4px, 0.45vw, 6px) rgba(0, 113, 227, 0.12);
@@ -300,18 +290,17 @@ export default {
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
-/* —— 响应式边界 —— */
 @media (max-width: 480px) {
   .choose_property {
     inline-size: 100%;
-  } /* 窄屏拉满 */
+  }
 }
 
 @media (min-width: 1600px) {
   .main_choose {
-    --panel-ideal: 460px; /* 2K/4K 保持紧凑 */
+    --panel-ideal: 460px;
     --panel-max: 600px;
-    --card-ar: 20 / 3; /* 更扁 → 高度更小 */
+    --card-ar: 20 / 3;
   }
 }
 </style>

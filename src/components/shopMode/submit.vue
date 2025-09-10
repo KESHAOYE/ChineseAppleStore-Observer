@@ -28,6 +28,9 @@
         :disabled="!submitFlag"
         >添加任务</el-button
       >
+      <span v-if="isAfterNow(modelInfo.openDate)" class="open_tips"
+        >该商品尚未发售，发售时间为：{{ modelInfo.openDate }}</span
+      >
     </div>
     <addTaskMenu
       :modelInfo="modelInfo"
@@ -41,6 +44,7 @@
 </template>
 
 <script>
+import { isAfterNow } from "@/utils/observer";
 import addTaskMenu from "../dialog/addTaskMenu.vue";
 import { useAppStore } from "@/utils/pinia";
 
@@ -92,7 +96,12 @@ export default {
   },
   components: { addTaskMenu },
   methods: {
+    isAfterNow,
     openAddMenu() {
+      if (isAfterNow(this.modelInfo.openDate)) {
+        this.$message.error("该商品还没到开售时间");
+        return;
+      }
       if (this.submitFlag) {
         this.dialogAddTaskVisible = true;
       } else {
@@ -101,6 +110,7 @@ export default {
     },
     checkArguments() {
       this.submitFlag = true;
+      console.log(this.modelInfo);
       for (let i in this.modelInfo)
         if (this.modelInfo[i] == null) {
           this.submitFlag = false;
@@ -130,5 +140,13 @@ export default {
 }
 .buttons {
   margin-top: 16px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.open_tips {
+  font-size: 0.8em;
+  margin-left: 20px;
+  color: rgb(165, 54, 54);
 }
 </style>

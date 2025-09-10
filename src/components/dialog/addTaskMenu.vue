@@ -93,6 +93,7 @@ export default {
         .catch((err) => {
           console.error(err);
           this.$message.error(err);
+          return;
         });
 
       this.$EventBus.$emit("clearInfo");

@@ -27,6 +27,13 @@
         size="mini"
         placeholder="配置server酱的send_key"
       />
+      <el-link
+        href="https://sct.ftqq.com/sendkey"
+        target="_blank"
+        type="danger"
+      >
+        生成KEY
+      </el-link>
       <el-link href="https://sct.ftqq.com/" target="_blank" type="danger">
         查看教程
       </el-link>

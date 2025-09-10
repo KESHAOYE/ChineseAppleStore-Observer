@@ -8,7 +8,7 @@
     :visible.sync="data_visiable"
     :close-on-click-modal="false"
     :before-close="closeDialog"
-    width="95%"
+    width="90%"
     style="max-width: 1920px"
     append-to-body
     :modal="true"
@@ -96,7 +96,7 @@
           <el-popconfirm
             title="确认结束此任务吗？"
             @confirm="stopTasks(scope.row.task, scope.row.taskId)"
-            v-if="!['stop' || 'success' || 'error'].includes(scope.row.state)"
+            v-if="!['stop', 'success', 'error'].includes(scope.row.state)"
           >
             <el-button type="danger" slot="reference" size="mini"
               >结束任务</el-button
@@ -179,7 +179,7 @@ export default {
 
     formatTime(el) {
       return setInterval(() => {
-        if (["stop" || "success" || "error"].includes(el.status)) {
+        if (["stop", "success", "error"].includes(el.status)) {
           el.intervalTime = moment
             .utc(new Date(el.endTime) - new Date(el.beginTime))
             .format("HH:mm:ss");
@@ -199,6 +199,7 @@ export default {
         duration: 1500,
       });
       setTimeout(() => {
+        console.log(info.shopInfo.selectModel);
         window.open(
           `https://www.apple.com.cn/shop/buy-iphone/${
             modelDict[info.shopInfo.selectModel]

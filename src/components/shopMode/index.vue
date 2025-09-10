@@ -128,7 +128,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/* 让 sticky 可工作（el-tabs 默认 overflow 会破坏 sticky） */
 :deep(.el-tabs__content) {
   overflow: visible !important;
 }
@@ -136,7 +135,6 @@ export default {
   overflow: visible !important;
 }
 
-/* 两列自适应：左图 / 右侧面板（不再相互覆盖） */
 .content {
   display: grid;
   grid-template-columns: minmax(300px, 1fr) minmax(320px, 580px);
@@ -163,7 +161,6 @@ export default {
   max-width: 580px;
 }
 
-/* 窄屏改为上下布局 */
 @media (max-width: 1200px) {
   .content {
     grid-template-columns: 1fr;

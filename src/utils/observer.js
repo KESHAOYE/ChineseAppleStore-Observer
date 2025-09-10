@@ -10,12 +10,18 @@ import { nanoid } from "nanoid";
 
 import ObserverWorker from "./observer.worker.js?worker";
 import messageUrl from "@/assets/message.mp3";
+import moment from "moment";
 
 /**
  * 商城模式监听
  */
 let worker = null;
 
+export function isAfterNow(dateStr) {
+  const m = moment(dateStr, "YYYY-MM-DD HH:mm:ss", true);
+  if (!m.isValid()) return false;
+  return m.isAfter(moment());
+}
 export function beginObserve(
   selectInfo,
   storeInfo,
@@ -37,6 +43,12 @@ export function beginObserve(
       reject(
         `当前已达任务上限,请终止部分任务后继续(任务上限制为${MAX_TASK_LIST})`
       );
+      return;
+    }
+
+    // 判断是否开售
+    if (isAfterNow(selectInfo.openDate)) {
+      reject("该商品尚未开售,开售时间为:" + selectInfo.openDate);
       return;
     }
 
@@ -98,7 +110,7 @@ export function beginObserve(
           audioMessage();
           break;
         case "serverChan":
-          sendMessage(selectInfo, storeInfo, data.pickupSearchQuote);
+          sendMessage(selectInfo, storeInfo, data.pickupSearchQuote, data.href);
           break;
         case "dialogMessage":
           dialogMessage(data.title, data.message, data.href);
@@ -121,13 +133,13 @@ export function beginObserve(
 // 微信接口号
 function wechatJKMessage() {}
 
-function sendMessage(selectInfo, storeInfo, pickupSearchQuote) {
+function sendMessage(selectInfo, storeInfo, pickupSearchQuote, href) {
   const app = useAppStore();
-  const sendkey = this.app.setting.serverchan_sendkey ?? "";
+  const sendkey = app.setting.serverchan_sendkey ?? "";
   sendServerChan({
     sendkey,
     title: "您监控的商品有货啦!!",
-    content: `您监控的${selectInfo.selectModel} ${selectInfo.selectColor} ${selectInfo.selectRom}有货啦!当前状态为：${pickupSearchQuote},店铺为：${storeInfo.name}`,
+    content: `您监控的${selectInfo.selectModel} ${selectInfo.selectColor} ${selectInfo.selectRom}有货啦!当前状态为：${pickupSearchQuote},店铺为：${storeInfo.name}，购买链接为：${href}`,
   })
     .then((data) => {
       console.log(`${data}`);
@@ -175,7 +187,6 @@ function dialogMessage(title, message, href) {
   }
 
   if (Notification.permission === "granted") {
-    console.log("已授权，直接发");
     const n = new Notification(title, {
       lang: "zh-CN",
       body: message,

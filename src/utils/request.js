@@ -32,9 +32,7 @@ api.interceptors.response.use(
       if (s.startsWith("{") || s.startsWith("[")) {
         try {
           data = JSON.parse(s);
-        } catch {
-          /* ignore */
-        }
+        } catch {}
       }
     }
 

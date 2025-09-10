@@ -79,6 +79,9 @@ async function _runTask(
           selectInfo,
           storeInfo,
           pickupSearchQuote: p.pickupSearchQuote,
+          href: `https://www.apple.com.cn/shop/buy-iphone/${
+            modelDict[selectInfo.selectModel]
+          }/${selectInfo.selectSku}`,
         });
       }
 

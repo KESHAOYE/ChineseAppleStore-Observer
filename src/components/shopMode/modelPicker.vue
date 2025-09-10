@@ -10,10 +10,7 @@
         :key="i.name"
         @click="readModel(i.id)"
       >
-        <figure
-          class="type_icon"
-          :style="{ backgroundImage: `url(${i.icon})` }"
-        ></figure>
+        <img class="type_icon" :src="i.icon" />
         <span class="type_name">{{ i.name }}</span>
       </div>
     </div>
@@ -53,6 +50,7 @@ export default {
               id: id,
               name: type.name,
               icon: type.icon,
+              openDate: type.openDate,
             });
           }
         }
@@ -80,6 +78,7 @@ export default {
           "models",
           {
             id: mid,
+            openDate: SKU[this.categoryIndex].model[id].openDate,
             ...model,
           },
           false,
@@ -110,16 +109,17 @@ export default {
   margin-bottom: 15px;
   .types {
     width: 100px;
-    height: 100px;
+    height: 120px;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
     font-size: 0.8em;
     .type_icon {
-      width: 40px;
-      height: 50px;
+      width: 47px;
+      height: 80px;
       display: block;
+      margin-bottom: 5px;
       background-size: 40px 50px;
     }
     &:hover {
@@ -235,7 +235,6 @@ export default {
     cursor: pointer;
   }
 }
-/* —— 机型卡片·通用外观 —— */
 .choose_models .models {
   width: 100% !important;
   box-sizing: border-box;
@@ -244,7 +243,7 @@ export default {
   padding: clamp(18px, 1.8vw, 28px) clamp(22px, 2.6vw, 36px);
   background: #fff;
   display: grid;
-  grid-template-columns: 1fr auto; /* 左标题，右副标题 */
+  grid-template-columns: 1fr auto;
   align-items: center;
   gap: clamp(6px, 0.8vw, 12px);
   line-height: 1.2;

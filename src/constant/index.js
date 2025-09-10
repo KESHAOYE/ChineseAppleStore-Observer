@@ -1,9 +1,16 @@
 /*
  * @Author: KESHAOYE
- * @Date: 2022-11-24 01:04:39
+ * @Date: 2025-09-10
  */
 export const MAX_TASK_LIST = 20;
 export const modelDict = {
+  "iPhone17 Pro Max": "iphone-17-pro",
+  "iPhone17 Pro": "iphone-17-pro",
+  iPhone17: "iphone-17",
+  "iPhone Air": "iphone-air",
+  "iPhone 16e": "iphone-16e",
+  "iPhone16 Plus": "iphone-16",
+  iPhone16: "iphone-16",
   iPhone15: "iphone-15",
   "iPhone15 Plus": "iphone-15",
   "iPhone15 Pro": "iphone-15-pro",

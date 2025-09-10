@@ -1,131 +1,96 @@
-// 各机型SKU
-
 export const SKU = [
   {
     canUse: true,
     category: "iPhone",
     chinese: "手机",
-    sku1: { title: "外观", tips: "选择你喜欢的颜色" },
-    sku2: { title: "存储容量", tips: "你要多大的容量?" },
+    sku1: {
+      title: "外观",
+      tips: "选择你喜欢的颜色",
+    },
+    sku2: {
+      title: "存储容量",
+      tips: "你要多大的容量?",
+    },
     model: [
       {
-        name: "iPhone16 Pro",
+        name: "iPhone17 Pro",
         use: true,
-        icon: "https://www.apple.com.cn/v/iphone/home/cc/images/chapternav/iphone_16_pro_light__sh8e76empwyq_large.svg",
+        openDate: "2025-09-12 20:00:00",
+        icon: "https://www.apple.com.cn/iphone/home/images/overview/chapternav/nav_iphone_17pro__d60uog2c064i_large_2x.png",
         children: [
           {
-            name: "iPhone 16 Pro  ",
-            screen: "6.3 英寸显示屏",
+            name: "iPhone 17 Pro",
+            screen: "6.3英寸显示屏",
             image:
-              "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-16-pro-model-unselect-gallery-1-202409?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=aWs5czA5aDFXU0FlMGFGRlpYRXk2UWFRQXQ2R0JQTk5udUZxTkR3ZVlpTEJnOG9obkp6NERCS3lnVm1tcnlVUjBoUVhuTWlrY2hIK090ZGZZbk9HeEd5aFM4QSthSG1nSUl6WXJQME1SZ2xuaExFM0dqUXdPMnVsQThrb3JxakRGblJodVFEaGgxMERMNjl1RlVMTnp3&traceId=1",
+              "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-pro-finish-select-202509-6-3inch?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=NUNzdzNKR0FJbmhKWm5YamRHb05tUzkyK3hWak1ybHhtWDkwUXVINFc0SGxMd2pTV2lzd1JWWVByckE3ZkZ2T2d2S3NaRzcrU0dmYjNHTUFiMnlsWGEwekI5ZWpRa0o2WWdVYzdzTUdBdFZqRU1JWVg2V011cWFaK2VCbi9uYnE&traceId=1",
             skus: [
               {
-                color: "deserttitanium",
+                color: "silver",
                 value:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-pro-finish-deserttitanium-202409?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=cWRpMU41MFlsLzU4aVNuK2Z0OGJrZnJZSU5vODVESUZOa0Z2QkJDbkU5YzByVUFRL1ZYMFJvSTE4ZjlEQzIzcVNVYXRhRU13akpvK0lQT3RkMWdkSHdXTjFyWXN6MmFjVTVuYkt2UFozY1dobHk3Sk9ocmVzclR0NFQ2TEt2VUo",
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-pro-finish-silver-202509?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=NUNzdzNKR0FJbmhKWm5YamRHb05tZkhRZEJOK1JCN0VZN2YvSUFuZTJJUnhweG1tRFR3b1hGVkpTR1M2VGdUZ1BXczhpOGc4aE52a3A4NHJCbVZoRC9KNEo4TzZtQTJKc0ZQNkdiN2VMQ1RZYjhJWFYvelFMWGRIZ09ucFU2SXQ",
                 image:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-16-pro-model-unselect-gallery-1-202409?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=aWs5czA5aDFXU0FlMGFGRlpYRXk2UWFRQXQ2R0JQTk5udUZxTkR3ZVlpTEJnOG9obkp6NERCS3lnVm1tcnlVUjBoUVhuTWlrY2hIK090ZGZZbk9HeEd5aFM4QSthSG1nSUl6WXJQME1SZ2xuaExFM0dqUXdPMnVsQThrb3JxakRGblJodVFEaGgxMERMNjl1RlVMTnp3&traceId=1",
-                chineseColor: "沙漠色钛金属",
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-pro-finish-select-202509-6-3inch-silver?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=NUNzdzNKR0FJbmhKWm5YamRHb05tUzkyK3hWak1ybHhtWDkwUXVINFc0RzRIN3Q2Z245Z1F3L1paWlRjZnl6YTF1TmpsTkNoRVRMR1N6UXlVZFBaU0V0cFVnZ3ZFSFRBQ3V3NlRDYUtORXpYL3RhTGRQMDluK1FtbXBHZG9IYTlOQTd4VEJWalBZcmtQS0ZQclgxT0FR&traceId=1",
+                chineseColor: "银色",
                 ids: [
                   {
-                    "128G ": {
-                      value: "MYLQ3CH/A",
-                      price: "7999",
-                    },
-                    "256G ": {
-                      value: "MYLQ3CH/A",
+                    "256G": {
+                      value: "MG8T4CH/A",
                       price: "8999",
                     },
-                    "512G ": {
-                      value: "MYLQ3CH/A",
+                    "512G": {
+                      value: "MG8W4CH/A",
                       price: "10999",
                     },
                     "1TB ": {
-                      value: "MYLQ3CH/A",
+                      value: "MG904CH/A",
                       price: "12999",
                     },
                   },
                 ],
               },
               {
-                color: "naturaltitanium",
+                color: "cosmicorange",
                 value:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-pro-finish-naturaltitanium-202409?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=cWRpMU41MFlsLzU4aVNuK2Z0OGJrVXJZY1Q2dWQ2Y1ArZ2d4V0ZhUGNVaUxMMUJKKy9XQjFKb3VOQkpHZWJremU0OVhiRStjSHVhTFVibEFReFgzOWV2V25pdW5ua2tSYjN2OERwQ2ZOUVNucjdxT0pOTVEvQS81bDhIWVJoUE0",
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-pro-finish-cosmicorange-202509?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=NUNzdzNKR0FJbmhKWm5YamRHb05tY08zQkx1R090aUtZdHVuR2NMRWdhblpiYnpYR0pydXZYOER5WlBiWVJFUGU0OVhiRStjSHVhTFVibEFReFgzOVQ2K3c3eDN1QlVKV09nQzhyNmV5TTE3bDJUNWRlam9zYktmTmVEVUdtbm0",
                 image:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-16-pro-storage-select-202409-6-3inch-deserttitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=cHljZ3VQbTFnaDEvbFVKOExvRXVPbEIvTXY5NjBUQVhVcnFORUt4SFI2Q2F0Y2VFdXhIaEw0MXM3L0dFSElCYy93dTVzOEphdmJzWEZSV3JrcnJ5Um9MeXJHUnUva2huMjl4akFHOXNwVjJ0TXdmWG8wSkNlbUlGSE83REJnTFY4MG8vZUVidmNJWlhRR3RDRkE0ZkZB&traceId=1",
-                chineseColor: "原色钛金属",
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-pro-finish-select-202509-6-3inch-cosmicorange?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=NUNzdzNKR0FJbmhKWm5YamRHb05tUzkyK3hWak1ybHhtWDkwUXVINFc0RUlmWnJkM2NiV2hVVVF2ZE1VdGpQZWhsQTdPYWVGbmdIenAvNE9qYmZVYWVRU0p3cnVrZzhmdWQwTDVYRlMxUFpybkIybk5RZmlyRnNkQjBrajdkK0xKMzJGU1d1SjFwbDNRUWlzN2F4Rldn&traceId=1",
+                chineseColor: "星宇橙色",
                 ids: [
                   {
-                    "128G ": {
-                      value: "MYLQ3CH/A",
-                      price: "7999",
-                    },
-                    "256G ": {
-                      value: "MYLQ3CH/A",
+                    "256G": {
+                      value: "MG8U4CH/A",
                       price: "8999",
                     },
-                    "512G ": {
-                      value: "MYLQ3CH/A",
+                    "512G": {
+                      value: "MG8X4CH/A",
                       price: "10999",
                     },
                     "1TB ": {
-                      value: "MYM83CH/A",
+                      value: "MG914CH/A",
                       price: "12999",
                     },
                   },
                 ],
               },
               {
-                color: "whitetitanium",
+                color: "deepblue",
                 value:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-pro-finish-whitetitanium-202409?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=cWRpMU41MFlsLzU4aVNuK2Z0OGJrU2g1Umh0d2Y3NHE5Z1Q5ejBRVlZzZXp1Ym9LZWJDRGJWRDRiNXNnbUN5anJlQ2JoUVNvUEV1MXl1Zkp1b0hHd09HNHBxZVo0VWRpbU5iSnpFd1BNOUtlNTJWZjlSWnp4MWtKNHNNdjNJcHY",
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-pro-finish-deepblue-202509?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=NUNzdzNKR0FJbmhKWm5YamRHb05tWUUveVZtb1RlSStSVytMY1drNG1TZ1FwRm1CeVVzcGdYV2czTDhRMzB2L2xIdGZMeXlzRHpBNW9PZUxLVVpMTjl1ekV6UFFwN2NTekgwWkM5SWhpNnA4cVNzUmJkT2hENmJpMlJma1cvUXU",
                 image:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-16-pro-storage-select-202409-6-3inch-naturaltitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=cHljZ3VQbTFnaDEvbFVKOExvRXVPbEIvTXY5NjBUQVhVcnFORUt4SFI2RGQ0VmpXeGY4UmdHbExyNnJwa0VSaDk2dUJNU0dRdTRmS3NuSStUNEloMTZyeklvaXVkOCtBWFpMeWRrK0lya3kyTE1mSHgwMHh1SlVoUDJNTksyTUY2ZWpleUxpMzhnUHNCTmI3M3FoemFR&traceId=1",
-                chineseColor: "白色钛金属",
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-pro-finish-select-202509-6-3inch-deepblue?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=NUNzdzNKR0FJbmhKWm5YamRHb05tUzkyK3hWak1ybHhtWDkwUXVINFc0RUczK3M0RVhxWWpFZXJsZzlEU0tTSHVHdDcxbVFRSnhaQ0pnV1pOaG5KaGpDNlBJczZRQmxyM2ZhZjVKT0RIMFM4N0VUUEtpc1VIMDFtaGk5N1RSNlNtK0ZSZ2F6Q0FKTEhObkNCRk5KcXdR&traceId=1",
+                chineseColor: "深蓝色",
                 ids: [
                   {
-                    "128G ": {
-                      value: "MYM83CH/A",
-                      price: "7999",
-                    },
-                    "256G ": {
-                      value: "MYM83CH/A",
+                    "256G": {
+                      value: "MG8V4CH/A",
                       price: "8999",
                     },
-                    "512G ": {
-                      value: "MYM83CH/A",
+                    "512G": {
+                      value: "MG8Y4CH/A",
                       price: "10999",
                     },
                     "1TB ": {
-                      value: "MYM63CH/A",
-                      price: "12999",
-                    },
-                  },
-                ],
-              },
-              {
-                color: "blacktitanium",
-                value:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-pro-finish-blacktitanium-202409?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=cWRpMU41MFlsLzU4aVNuK2Z0OGJrVmJEdHF3bnA0dFd2Qi9JZUt0S1k2cXp1Ym9LZWJDRGJWRDRiNXNnbUN5anJlQ2JoUVNvUEV1MXl1Zkp1b0hHd09HNHBxZVo0VWRpbU5iSnpFd1BNOUtSZ2JJNW9zcU0wRmNtSFhqa1ZvUlo",
-                image:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-16-pro-storage-select-202409-6-3inch-whitetitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=cHljZ3VQbTFnaDEvbFVKOExvRXVPbEIvTXY5NjBUQVhVcnFORUt4SFI2Q284cnhWUGJ3M0RNRUt0cUhJa08yRys0TUpxVnlUVzdUUzFWcnFmdUNUYVNSTUMybCtXNXZpclhWeFpYZUcvRk5uNDBzcjA0aG5jQUJ1UTI2VzJJR1lJTUNRQWZTYjQ5aWZlR3l6aWkxVld3&traceId=1",
-                chineseColor: "黑色钛金属",
-                ids: [
-                  {
-                    "128G ": {
-                      value: "MYM63CH/A",
-                      price: "7999",
-                    },
-                    "256G ": {
-                      value: "MYM63CH/A",
-                      price: "8999",
-                    },
-                    "512G ": {
-                      value: "MYM63CH/A",
-                      price: "10999",
-                    },
-                    "1TB ": {
-                      value: "MYM53CH/A",
+                      value: "MG924CH/A",
                       price: "12999",
                     },
                   },
@@ -134,103 +99,319 @@ export const SKU = [
             ],
           },
           {
-            name: "iPhone 16 Pro Max  ",
+            name: "iPhone 17 Pro Max",
             screen: "6.9 英寸显示屏",
             image:
-              "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-16-pro-storage-select-202409-6-3inch-blacktitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=cHljZ3VQbTFnaDEvbFVKOExvRXVPbEIvTXY5NjBUQVhVcnFORUt4SFI2QTRlNSs3a3pIN09XK3JhWWk5NE1TT0Z2eDdTbnJSNU5sbzg4WHh5ZU4yV3lSTUMybCtXNXZpclhWeFpYZUcvRk5uNDBzcjA0aG5jQUJ1UTI2VzJJR1lYYkJMQ3BObnhsYU9CcUVYYXFQTkR3&traceId=1",
+              "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-pro-finish-select-202509-6-9inch?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=NUNzdzNKR0FJbmhKWm5YamRHb05tUzkyK3hWak1ybHhtWDkwUXVINFc0RU9WT2libVhHSFU1bzRZekIyYTl6VWd2S3NaRzcrU0dmYjNHTUFiMnlsWGEwekI5ZWpRa0o2WWdVYzdzTUdBdFduU21VeW54bENaakp2cHJoMExQV0o&traceId=1",
             skus: [
               {
-                color: "deserttitanium",
+                color: "silver",
                 value:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-pro-finish-deserttitanium-202409?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=cWRpMU41MFlsLzU4aVNuK2Z0OGJrZnJZSU5vODVESUZOa0Z2QkJDbkU5YzByVUFRL1ZYMFJvSTE4ZjlEQzIzcVNVYXRhRU13akpvK0lQT3RkMWdkSHdXTjFyWXN6MmFjVTVuYkt2UFozY1dobHk3Sk9ocmVzclR0NFQ2TEt2VUo",
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-pro-finish-silver-202509?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=NUNzdzNKR0FJbmhKWm5YamRHb05tZkhRZEJOK1JCN0VZN2YvSUFuZTJJUnhweG1tRFR3b1hGVkpTR1M2VGdUZ1BXczhpOGc4aE52a3A4NHJCbVZoRC9KNEo4TzZtQTJKc0ZQNkdiN2VMQ1RZYjhJWFYvelFMWGRIZ09ucFU2SXQ",
                 image:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-9inch-blacktitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=eUdsd0dIb3VUOXdtWkY0VFUwVE8vbEdkZHNlSjBQRklnaFB2d3I5MW94NlcvVjg4Q2h4WWRjcFAyYlBrM0N1bGlCQmV2WTA2cncybDF2YzFnKzI0S3J4M3lYcDIyK01lckZBaW5GTC9DMEQxcjBVRyswWG14bEI4WVZBcUIybEZWcmdPbVRRSGhOZTk2ZXV2Q0xQV2lB&traceId=1",
-                chineseColor: "沙漠色钛金属",
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-pro-finish-select-202509-6-9inch-silver?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=NUNzdzNKR0FJbmhKWm5YamRHb05tUzkyK3hWak1ybHhtWDkwUXVINFc0RVRqUkJqUGFyN1pGMnlaV3JkWU9jdjF1TmpsTkNoRVRMR1N6UXlVZFBaU0V0cFVnZ3ZFSFRBQ3V3NlRDYUtORXd1UU9Xa21qbEU3b2kyUmNvNUlUWm9SZmM1ZFBTTGlrSitraGo3dWMycDh3&traceId=1",
+                chineseColor: "银色",
                 ids: [
                   {
-                    "256G ": {
-                      value: "MYW13CH/A",
+                    "256G": {
+                      value: "MG034CH/A",
                       price: "9999",
                     },
-                    "512G ": {
-                      value: "MYW13CH/A",
+                    "512G": {
+                      value: "MG064CH/A",
                       price: "11999",
                     },
                     "1TB ": {
-                      value: "MYW13CH/A",
+                      value: "MG094CH/A",
                       price: "13999",
+                    },
+                    "2TB ": {
+                      value: "MG0F4CH/A",
+                      price: "17999",
                     },
                   },
                 ],
               },
               {
-                color: "naturaltitanium",
+                color: "cosmicorange",
                 value:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-pro-finish-naturaltitanium-202409?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=cWRpMU41MFlsLzU4aVNuK2Z0OGJrVXJZY1Q2dWQ2Y1ArZ2d4V0ZhUGNVaUxMMUJKKy9XQjFKb3VOQkpHZWJremU0OVhiRStjSHVhTFVibEFReFgzOWV2V25pdW5ua2tSYjN2OERwQ2ZOUVNucjdxT0pOTVEvQS81bDhIWVJoUE0",
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-pro-finish-cosmicorange-202509?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=NUNzdzNKR0FJbmhKWm5YamRHb05tY08zQkx1R090aUtZdHVuR2NMRWdhblpiYnpYR0pydXZYOER5WlBiWVJFUGU0OVhiRStjSHVhTFVibEFReFgzOVQ2K3c3eDN1QlVKV09nQzhyNmV5TTE3bDJUNWRlam9zYktmTmVEVUdtbm0",
                 image:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-16-pro-storage-select-202409-6-9inch-deserttitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=cHljZ3VQbTFnaDEvbFVKOExvRXVPbEIvTXY5NjBUQVhVcnFORUt4SFI2RHpVbGorSnlad2JxMmYyeHpKTjlBZC93dTVzOEphdmJzWEZSV3JrcnJ5Um9MeXJHUnUva2huMjl4akFHOXNwVjJ0TXdmWG8wSkNlbUlGSE83REJnTFZjdjFtb1NKSmZrSiszVm1GZE5TUWVn&traceId=1",
-                chineseColor: "原色钛金属",
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-pro-finish-select-202509-6-9inch-cosmicorange?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=NUNzdzNKR0FJbmhKWm5YamRHb05tUzkyK3hWak1ybHhtWDkwUXVINFc0RnVrUzFnTVVSUnNLVnZUWUMxNTBGaGhsQTdPYWVGbmdIenAvNE9qYmZVYWVRU0p3cnVrZzhmdWQwTDVYRlMxUFpybkIybk5RZmlyRnNkQjBrajdkK0x3OTBRTml3ekFaalZVdHhxNE5XT3dn&traceId=1",
+                chineseColor: "星宇橙色",
                 ids: [
                   {
-                    "256G ": {
-                      value: "MYTP3CH/A",
+                    "256G": {
+                      value: "MG044CH/A",
                       price: "9999",
                     },
-                    "512G ": {
-                      value: "MYTW3CH/A",
+                    "512G": {
+                      value: "MG074CH/A",
                       price: "11999",
                     },
                     "1TB ": {
-                      value: "MYW13CH/A",
+                      value: "MG0A4CH/A",
                       price: "13999",
+                    },
+                    "2TB ": {
+                      value: "MG0G4CH/A",
+                      price: "17999",
                     },
                   },
                 ],
               },
               {
-                color: "whitetitanium",
+                color: "deepblue",
                 value:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-pro-finish-whitetitanium-202409?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=cWRpMU41MFlsLzU4aVNuK2Z0OGJrU2g1Umh0d2Y3NHE5Z1Q5ejBRVlZzZXp1Ym9LZWJDRGJWRDRiNXNnbUN5anJlQ2JoUVNvUEV1MXl1Zkp1b0hHd09HNHBxZVo0VWRpbU5iSnpFd1BNOUtlNTJWZjlSWnp4MWtKNHNNdjNJcHY",
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-pro-finish-deepblue-202509?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=NUNzdzNKR0FJbmhKWm5YamRHb05tWUUveVZtb1RlSStSVytMY1drNG1TZ1FwRm1CeVVzcGdYV2czTDhRMzB2L2xIdGZMeXlzRHpBNW9PZUxLVVpMTjl1ekV6UFFwN2NTekgwWkM5SWhpNnA4cVNzUmJkT2hENmJpMlJma1cvUXU",
                 image:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-16-pro-storage-select-202409-6-9inch-deserttitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=cHljZ3VQbTFnaDEvbFVKOExvRXVPbEIvTXY5NjBUQVhVcnFORUt4SFI2RHpVbGorSnlad2JxMmYyeHpKTjlBZC93dTVzOEphdmJzWEZSV3JrcnJ5Um9MeXJHUnUva2huMjl4akFHOXNwVjJ0TXdmWG8wSkNlbUlGSE83REJnTFZjdjFtb1NKSmZrSiszVm1GZE5TUWVn&traceId=1",
-                chineseColor: "白色钛金属",
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-pro-finish-select-202509-6-9inch-deepblue?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=NUNzdzNKR0FJbmhKWm5YamRHb05tUzkyK3hWak1ybHhtWDkwUXVINFc0RWhhOHJGRUNHdlh6a3VuZVVqdnNrNXVHdDcxbVFRSnhaQ0pnV1pOaG5KaGpDNlBJczZRQmxyM2ZhZjVKT0RIMFM4N0VUUEtpc1VIMDFtaGk5N1RSNlNGVFdQWEx4YXpQcXlwSEs2NDBIdnJR&traceId=1",
+                chineseColor: "深蓝色",
                 ids: [
                   {
-                    "256G ": {
-                      value: "MYTP3CH/A",
+                    "256G": {
+                      value: "MG054CH/A",
                       price: "9999",
                     },
-                    "512G ": {
-                      value: "MYTW3CH/A",
+                    "512G": {
+                      value: "MG084CH/A",
                       price: "11999",
                     },
                     "1TB ": {
-                      value: "MYW13CH/A",
+                      value: "MG0E4CH/A",
                       price: "13999",
+                    },
+                    "2TB ": {
+                      value: "MG0Q4CH/A",
+                      price: "17999",
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: "iPhone Air",
+        use: true,
+        openDate: "2025-09-12 20:00:00",
+        icon: "https://www.apple.com.cn/v/iphone/home/ce/images/overview/chapternav/nav_iphone_air__bbj6j2c39efm_large_2x.png",
+        children: [
+          {
+            name: "iPhone Air",
+            screen: "6.5 英寸显示屏",
+            image:
+              "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-air-finish-unselect-gallery-1-202509?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=NUpaQVl1bitSNmJWZUdKdi9QZHhsR3J2UHBBV3orM3VMYVQ4cFJXZmQxV3pMQytuUEM4Wm5vMWRha0N0RzdPQ3F2TWlpSzUzejRCZGt2SjJUNGl1VExZc3g4ZkhUVEc0bFNFL1l3MHJZd1grVU03citJRFJkVzQ4MmdydUJmM24&traceId=1",
+            skus: [
+              {
+                color: "skyblue",
+                value:
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-air-finish-skyblue-202509?wid=204&amp;hei=204&amp;fmt=png-alpha&amp;.v=NUpaQVl1bitSNmJWZUdKdi9QZHhsT21tVFlybXN2T002UDJLL1haMER1OGRGZkRIOXlYamJZeXJpMktxS05vTlM0TjRWdzF2UjRGVEY0c3dBQVZ6VGRRV3lGN2F5SDZkZmtGdWJiSTFaSlk",
+                image:
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-air-storage-select-202509-skyblue?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=ak1sZkd3dVNNaXV6UjRtdDkxRENRY084U2hIc1dzK3R2VnN1VkU4WXRzWHZHMVc3cVlBSk9kcHFrbStPa1pyT3ZIZkplbmJiNHg2c1VDS2NVdjhMUVBXdlJRYjdSZWJHVUh4aFVDb0hhVVZjSjY4OUU1K0hLN2Jnc1YvaFo4aGI&traceId=1",
+                chineseColor: "天蓝色",
+                ids: [
+                  {
+                    "256G": {
+                      value: "MG364CH/A",
+                      price: "7999",
+                    },
+                    "512G": {
+                      value: "MG3C4CH/A",
+                      price: "9999",
+                    },
+                    "1TB ": {
+                      value: "MG3G4CH/A",
+                      price: "11999",
                     },
                   },
                 ],
               },
               {
-                color: "blacktitanium",
+                color: "lightgold",
                 value:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-pro-finish-blacktitanium-202409?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=cWRpMU41MFlsLzU4aVNuK2Z0OGJrVmJEdHF3bnA0dFd2Qi9JZUt0S1k2cXp1Ym9LZWJDRGJWRDRiNXNnbUN5anJlQ2JoUVNvUEV1MXl1Zkp1b0hHd09HNHBxZVo0VWRpbU5iSnpFd1BNOUtSZ2JJNW9zcU0wRmNtSFhqa1ZvUlo",
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-air-finish-lightgold-202509?wid=204&amp;hei=204&amp;fmt=png-alpha&amp;.v=NUpaQVl1bitSNmJWZUdKdi9QZHhsQnMzS056eFRBdnowQktWcTVsUjdhSnhweG1tRFR3b1hGVkpTR1M2VGdUZ2Z0anp1U0ROV1BnazZxQU5wMEhtNkdCdzY5VDF6d0dGOEtlUjl4RlNvV0IyUXQrc1F4VFIwcWJZNzNTUVpwSTY",
                 image:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-16-pro-storage-select-202409-6-9inch-deserttitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=cHljZ3VQbTFnaDEvbFVKOExvRXVPbEIvTXY5NjBUQVhVcnFORUt4SFI2RHpVbGorSnlad2JxMmYyeHpKTjlBZC93dTVzOEphdmJzWEZSV3JrcnJ5Um9MeXJHUnUva2huMjl4akFHOXNwVjJ0TXdmWG8wSkNlbUlGSE83REJnTFZjdjFtb1NKSmZrSiszVm1GZE5TUWVn&traceId=1",
-                chineseColor: "黑色钛金属",
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-air-storage-select-202509-lightgold?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=ak1sZkd3dVNNaXV6UjRtdDkxRENRY084U2hIc1dzK3R2VnN1VkU4WXRzVjN2RDJDQUlScUZaUFZtWEtjTjBRVWd2S3NaRzcrU0dmYjNHTUFiMnlsWGEwekI5ZWpRa0o2WWdVYzdzTUdBdFhoNlFhMENBQy9VeHdyRTRKbWpyVDE&traceId=1",
+                chineseColor: "浅金色",
                 ids: [
                   {
-                    "256G ": {
-                      value: "MYTP3CH/A",
+                    "256G": {
+                      value: "MG344CH/A",
+                      price: "7999",
+                    },
+                    "512G": {
+                      value: "MG3A4CH/A",
                       price: "9999",
                     },
-                    "512G ": {
-                      value: "MYTW3CH/A",
+                    "1TB ": {
+                      value: "MG3F4CH/A",
                       price: "11999",
                     },
+                  },
+                ],
+              },
+              {
+                color: "cloudwhite",
+                value:
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-air-finish-cloudwhite-202509?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=NUpaQVl1bitSNmJWZUdKdi9QZHhsREEyKzJRdCszeTd4eXM1d0t0Q3prcEJQZDlpWUhEVWJxVTRVWHlsZWZhd3dtWVNGcjIrOU4wQzh2eEFhR1loWVFJRU9MQ0dZZ21hT2c4eVV2Uk9mcDQ1R2RFUjhJcnE4cmZCODFCNDJCYVE",
+                image:
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-air-storage-select-202509-cloudwhite?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=ak1sZkd3dVNNaXV6UjRtdDkxRENRY084U2hIc1dzK3R2VnN1VkU4WXRzVkVyYzJjVGJQTDZoSHllZ2NHNTZlQnF2TWlpSzUzejRCZGt2SjJUNGl1VExZc3g4ZkhUVEc0bFNFL1l3MHJZd1czZ3VwSHNNTHltMENVdXZYR0NmaWI&traceId=1",
+                chineseColor: "云白色",
+                ids: [
+                  {
+                    "256G": {
+                      value: "MG334CH/A",
+                      price: "7999",
+                    },
+                    "512G": {
+                      value: "MG394CH/A",
+                      price: "9999",
+                    },
                     "1TB ": {
-                      value: "MYW13CH/A",
-                      price: "13999",
+                      value: "MG3E4CH/A",
+                      price: "11999",
+                    },
+                  },
+                ],
+              },
+              {
+                color: "spaceblack",
+                value:
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-air-finish-spaceblack-202509?wid=204&amp;hei=204&amp;fmt=png-alpha&amp;.v=NUpaQVl1bitSNmJWZUdKdi9QZHhsRlVVdWt0Q3pMem5ZUVZyY2wyWnpIRkJQZDlpWUhEVWJxVTRVWHlsZWZhdzNuQS9VUFA0QWJZTDZLMFpEdWV5QnBKWXBlVmpuV0Y1YlFRcmhteExqMmhIMmJvcHdjcHk5OEpVeFUwaXBCR0s",
+                image:
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-air-finish-select-202509-spaceblack?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=NUpaQVl1bitSNmJWZUdKdi9QZHhsQnMyOXpiUEVyWXc0UFVFMUg1R1Ztcit0SFUxZzlOYjFnK2g1TG9hVnNYcmd2S3NaRzcrU0dmYjNHTUFiMnlsWGEwekI5ZWpRa0o2WWdVYzdzTUdBdFd0TU5pWmUzUm1GcVRiT21KcEpJQXA&traceId=1",
+                chineseColor: "深空黑色",
+                ids: [
+                  {
+                    "256G": {
+                      value: "MG314CH/A",
+                      price: "7999",
+                    },
+                    "512G": {
+                      value: "MG374CH/A",
+                      price: "9999",
+                    },
+                    "1TB ": {
+                      value: "MG3D4CH/A",
+                      price: "11999",
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: "iPhone17",
+        use: true,
+        openDate: "2025-09-12 20:00:00",
+        icon: "https://www.apple.com.cn/iphone/home/images/overview/chapternav/nav_iphone_17__ffxyxejeezqm_large_2x.png",
+        children: [
+          {
+            name: "iPhone 17",
+            screen: "6.3 英寸显示屏",
+            image:
+              "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-finish-unselect-gallery-1-202509?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=WGdCRlQ0YVlqbTdXTEkxRnVQb0oxdFgrSXpWVEhWaW9YTGlWRHFoSHU0L0w1RHFtNzA4ck9mVldadHU2Wno0OGd2S3NaRzcrU0dmYjNHTUFiMnlsWGEwekI5ZWpRa0o2WWdVYzdzTUdBdFhYZ3BHQkxpT3d0bnJzVU9mTEhGeEk&traceId=1",
+            skus: [
+              {
+                color: "lavender",
+                value:
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-finish-lavender-202509?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=WGdCRlQ0YVlqbTdXTEkxRnVQb0oxdmprcGpjY2l5RUIzeVFrbmJvUWtqc2RGZkRIOXlYamJZeXJpMktxS05vTmJGcXNRQnFCV0w3WVRjTExvdm1ic1UxMXlrbnZjcG5pSE5vKzQ1Qmlmc201dDgvV3BhU1hoSzFPUEZjam5HQ2g",
+                image:
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-storage-select-202509-lavender?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=cVgyTFRHeEI2NnFsOEV6aTB4OG83NFVVTEF4WTZKMHBlZ3U4MnlNZ3c1bnc4bDh0UGRxS01IRnFtemFqWkZvUHZIZkplbmJiNHg2c1VDS2NVdjhMUVBXdlJRYjdSZWJHVUh4aFVDb0hhVVUwcndxaTJRSkVGemsvSkZKeTlydGg&traceId=1",
+                chineseColor: "薰衣草紫色",
+                ids: [
+                  {
+                    "256G": {
+                      value: "MG704CH/A",
+                      price: "5999",
+                    },
+                    "512G": {
+                      value: "MG754CH/A",
+                      price: "7999",
+                    },
+                  },
+                ],
+              },
+              {
+                color: "sage",
+                value:
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-finish-sage-202509?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=WGdCRlQ0YVlqbTdXTEkxRnVQb0oxdUNNQ0FSYTZPU3dUUlNOUGtqOGRBMG1FRWhOUGUvNGZuTmxlNGRBWlpkb014MXJScFRZN3Y5OWZsRXVrN1k4cFl2UlpqT3NIQkxHZGtBc1I0MEN5VlE",
+                image:
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-storage-select-202509-sage?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=cVgyTFRHeEI2NnFsOEV6aTB4OG83NFVVTEF4WTZKMHBlZ3U4MnlNZ3c1bVQxUngzQk9NT0tyOE5HTXNLN0YyOVJRdmMybzREcHdJbWdzYU9ydHdKUG5adVU2RGduQkExT2x4d0V1U0pYbGxZSUZkNktuMFhiMXVOckU1Zmt0RXM&traceId=1",
+                chineseColor: "鼠尾草绿色",
+                ids: [
+                  {
+                    "256G": {
+                      value: "MG714CH/A",
+                      price: "5999",
+                    },
+                    "512G": {
+                      value: "MG764CH/A",
+                      price: "7999",
+                    },
+                  },
+                ],
+              },
+              {
+                color: "mistblue",
+                value:
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-finish-mistblue-202509?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=WGdCRlQ0YVlqbTdXTEkxRnVQb0oxdWl5TlJNblQ1TXNxaXhCeUQxS25wUWRGZkRIOXlYamJZeXJpMktxS05vTmJGcXNRQnFCV0w3WVRjTExvdm1ic1hYeHFhQi83RENsMWl1S0xaWXpQbkQrNmVjbmk5c1V4VVk2VEt3TGcxekg",
+                image:
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-storage-select-202509-mistblue?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=cVgyTFRHeEI2NnFsOEV6aTB4OG83NFVVTEF4WTZKMHBlZ3U4MnlNZ3c1a2hVTjJxZVhnK25qc0FnY3V1UmtkNHZIZkplbmJiNHg2c1VDS2NVdjhMUVBXdlJRYjdSZWJHVUh4aFVDb0hhVVU4NkxXZytGNFdMVkFObGRTcWFuejM&traceId=1",
+                chineseColor: "青雾蓝色",
+                ids: [
+                  {
+                    "256G": {
+                      value: "MG6Y4CH/A",
+                      price: "5999",
+                    },
+                    "512G": {
+                      value: "MG744CH/A",
+                      price: "7999",
+                    },
+                  },
+                ],
+              },
+              {
+                color: "white",
+                value:
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/finish-white-202409?wid=200&amp;hei=200&amp;fmt=jpeg&amp;qlt=90&amp;.v=N1ZuMjN0M0dGZXhnVFNBLzNYR0lpZ2Y3Z2lZOGY1OFRWUWZSdmJmVkRqV0RPS3JEVHZvYnQrZDFkdk56RHlVejNxbTdaQ1pEcEVyUXl2Rjk4ZkNDQkM5RFpwQkY4ejlFVzFKNllWL01aMk0",
+                image:
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-storage-select-202509-white?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=cVgyTFRHeEI2NnFsOEV6aTB4OG83NFVVTEF4WTZKMHBlZ3U4MnlNZ3c1azhVUkp0MjdUS1RYNitOS3F5TDJoSWJjN0s4RUxWejMyUmRkWUlJak9pdGRnNWszNVBqR1NIZ0p1RmhMazRMbldBcEo4MXNwZ1lPM2l3aTFMTjNHOXA&traceId=1",
+                chineseColor: "白色",
+                ids: [
+                  {
+                    "256G": {
+                      value: "MG6X4CH/A",
+                      price: "5999",
+                    },
+                    "512G": {
+                      value: "MG734CH/A",
+                      price: "7999",
+                    },
+                  },
+                ],
+              },
+              {
+                color: "black",
+                value:
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/finish-black-202409?wid=200&amp;hei=200&amp;fmt=jpeg&amp;qlt=90&amp;.v=RlpRL3lIcFB1TmI2NEJlaW1pM1BsQWY3Z2lZOGY1OFRWUWZSdmJmVkRqV0RPS3JEVHZvYnQrZDFkdk56RHlVejNxbTdaQ1pEcEVyUXl2Rjk4ZkNDQkQvYVIzWHBIL1JhMitsd2FWTkdFZVU",
+                image:
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-finish-select-202509-black?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=WGdCRlQ0YVlqbTdXTEkxRnVQb0oxa3pYQjBteGp2cFFHL09TNGhVUUhxekN0YldaZVh3SU5xTFFOYThjNUlEUFJRdmMybzREcHdJbWdzYU9ydHdKUG5adVU2RGduQkExT2x4d0V1U0pYbG1CRXpiWkduRzlRNEpnNlhrT1ZhMDk&traceId=1",
+                chineseColor: "黑色",
+                ids: [
+                  {
+                    "256G": {
+                      value: "MG6W4CH/A",
+                      price: "5999",
+                    },
+                    "512G": {
+                      value: "MG724CH/A",
+                      price: "7999",
                     },
                   },
                 ],
@@ -241,11 +422,12 @@ export const SKU = [
       },
       {
         name: "iPhone16",
+        openDate: "2024-09-12 20:00:00",
         use: true,
-        icon: "https://www.apple.com.cn/v/iphone/home/cc/images/chapternav/iphone_16_light__1g0j6j3ygciy_large.svg",
+        icon: "https://www.apple.com.cn/iphone/home/images/overview/chapternav/nav_iphone_16__kcscr25z9num_large_2x.png",
         children: [
           {
-            name: "iPhone 16 ",
+            name: "iPhone 16",
             screen: "6.1 英寸显示屏",
             image:
               "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-16-model-unselect-gallery-1-202409?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=ZnlzVUZzRWd3dlg0RllqbHhQSUpKTGdzSmpObkZCM3MrNmJ5SkhESlNDaWhXRnNvWU5kTFRnSWM5eDdhTWw0bEpFd0xhWDVibStLdGRYRmxkNGI4VTJmalN5dlRpR2R3QUc1RGJwYllnWmluKzBxZWRoS3R3TmxiT1plT0NWR2w&traceId=1",
@@ -259,17 +441,9 @@ export const SKU = [
                 chineseColor: "群青色",
                 ids: [
                   {
-                    "128G ": {
+                    "128G": {
                       value: "MYEY3CH/A",
-                      price: "5999",
-                    },
-                    "256G ": {
-                      value: "MYEY3CH/A",
-                      price: "6999",
-                    },
-                    "512G ": {
-                      value: "MYEY3CH/A",
-                      price: "8999",
+                      price: "5399",
                     },
                   },
                 ],
@@ -283,17 +457,9 @@ export const SKU = [
                 chineseColor: "深青色",
                 ids: [
                   {
-                    "128G ": {
-                      value: "MYEY3CH/A",
-                      price: "5999",
-                    },
-                    "256G ": {
-                      value: "MYEY3CH/A",
-                      price: "6999",
-                    },
-                    "512G ": {
-                      value: "MYFA3CH/A",
-                      price: "8999",
+                    "128G": {
+                      value: "MYF03CH/A",
+                      price: "5399",
                     },
                   },
                 ],
@@ -307,17 +473,9 @@ export const SKU = [
                 chineseColor: "粉色",
                 ids: [
                   {
-                    "128G ": {
-                      value: "MYFA3CH/A",
-                      price: "5999",
-                    },
-                    "256G ": {
-                      value: "MYFA3CH/A",
-                      price: "6999",
-                    },
-                    "512G ": {
-                      value: "MYF83CH/A",
-                      price: "8999",
+                    "128G": {
+                      value: "MYEX3CH/A",
+                      price: "5399",
                     },
                   },
                 ],
@@ -331,17 +489,9 @@ export const SKU = [
                 chineseColor: "白色",
                 ids: [
                   {
-                    "128G ": {
-                      value: "MYF83CH/A",
-                      price: "5999",
-                    },
-                    "256G ": {
-                      value: "MYF83CH/A",
-                      price: "6999",
-                    },
-                    "512G ": {
-                      value: "MYF73CH/A",
-                      price: "8999",
+                    "128G": {
+                      value: "MYEW3CH/A",
+                      price: "5399",
                     },
                   },
                 ],
@@ -355,17 +505,9 @@ export const SKU = [
                 chineseColor: "黑色",
                 ids: [
                   {
-                    "128G ": {
-                      value: "MYF73CH/A",
-                      price: "5999",
-                    },
-                    "256G ": {
-                      value: "MYF73CH/A",
-                      price: "6999",
-                    },
-                    "512G ": {
-                      value: "MYF63CH/A",
-                      price: "8999",
+                    "128G": {
+                      value: "MYEV3CH/A",
+                      price: "5399",
                     },
                   },
                 ],
@@ -373,8 +515,9 @@ export const SKU = [
             ],
           },
           {
-            name: "iPhone 16 Plus  ",
+            name: "iPhone 16 Plus",
             screen: "6.7 英寸显示屏",
+
             image:
               "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-16-storage-select-202409-6-1inch-black?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=aWd0ekY5dEZnMitMQWN4T2hqbFZUcjUvc0ZSRDFvdEd2REZobkVQbEFnWGZKQXB5Q29VS1NZbGZTQWVvQWtRSjBoUVhuTWlrY2hIK090ZGZZbk9HeEd5aFM4QSthSG1nSUl6WXJQME1SZ2tQZC9pQ1pNL0V3aWJBQXQveHNUSjhRRXB6YUhNcms5Z1pYZXdkbUhocnBn&traceId=1",
             skus: [
@@ -387,17 +530,13 @@ export const SKU = [
                 chineseColor: "群青色",
                 ids: [
                   {
-                    "128G ": {
-                      value: "MYF63CH/A",
+                    "128G": {
+                      value: "MXUD3CH/A",
+                      price: "5999",
+                    },
+                    "256G": {
+                      value: "MXUJ3CH/A",
                       price: "6999",
-                    },
-                    "256G ": {
-                      value: "MYF63CH/A",
-                      price: "7999",
-                    },
-                    "512G ": {
-                      value: "MXUQ3CH/A",
-                      price: "9999",
                     },
                   },
                 ],
@@ -411,17 +550,13 @@ export const SKU = [
                 chineseColor: "深青色",
                 ids: [
                   {
-                    "128G ": {
-                      value: "MXUD3CH/A",
+                    "128G": {
+                      value: "MXUE3CH/A",
+                      price: "5999",
+                    },
+                    "256G": {
+                      value: "MXUK3CH/A",
                       price: "6999",
-                    },
-                    "256G ": {
-                      value: "MXUJ3CH/A",
-                      price: "7999",
-                    },
-                    "512G ": {
-                      value: "MXUQ3CH/A",
-                      price: "9999",
                     },
                   },
                 ],
@@ -435,17 +570,13 @@ export const SKU = [
                 chineseColor: "粉色",
                 ids: [
                   {
-                    "128G ": {
-                      value: "MXUD3CH/A",
+                    "128G": {
+                      value: "MXUC3CH/A",
+                      price: "5999",
+                    },
+                    "256G": {
+                      value: "MXUH3CH/A",
                       price: "6999",
-                    },
-                    "256G ": {
-                      value: "MXUJ3CH/A",
-                      price: "7999",
-                    },
-                    "512G ": {
-                      value: "MXUQ3CH/A",
-                      price: "9999",
                     },
                   },
                 ],
@@ -459,17 +590,13 @@ export const SKU = [
                 chineseColor: "白色",
                 ids: [
                   {
-                    "128G ": {
-                      value: "MXUD3CH/A",
+                    "128G": {
+                      value: "MXUA3CH/A",
+                      price: "5999",
+                    },
+                    "256G": {
+                      value: "MXUG3CH/A",
                       price: "6999",
-                    },
-                    "256G ": {
-                      value: "MXUJ3CH/A",
-                      price: "7999",
-                    },
-                    "512G ": {
-                      value: "MXUQ3CH/A",
-                      price: "9999",
                     },
                   },
                 ],
@@ -483,17 +610,13 @@ export const SKU = [
                 chineseColor: "黑色",
                 ids: [
                   {
-                    "128G ": {
-                      value: "MXUD3CH/A",
+                    "128G": {
+                      value: "MXU93CH/A",
+                      price: "5999",
+                    },
+                    "256G": {
+                      value: "MXUF3CH/A",
                       price: "6999",
-                    },
-                    "256G ": {
-                      value: "MXUJ3CH/A",
-                      price: "7999",
-                    },
-                    "512G ": {
-                      value: "MXUQ3CH/A",
-                      price: "9999",
                     },
                   },
                 ],
@@ -504,12 +627,13 @@ export const SKU = [
       },
       {
         name: "iPhone16e",
-        use: false,
-        icon: "https://www.apple.com.cn/v/iphone/home/cc/images/chapternav/iphone_16e_light__dcdfirk5ikk2_large.svg",
+        use: true,
+        openDate: "2025-01-01 20:00:00",
+        icon: "https://www.apple.com.cn/iphone/home/images/overview/chapternav/nav_iphone_16e__3qxl86zrk0yq_large_2x.png",
         children: [
           {
             name: "iPhone 16e",
-            screen: "（屏幕尺寸待补充）",
+            screen: "6.1 英寸显示屏",
             image:
               "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-16e-finish-unselect-gallery-1-202502?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=bGxrMXRYSllVRTZGbi82ZklwWis2MnJ2UHBBV3orM3VMYVQ4cFJXZmQxVy9IbW1seHEzWFVmQzNncWxCTDlmWXF2TWlpSzUzejRCZGt2SjJUNGl1VExZc3g4ZkhUVEc0bFNFL1l3MHJZd1d3RC9qbFd6Mm9jek5hK0wzcGMrK0E&traceId=1",
             skus: [
@@ -518,20 +642,20 @@ export const SKU = [
                 value:
                   "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/finish-white-202502?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=N1ZuMjN0M0dGZXhnVFNBLzNYR0lpaVA1a1JhazVTeFBrOGp0bkNTS1plYkNaaElXdmI3MDNRTHkvRUJvWmlGaDE4MHJBemxibmc0cUZ2L2svSU9XMEEwZHA0WU15TlI1L1hvNkE4VDBaSGM",
                 image:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-16e-finish-unselect-gallery-1-202502?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=bGxrMXRYSllVRTZGbi82ZklwWis2MnJ2UHBBV3orM3VMYVQ4cFJXZmQxVy9IbW1seHEzWFVmQzNncWxCTDlmWXF2TWlpSzUzejRCZGt2SjJUNGl1VExZc3g4ZkhUVEc0bFNFL1l3MHJZd1d3RC9qbFd6Mm9jek5hK0wzcGMrK0E&traceId=1",
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-16e-storage-select-202502-white?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=eFBweGhLQWJCMzdyL2JTbG01RkJOSElKUkFlSEo1QVc1bW5RWkJPZnpCdGVjcGp3cGhIRW44Y2pmcUZ3N29HSlM1L0VuR3dWZGNjaVhFSWhJU255OGVkcjEvUjFYNzI5NkN3ejRBWVRGRGdJR1FGZG1COVVNTHltN0ExcitnQmE&traceId=1",
                 chineseColor: "白色",
                 ids: [
                   {
-                    "128G ": {
+                    "128G": {
                       value: "MD2C4CH/A",
                       price: "4499",
                     },
-                    "256G ": {
-                      value: "MD2C4CH/A",
+                    "256G": {
+                      value: "MD2E4CH/A",
                       price: "5499",
                     },
-                    "512G ": {
-                      value: "MD2C4CH/A",
+                    "512G": {
+                      value: "MD2G4CH/A",
                       price: "7499",
                     },
                   },
@@ -542,152 +666,21 @@ export const SKU = [
                 value:
                   "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/finish-black-202502?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=RlpRL3lIcFB1TmI2NEJlaW1pM1BsQ1A1a1JhazVTeFBrOGp0bkNTS1plYkNaaElXdmI3MDNRTHkvRUJvWmlGaDE4MHJBemxibmc0cUZ2L2svSU9XMEltbXhOQlFERm1GUUI4QnAzMS9KWFE",
                 image:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-16e-storage-select-202502-white?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=eFBweGhLQWJCMzdyL2JTbG01RkJOSElKUkFlSEo1QVc1bW5RWkJPZnpCdGVjcGp3cGhIRW44Y2pmcUZ3N29HSlM1L0VuR3dWZGNjaVhFSWhJU255OGVkcjEvUjFYNzI5NkN3ejRBWVRGRGdJR1FGZG1COVVNTHltN0ExcitnQmE&traceId=1",
+                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-16e-storage-select-202502-black?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=eFBweGhLQWJCMzdyL2JTbG01RkJOSElKUkFlSEo1QVc1bW5RWkJPZnpCc21YSXhjOVphMzRqVzlITE5Wd1FaQVM1L0VuR3dWZGNjaVhFSWhJU255OGVkcjEvUjFYNzI5NkN3ejRBWVRGRGlkdW9ncC9EY1Qrd0RyYmx4dlVDZVE&traceId=1",
                 chineseColor: "黑色",
                 ids: [
                   {
-                    "128G ": {
-                      value: "",
+                    "128G": {
+                      value: "MD2A4CH/A",
                       price: "4499",
                     },
-                    "256G ": {
-                      value: "",
+                    "256G": {
+                      value: "MD2D4CH/A",
                       price: "5499",
                     },
-                    "512G ": {
-                      value: "",
+                    "512G": {
+                      value: "MD2F4CH/A",
                       price: "7499",
-                    },
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-      {
-        name: "iPhone15",
-        use: false,
-        icon: "https://www.apple.com.cn/v/iphone/home/cc/images/chapternav/iphone_15_light__fj1tpga410a6_large.svg",
-        children: [
-          {
-            name: "iPhone 15",
-            screen: "6.1 英寸显示屏",
-            image:
-              "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-15-model-unselect-gallery-1-202309?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=aVFiZEF4WDEvUWJNSU5HRDg4cklnTGdzSmpObkZCM3MrNmJ5SkhESlNDZ1UwRE05YU1MZ0lYWk55ZU5FOENXWkpFd0xhWDVibStLdGRYRmxkNGI4VTJmalN5dlRpR2R3QUc1RGJwYllnWmlTMUhmWWd0MEp4QWF6QmhMYTF1TEo&traceId=1",
-            skus: [
-              {
-                color: "blue",
-                value:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/finish-blue-202309?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=dEpCWEFodkluQzl4U2xrY0ZrWXRVWEduR2FZTlBDaGNWVWxJWkxwT0JPQTlhenlMeUR5RTIrU256aXNHWldFUG13RnRXcUVvMHZpak1mRkRFeTU1MUgwV1RveEcwaHJKMk1IaUk0UUhLYWM",
-                image:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-15-model-unselect-gallery-1-202309?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=aVFiZEF4WDEvUWJNSU5HRDg4cklnTGdzSmpObkZCM3MrNmJ5SkhESlNDZ1UwRE05YU1MZ0lYWk55ZU5FOENXWkpFd0xhWDVibStLdGRYRmxkNGI4VTJmalN5dlRpR2R3QUc1RGJwYllnWmlTMUhmWWd0MEp4QWF6QmhMYTF1TEo&traceId=1",
-                chineseColor: "蓝色",
-                ids: [
-                  {
-                    "128G ": {
-                      value: "MTLG3CH/A",
-                      price: "5399",
-                    },
-                    "256G ": {
-                      value: "MTLG3CH/A",
-                      price: "6399",
-                    },
-                    "512G ": {
-                      value: "MTLT3CH/A",
-                      price: "8399",
-                    },
-                  },
-                ],
-              },
-              {
-                color: "pink",
-                value:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/finish-pink-202309?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=N1M0Vm5Ldm5ZNjdBa2t1MC9pYTBsSEduR2FZTlBDaGNWVWxJWkxwT0JPQTlhenlMeUR5RTIrU256aXNHWldFUEs4bG5LR004OHVzUDU0dXphSnluRDI3Y0dVcWZZaHVTeUFpazI2MVgzZGM",
-                image: "",
-                chineseColor: "粉色",
-                ids: [
-                  {
-                    "128G ": {
-                      value: "",
-                      price: "5399",
-                    },
-                    "256G ": {
-                      value: "",
-                      price: "6399",
-                    },
-                    "512G ": {
-                      value: "",
-                      price: "8399",
-                    },
-                  },
-                ],
-              },
-              {
-                color: "yellow",
-                value:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/finish-yellow-202309?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=d3lhYWNoaWlEdk92a1F4MSt4OHJpQXdLSFcyUXFGN29DQUd2cm00V2NXK1VlMTh2TEt3UE1EbWc1NHNwUmtzM3RwMnI4aiszY2N6R3ZWRXhYbkx0N0tKZlliMFpKUWdTL3l5cGd6N0lOQVE",
-                image: "",
-                chineseColor: "黄色",
-                ids: [
-                  {
-                    "128G ": {
-                      value: "",
-                      price: "5399",
-                    },
-                    "256G ": {
-                      value: "",
-                      price: "6399",
-                    },
-                    "512G ": {
-                      value: "",
-                      price: "8399",
-                    },
-                  },
-                ],
-              },
-              {
-                color: "green",
-                value:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/finish-green-202309?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=Q201SFhlYkFsMStpeWFPbG9JbXNIR2NVU211WlVuRVRnOGVIR1d2YlJUZkNaaElXdmI3MDNRTHkvRUJvWmlGaFh5bFFwVVkzeUU4N3A3c1IrUEpWN1BHbWJGZDV6RG9SdEh6eG5RcE9oVVE",
-                image: "",
-                chineseColor: "绿色",
-                ids: [
-                  {
-                    "128G ": {
-                      value: "",
-                      price: "5399",
-                    },
-                    "256G ": {
-                      value: "",
-                      price: "6399",
-                    },
-                    "512G ": {
-                      value: "",
-                      price: "8399",
-                    },
-                  },
-                ],
-              },
-              {
-                color: "black",
-                value:
-                  "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/finish-black-202309?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=RlpRL3lIcFB1TmI2NEJlaW1pM1BsR2NVU211WlVuRVRnOGVIR1d2YlJUZkNaaElXdmI3MDNRTHkvRUJvWmlGaFh5bFFwVVkzeUU4N3A3c1IrUEpWN0NRYzdFQlE5WjcxVDd3d3NFcm9EQ0k",
-                image: "",
-                chineseColor: "黑色",
-                ids: [
-                  {
-                    "128G ": {
-                      value: "",
-                      price: "5399",
-                    },
-                    "256G ": {
-                      value: "",
-                      price: "6399",
-                    },
-                    "512G ": {
-                      value: "",
-                      price: "8399",
                     },
                   },
                 ],
@@ -698,5 +691,4 @@ export const SKU = [
       },
     ],
   },
-  // ...
 ];
