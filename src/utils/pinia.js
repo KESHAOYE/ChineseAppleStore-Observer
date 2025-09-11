@@ -14,10 +14,15 @@ export const useAppStore = defineStore("app", {
       dialogMessage: false,
       serverchanMessage: false,
       serverchan_sendkey: "",
+      wechatTestMessage: true,
+      wechat_appId: null,
+      wechat_appSecret: null,
+      wechat_templateId: null,
+      wechat_userId: null,
       startNow: false, //是否马上开始执行
       defaultStore: null,
     },
-    version: "1.3.1-250910",
+    version: "1.4.0-250911",
   }),
 
   getters: {
@@ -128,6 +133,11 @@ export const useAppStore = defineStore("app", {
       "setting.serverchanMessage",
       "setting.serverchan_sendkey",
       "setting.startNow",
+      "setting.wechatTestMessage",
+      "setting.wechat_appId",
+      "setting.wechat_appSecret",
+      "setting.wechat_templateId",
+      "setting.wechat_userId",
       "setting.defaultStore",
       "interval",
     ],

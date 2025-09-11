@@ -13,7 +13,10 @@
       </div>
       <el-switch v-model="dialogMessage" />
     </div>
-    <div class="setting_item setting_item_withoutbottom">
+    <div
+      class="setting_item"
+      :class="serverchanMessage ? 'setting_item_withoutbottom' : ''"
+    >
       <div class="tips">
         <div class="content">server酱通知</div>
         <div class="descript">默认是否开启server酱通知(需配置)</div>
@@ -108,7 +111,7 @@ export default {
     border: 0 !important;
   }
   .setting_item {
-    width: 480px;
+    width: 600px;
     min-height: 50px;
     margin-top: 10px;
     border-bottom: 1px solid #f8f8f8;
@@ -117,7 +120,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     .tips {
-      width: 220px;
+      width: 230px;
       font-size: 14px;
       font-weight: lighter;
       margin-top: 0px;

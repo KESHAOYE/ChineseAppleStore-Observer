@@ -110,7 +110,6 @@ export default {
     },
     checkArguments() {
       this.submitFlag = true;
-      console.log(this.modelInfo);
       for (let i in this.modelInfo)
         if (this.modelInfo[i] == null) {
           this.submitFlag = false;

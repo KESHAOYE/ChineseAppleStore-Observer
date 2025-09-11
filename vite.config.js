@@ -24,6 +24,13 @@ export default defineConfig({
         secure: false,
         rewrite: (p) => p.replace(/^\/js\/apis/, ""),
       },
+
+      "/wx": {
+        target: "https://api.weixin.qq.com",
+        changeOrigin: true,
+        secure: true,
+        rewrite: (p) => p.replace(/^\/wx/, ""),
+      },
     },
   },
   css: {

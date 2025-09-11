@@ -35,6 +35,9 @@
         </el-header>
         <el-main style="padding-top: 0">
           <message v-if="settingMenu[nowSetting - 1].components == 'message'" />
+          <wxTestMessage
+            v-if="settingMenu[nowSetting - 1].components == 'wxTestMessage'"
+          />
           <common v-if="settingMenu[nowSetting - 1].components == 'common'" />
           <about v-if="settingMenu[nowSetting - 1].components == 'about'" />
           <position
@@ -50,6 +53,7 @@
 import message from "./message.vue";
 import common from "./common.vue";
 import about from "./about.vue";
+import wxTestMessage from "./wxTestMessage.vue";
 import position from "./position.vue";
 export default {
   data() {
@@ -66,13 +70,20 @@ export default {
         },
         {
           index: 2,
+          icon: "el-icon-chat-round",
+          name: "微信测试号（Beta）",
+          descript: "微信测试号通知配置",
+          components: "wxTestMessage",
+        },
+        {
+          index: 3,
           icon: "el-icon-s-opportunity",
           name: "通用",
           descript: "间隔时长、模式",
           components: "common",
         },
         {
-          index: 3,
+          index: 4,
           icon: "el-icon-position",
           name: "定位",
           descript: "当前所在城市、店铺",
@@ -80,7 +91,7 @@ export default {
         },
         {
           //el-icon-collection
-          index: 4,
+          index: 5,
           icon: "el-icon-s-platform",
           name: "关于",
           descript: "版本信息",
@@ -92,6 +103,7 @@ export default {
   },
   components: {
     message,
+    wxTestMessage,
     common,
     about,
     position,
