@@ -75,8 +75,6 @@ export function beginObserve(
 
     worker = new ObserverWorker();
 
-    console.log("app", app.setting);
-
     worker.postMessage({
       type: "beginObserve",
       name,

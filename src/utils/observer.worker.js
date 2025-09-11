@@ -134,7 +134,6 @@ function run(
   storeInfo,
   now
 ) {
-  console.log(useWeChatMessage);
   const arr = {};
   arr[name] = setInterval(() => {
     _runTask(
