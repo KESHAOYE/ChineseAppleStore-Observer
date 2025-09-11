@@ -41,7 +41,6 @@ export default {
 
     // 根据品类ID读取机型系列
     readType() {
-      console.log(this.categoryIndex, SKU);
       if (this.categoryIndex != -1) {
         for (let id in SKU[this.categoryIndex].model) {
           let type = SKU[this.categoryIndex].model[id];

@@ -199,7 +199,6 @@ export default {
         duration: 1500,
       });
       setTimeout(() => {
-        console.log(info.shopInfo.selectModel);
         window.open(
           `https://www.apple.com.cn/shop/buy-iphone/${
             modelDict[info.shopInfo.selectModel]

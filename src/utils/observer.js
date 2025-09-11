@@ -11,6 +11,7 @@ import { nanoid } from "nanoid";
 import ObserverWorker from "./observer.worker.js?worker";
 import messageUrl from "@/assets/message.mp3";
 import moment from "moment";
+import { sendWeChatNotify } from "./wechatTestMessage";
 
 /**
  * 商城模式监听
@@ -74,18 +75,21 @@ export function beginObserve(
 
     worker = new ObserverWorker();
 
+    console.log("app", app.setting);
+
     worker.postMessage({
       type: "beginObserve",
       name,
       useServerChan,
       useDialogMessage: app.setting.dialogMessage,
+      useWechatMessage: app.setting.wechatTestMessage,
       interval,
       selectInfo,
       storeInfo,
       now,
     });
 
-    worker.onmessage = (event) => {
+    worker.onmessage = async (event) => {
       const data = event.data;
       switch (data.type) {
         case "vuexTaskValue":
@@ -105,6 +109,15 @@ export function beginObserve(
             "发生错误，自动结束",
             true
           );
+          break;
+        case "wechatMessage":
+          await sendWeChatNotify(
+            selectInfo,
+            storeInfo,
+            data.pickupSearchQuote,
+            data.href
+          );
+          Vue.prototype.$message.success("微信通知发送成功");
           break;
         case "audioMessage":
           audioMessage();

@@ -5,6 +5,7 @@ async function _runTask(
   name,
   useServerChan,
   useDialogMessage,
+  useWeChatMessage,
   interval,
   selectInfo,
   storeInfo,
@@ -73,26 +74,38 @@ async function _runTask(
       });
       self.postMessage({ type: "audioMessage" });
 
+      const href = `https://www.apple.com.cn/shop/buy-iphone/${
+        modelDict[selectInfo.selectModel]
+      }/${selectInfo.selectSku}`;
+
+      // serverChan
       if (useServerChan) {
         self.postMessage({
           type: "serverChan",
           selectInfo,
           storeInfo,
           pickupSearchQuote: p.pickupSearchQuote,
-          href: `https://www.apple.com.cn/shop/buy-iphone/${
-            modelDict[selectInfo.selectModel]
-          }/${selectInfo.selectSku}`,
+          href,
         });
       }
 
+      // 弹窗
       if (useDialogMessage) {
-        const href = `https://www.apple.com.cn/shop/buy-iphone/${
-          modelDict[selectInfo.selectModel]
-        }/${selectInfo.selectSku}`;
         self.postMessage({
           type: "dialogMessage",
           title: "有货了!",
           message: `您监控的${selectInfo.selectModel} ${selectInfo.selectColor} ${selectInfo.selectRom}有货啦! 当前状态：${p.pickupSearchQuote}，店铺：${storeInfo.name}，点击立即前往官网购买`,
+          href,
+        });
+      }
+
+      // 微信
+      if (useWeChatMessage) {
+        self.postMessage({
+          type: "wechatMessage",
+          selectInfo,
+          storeInfo,
+          pickupSearchQuote: p.pickupSearchQuote,
           href,
         });
       }
@@ -106,6 +119,7 @@ async function _runTask(
       });
     }
   } catch (err) {
+    console.error(err);
     self.postMessage({ type: "error", name, message: String(err) });
   }
 }
@@ -114,17 +128,20 @@ function run(
   name,
   useServerChan,
   useDialogMessage,
+  useWeChatMessage,
   interval,
   selectInfo,
   storeInfo,
   now
 ) {
+  console.log(useWeChatMessage);
   const arr = {};
   arr[name] = setInterval(() => {
     _runTask(
       name,
       useServerChan,
       useDialogMessage,
+      useWeChatMessage,
       interval,
       selectInfo,
       storeInfo,
@@ -139,6 +156,7 @@ function run(
       name,
       useServerChan,
       useDialogMessage,
+      useWeChatMessage,
       interval,
       selectInfo,
       storeInfo,
@@ -160,6 +178,7 @@ self.addEventListener("message", (e) => {
       data.name,
       data.useServerChan,
       data.useDialogMessage,
+      data.useWechatMessage,
       data.interval,
       data.selectInfo,
       data.storeInfo,
