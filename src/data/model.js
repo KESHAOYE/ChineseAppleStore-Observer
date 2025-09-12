@@ -195,7 +195,7 @@ export const SKU = [
       {
         name: "iPhone Air",
         use: true,
-        openDate: "2025-09-12 20:00:00",
+        openDate: "2026-01-01 00:00:00",
         icon: "https://www.apple.com.cn/v/iphone/home/ce/images/overview/chapternav/nav_iphone_air__bbj6j2c39efm_large_2x.png",
         children: [
           {
