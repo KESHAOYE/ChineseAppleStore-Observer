@@ -14,7 +14,7 @@ export const useAppStore = defineStore("app", {
       dialogMessage: false,
       serverchanMessage: false,
       serverchan_sendkey: "",
-      wechatTestMessage: true,
+      wechatTestMessage: false,
       wechat_appId: null,
       wechat_appSecret: null,
       wechat_templateId: null,
