@@ -135,25 +135,40 @@ export default {
   overflow: visible !important;
 }
 
+.container {
+  width: clamp(1015px, 96vw, 3820px);
+  margin: 0 auto;
+  padding: 0 clamp(12px, 2vw, 24px);
+  box-sizing: border-box;
+  --sticky-top: clamp(64px, 8vh, 110px);
+}
+
+.head {
+  margin: clamp(8px, 1.5vh, 16px) 0 clamp(10px, 1.8vh, 20px);
+}
+
 .content {
+  --grid-gap: clamp(16px, 2vw, 32px);
   display: grid;
-  grid-template-columns: minmax(300px, 1fr) minmax(320px, 580px);
-  gap: clamp(16px, 2vw, 32px);
+  gap: var(--grid-gap);
+  grid-template-columns: minmax(420px, calc(100% - 360px - var(--grid-gap))) minmax(
+      360px,
+      580px
+    );
   align-items: start;
 }
+
 .left_content,
 .right_content {
   min-width: 0;
 }
-
 .left_content {
   position: -webkit-sticky;
   position: sticky;
-  top: clamp(64px, 8vh, 110px);
+  top: var(--sticky-top, clamp(64px, 8vh, 110px));
   z-index: 0;
   overflow: visible;
 }
-
 .right_content {
   position: relative;
   z-index: 1;
@@ -161,16 +176,29 @@ export default {
   max-width: 580px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1280px) and (min-width: 1015px) {
   .content {
-    grid-template-columns: 1fr;
-  }
-  .left_content {
-    position: static;
-    margin-bottom: 12px;
+    grid-template-columns: minmax(380px, calc(100% - 340px - var(--grid-gap))) minmax(
+        320px,
+        340px
+      );
   }
   .right_content {
-    max-width: 100%;
+    max-width: 340px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .content {
+    grid-template-columns:
+      minmax(420px, calc((100% - 580px - var(--grid-gap)) * 0.8))
+      minmax(360px, 580px);
+  }
+}
+
+@media (min-width: 2200px) {
+  .right_content {
+    max-width: 620px;
   }
 }
 </style>
