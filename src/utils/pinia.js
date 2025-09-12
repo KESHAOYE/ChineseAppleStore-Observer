@@ -22,7 +22,7 @@ export const useAppStore = defineStore("app", {
       startNow: false, //是否马上开始执行
       defaultStore: null,
     },
-    version: "1.4.0-250911",
+    version: "1.4.1-250912",
   }),
 
   getters: {

@@ -26,14 +26,21 @@ export default {
 }
 
 .show_phone img {
-  width: clamp(260px, 60vw, 1280px);
+  width: clamp(320px, 48vw, 1400px);
   max-width: 100%;
-  height: auto;
+  height: 500px;
   max-height: min(72vh, 1080px);
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 18px;
   image-rendering: auto;
   -webkit-user-drag: none;
   user-select: none;
+}
+
+@media (max-width: 1280px) {
+  .show_phone img {
+    width: clamp(260px, 82vw, 1200px);
+    max-height: min(60vh, 900px);
+  }
 }
 </style>
