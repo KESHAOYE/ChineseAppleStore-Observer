@@ -6,6 +6,7 @@ async function _runTask(
   useServerChan,
   useDialogMessage,
   useWeChatMessage,
+  errorStop,
   interval,
   selectInfo,
   storeInfo,
@@ -39,7 +40,7 @@ async function _runTask(
       self.postMessage({
         type: "vuexAddTaskLog",
         name,
-        result: { status: "unknown", info: "store not found in response" },
+        result: { status: "unknown", info: "获取门店信息失败" },
       });
       return;
     }
@@ -52,7 +53,7 @@ async function _runTask(
         name,
         result: {
           status: "unknown",
-          info: "sku not found in partsAvailability",
+          info: "获取sku信息失败",
         },
       });
       return;
@@ -120,7 +121,23 @@ async function _runTask(
     }
   } catch (err) {
     console.error(err);
-    self.postMessage({ type: "error", name, message: String(err) });
+    if (errorStop) {
+      self.postMessage({
+        type: "error",
+        intervalTask: arr[name],
+        name,
+        message:
+          err.name === "AxiosError"
+            ? "与苹果官网通信故障，任务暂停！"
+            : String(err),
+      });
+      return;
+    }
+    self.postMessage({
+      type: "vuexAddTaskLog",
+      name,
+      result: { status: "unknown", info: "与苹果官网通信故障，继续任务！" },
+    });
   }
 }
 
@@ -129,6 +146,7 @@ function run(
   useServerChan,
   useDialogMessage,
   useWeChatMessage,
+  errorStop,
   interval,
   selectInfo,
   storeInfo,
@@ -141,6 +159,7 @@ function run(
       useServerChan,
       useDialogMessage,
       useWeChatMessage,
+      errorStop,
       interval,
       selectInfo,
       storeInfo,
@@ -156,6 +175,7 @@ function run(
       useServerChan,
       useDialogMessage,
       useWeChatMessage,
+      errorStop,
       interval,
       selectInfo,
       storeInfo,
@@ -178,6 +198,7 @@ self.addEventListener("message", (e) => {
       data.useServerChan,
       data.useDialogMessage,
       data.useWechatMessage,
+      data.errorStop,
       data.interval,
       data.selectInfo,
       data.storeInfo,
