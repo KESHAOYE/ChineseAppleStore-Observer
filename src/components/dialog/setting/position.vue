@@ -90,8 +90,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.setting_item {
-  width: 600px;
-}
-</style>
+<style scoped></style>
