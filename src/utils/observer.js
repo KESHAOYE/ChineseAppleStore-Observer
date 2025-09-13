@@ -81,6 +81,7 @@ export function beginObserve(
       useServerChan,
       useDialogMessage: app.setting.dialogMessage,
       useWechatMessage: app.setting.wechatTestMessage,
+      errorStop: app.setting.errorStop,
       interval,
       selectInfo,
       storeInfo,
@@ -104,7 +105,7 @@ export function beginObserve(
             data.intervalTask,
             data.name,
             "error",
-            "发生错误，自动结束",
+            data.message ?? "发生错误，自动结束",
             true
           );
           break;

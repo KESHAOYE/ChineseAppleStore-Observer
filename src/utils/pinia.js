@@ -20,9 +20,10 @@ export const useAppStore = defineStore("app", {
       wechat_templateId: null,
       wechat_userId: null,
       startNow: false, //是否马上开始执行
+      errorStop: false, //任务执行错误是否停止
       defaultStore: null,
     },
-    version: "1.4.1-250912",
+    version: "1.4.2-250913",
   }),
 
   getters: {
@@ -32,8 +33,7 @@ export const useAppStore = defineStore("app", {
         if (
           t.shopInfo?.selectSku === sku &&
           t.storeInfo?.id === storeId &&
-          t.state !== "stop" &&
-          t.state !== "success"
+          !["stop", "error", "success"].includes(t.state)
         ) {
           ok = false;
         }
@@ -138,6 +138,7 @@ export const useAppStore = defineStore("app", {
       "setting.wechat_appSecret",
       "setting.wechat_templateId",
       "setting.wechat_userId",
+      "setting.errorStop",
       "setting.defaultStore",
       "interval",
     ],

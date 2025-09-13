@@ -79,7 +79,7 @@ export default {
           index: 3,
           icon: "el-icon-s-opportunity",
           name: "通用",
-          descript: "间隔时长、模式",
+          descript: "间隔时长、模式、错误处理等",
           components: "common",
         },
         {

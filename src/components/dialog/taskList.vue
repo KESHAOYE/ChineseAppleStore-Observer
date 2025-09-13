@@ -49,10 +49,16 @@
       </el-table-column>
 
       <el-table-column label="状态" width="100">
-        <template slot-scope="scope">{{ scope.row.state | status }}</template>
+        <template slot-scope="scope">
+          <span
+            class="status_dot"
+            :style="{ '--StatusDot-color': colorList[scope.row.state] }"
+            >{{ scope.row.state | status }}</span
+          ></template
+        >
       </el-table-column>
 
-      <el-table-column label="型号" width="230">
+      <el-table-column label="型号" width="250">
         <template slot-scope="scope">
           {{ scope.row.shopInfo.selectModel }}
           {{ scope.row.shopInfo.selectColor }}
@@ -114,17 +120,19 @@ import { useAppStore } from "@/utils/pinia";
 
 import moment from "moment";
 import { stopTask } from "@/utils/observer";
-import { modelDict, status } from "@/constant/index";
+import { modelDict, status, colorList } from "@/constant/index";
 
 export default {
   data() {
     return {
+      colorList,
       data_visiable: false,
       iconDict: {
         available: "el-icon-success success",
         unavailable: "el-icon-error error",
         stop: "el-icon-remove stop",
         ineligible: "el-icon-error error",
+        unknown: "el-icon-warning stop",
       },
     };
   },
@@ -261,6 +269,20 @@ export default {
         font-weight: bold;
       }
     }
+  }
+}
+
+.status_dot {
+  display: flex;
+  align-items: center;
+  &::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    display: block;
+    margin-right: 10px;
+    border-radius: 50%;
+    background: var(--StatusDot-color);
   }
 }
 

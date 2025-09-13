@@ -26,6 +26,17 @@
         inactive-text="否"
       ></el-switch>
     </div>
+    <div class="setting_item">
+      <div class="tips">
+        <div class="content">请求错误立即暂停任务</div>
+        <div class="descript">与官网通信故障后马上暂停任务</div>
+      </div>
+      <el-switch
+        v-model="errorStop"
+        active-text="是"
+        inactive-text="否"
+      ></el-switch>
+    </div>
     <!-- <div class="setting_item">
       <div class="tips">模式</div>
       <el-select v-model="mode" size="mini" placeholder="请选择模式">
@@ -67,6 +78,14 @@ export default {
       set(val) {
         this.app.changeStartNow(val);
         // localStorage.setItem("startNow", val);
+      },
+    },
+    errorStop: {
+      get() {
+        return this.app.setting.errorStop;
+      },
+      set(val) {
+        this.app.setMessage("errorStop", val);
       },
     },
   },
