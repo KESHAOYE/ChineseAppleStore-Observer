@@ -52,10 +52,10 @@
         <el-input
           v-model="wechat_templateId"
           placeholder="模版需要按照要求配置，点击右侧复制"
-          style="width: 250px"
+          style="width: 250px; margin-left: 80px"
           size="mini"
         ></el-input>
-        <el-link @click="tech">复制模板</el-link>
+        <el-link @click="copy">复制模板</el-link>
       </div>
       <div class="setting_item setting_item_withoutbottom wx_settings_item">
         <div class="tips">
@@ -98,6 +98,7 @@
 import { mapStores } from "pinia";
 import { useAppStore } from "@/utils/pinia";
 import { testWeChatConfig } from "@/utils/wechatTestMessage";
+import { copyTemplate } from "../../../utils/wechatTestMessage";
 export default {
   name: "wxTestMessage",
   data() {
@@ -120,6 +121,14 @@ export default {
     },
     tech() {
       this.$message.warning("当前版本未配置");
+    },
+    async copy() {
+      try {
+        await copyTemplate();
+        this.$message.success("已复制到剪贴板");
+      } catch (e) {
+        this.$message.error(e.message || "复制失败");
+      }
     },
     openService() {
       const pinia = useAppStore();

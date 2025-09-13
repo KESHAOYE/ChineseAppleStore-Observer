@@ -111,3 +111,52 @@ export async function testWeChatConfigWithToast(opts = {}) {
     throw e;
   }
 }
+
+export const WECHAT_TEMPLATE = [
+  "{{brands.DATA}}",
+  "—————————————————————",
+  "您监控的商品库存更新了！{{remark.DATA}}",
+  "详细信息如下：",
+  "📱 商品：{{keyword1.DATA}}",
+  "🏬 店铺：{{keyword3.DATA}}",
+  "🗃️ 当前状态：{{keyword2.DATA}}",
+  "🔗 链接：{{keyword4.DATA}}",
+].join("\n");
+
+/**
+ * 复制模板文本
+ * @param {string=} text 不传则使用默认模板
+ * @returns {Promise<boolean>} 复制是否成功
+ */
+export async function copyTemplate(text) {
+  const content = (text ?? WECHAT_TEMPLATE).trim();
+
+  if (window.isSecureContext && navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(content);
+      return true;
+    } catch (e) {}
+  }
+
+  const ta = document.createElement("textarea");
+  ta.value = content;
+  ta.setAttribute("readonly", "");
+  ta.style.position = "fixed";
+  ta.style.top = "-9999px";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.focus({ preventScroll: true });
+  ta.select();
+  ta.setSelectionRange(0, ta.value.length);
+
+  let ok = false;
+  try {
+    ok = document.execCommand("copy");
+  } catch {}
+  document.body.removeChild(ta);
+
+  if (!ok) {
+    throw new Error("复制失败：请确保在 HTTPS 环境且由用户点击触发。");
+  }
+  return true;
+}

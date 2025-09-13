@@ -111,7 +111,7 @@ export default {
     border: 0 !important;
   }
   .setting_item {
-    width: 600px;
+    width: 638px;
     min-height: 50px;
     margin-top: 10px;
     border-bottom: 1px solid #f8f8f8;
