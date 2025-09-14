@@ -16,7 +16,7 @@ import { sendWeChatNotify } from "./wechatTestMessage";
 /**
  * 商城模式监听
  */
-let worker = null;
+let workers = new Map();
 
 export function isAfterNow(dateStr) {
   const m = moment(dateStr, "YYYY-MM-DD HH:mm:ss", true);
@@ -36,7 +36,7 @@ export function beginObserve(
     const nowTime = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`;
 
     // 判断同商店是否有相同任务在运行
-    if (!app.isExistTask(selectInfo.selectSku, storeInfo.id)) {
+    if (!app.isExistTask?.(selectInfo.selectSku, storeInfo.id)) {
       reject("该任务正在运行中,请不要重复添加");
       return;
     }
@@ -55,7 +55,12 @@ export function beginObserve(
 
     Vue.prototype.$message.success("开始监控啦!");
     if (app.setting.dialogMessage) {
-      dialogMessage("开始监控啦", "请不要关闭页面，可将页面放至后台运行");
+      dialogMessage(
+        "开始监控啦",
+        "请不要关闭页面，可将页面放至后台运行",
+        null,
+        2000
+      );
     }
 
     app.addTask({
@@ -73,9 +78,10 @@ export function beginObserve(
       log: [],
     });
 
-    worker = new ObserverWorker();
+    const w = new ObserverWorker();
+    workers.set(name, w);
 
-    worker.postMessage({
+    w.postMessage({
       type: "beginObserve",
       name,
       useServerChan,
@@ -88,7 +94,7 @@ export function beginObserve(
       now,
     });
 
-    worker.onmessage = async (event) => {
+    w.onmessage = async (event) => {
       const data = event.data;
       switch (data.type) {
         case "vuexTaskValue":
@@ -167,68 +173,94 @@ function audioMessage() {
   player.play().catch(() => {});
 }
 
-function dialogMessage(title, message, href) {
+function dialogMessage(title, message, href, interval = 8000) {
   const app = useAppStore();
 
-  if (!("Notification" in window)) {
-    console.log("环境不完整");
+  // 统一把 interval 解析成毫秒
+  const parseToMs = (v) => {
+    if (typeof v === "number") {
+      // 约定：<=60 认为是“秒”，否则认为已是“毫秒”
+      return v <= 60 ? v * 1000 : v;
+    }
+    if (typeof v === "string") {
+      const m = v.trim().toLowerCase();
+      if (m.endsWith("ms")) return parseInt(m, 10);
+      if (m.endsWith("s")) return parseFloat(m) * 1000;
+      // 纯数字字符串：同上规则
+      const num = Number(m);
+      return isNaN(num) ? 8000 : num <= 60 ? num * 1000 : num;
+    }
+    return 8000;
+  };
+  const durationMs = parseToMs(interval);
+
+  const openHref = () => href && window.open(href, "_blank");
+
+  const fallbackNotify = () => {
     Vue.prototype.$notify?.({
       title,
       message,
       type: "success",
-      duration: 8000,
-      onClick: () => href && window.open(href, "_blank"),
+      duration: durationMs, // 用统一毫秒时长
+      onClick: openHref,
     });
+  };
+
+  if (!("Notification" in window)) {
+    console.log("环境不完整");
+    fallbackNotify();
     return;
   }
+
   const isSecure =
     window.isSecureContext ||
     location.protocol === "https:" ||
     location.hostname === "localhost" ||
     location.hostname === "127.0.0.1";
+
   if (!isSecure) {
     console.log("非安全环境，无法触发浏览器通知");
-    Vue.prototype.$notify?.({
-      title,
-      message,
-      type: "success",
-      duration: 8000,
-      onClick: () => href && window.open(href, "_blank"),
-    });
+    fallbackNotify();
     return;
   }
 
   if (Notification.permission === "granted") {
+    const sticky = !(durationMs > 0); // 非正数时常驻
     const n = new Notification(title, {
       lang: "zh-CN",
       body: message,
-      requireInteraction: true,
+      requireInteraction: sticky,
     });
+
     n.onclick = () => {
       try {
         window.focus();
       } catch {}
-      if (href) window.open(href, "_blank");
+      openHref();
       n.close();
     };
+
+    // 仅当需要自动关闭时设置定时器
+    if (!sticky) {
+      setTimeout(() => {
+        try {
+          n.close();
+        } catch {}
+      }, durationMs);
+    }
     return;
   }
 
   if (Notification.permission === "denied") {
-    app.setMessage(["dialogMessage", false]);
+    app.setMessage?.(["dialogMessage", false]);
     Vue.prototype.$message?.error?.(
       "系统/浏览器已禁用站点通知，请到设置中开启"
     );
     return;
   }
 
-  Vue.prototype.$notify?.({
-    title,
-    message,
-    type: "success",
-    duration: 8000,
-    onClick: () => href && window.open(href, "_blank"),
-  });
+  // 未授权（default）时，按原逻辑走 UI 通知
+  fallbackNotify();
 }
 
 export function stopTask(
@@ -242,8 +274,9 @@ export function stopTask(
   const index = app.task.findIndex((el) => el.taskId == taskId);
   if ((index !== -1 && app.task[index].count > 0) || error) {
     app.stopTask([taskId, message, status]);
-    if (worker) {
-      worker.postMessage({ type: "stop", intervalTask: task });
+    const w = workers.get(taskId);
+    if (w) {
+      w.postMessage({ type: "stop", intervalTask: task });
     }
   } else {
     Vue.prototype.$message.error("暂不能取消");

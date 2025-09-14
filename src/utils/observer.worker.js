@@ -1,6 +1,7 @@
 import { getStock } from "@/data/api";
 import { modelDict } from "@/constant";
 
+const timers = new Map();
 async function _runTask(
   name,
   useServerChan,
@@ -9,8 +10,7 @@ async function _runTask(
   errorStop,
   interval,
   selectInfo,
-  storeInfo,
-  arr
+  storeInfo
 ) {
   try {
     const res = await getStock({
@@ -26,7 +26,7 @@ async function _runTask(
     if (!Array.isArray(stores)) {
       self.postMessage({
         type: "error",
-        intervalTask: arr[name],
+        intervalTask: null,
         name,
         message: "Invalid response from getStock",
       });
@@ -69,7 +69,7 @@ async function _runTask(
       // 通知主线程停止任务 & 播放音频
       self.postMessage({
         type: "stopTask",
-        intervalTask: arr[name],
+        intervalTask: null,
         name,
         message: "success",
       });
@@ -124,7 +124,7 @@ async function _runTask(
     if (errorStop) {
       self.postMessage({
         type: "error",
-        intervalTask: arr[name],
+        intervalTask: null,
         name,
         message:
           err.name === "AxiosError"
@@ -152,8 +152,7 @@ function run(
   storeInfo,
   now
 ) {
-  const arr = {};
-  arr[name] = setInterval(() => {
+  const id = setInterval(() => {
     _runTask(
       name,
       useServerChan,
@@ -162,12 +161,13 @@ function run(
       errorStop,
       interval,
       selectInfo,
-      storeInfo,
-      arr
+      storeInfo
     );
   }, interval * 1000);
 
-  self.postMessage({ type: "vuexTaskValue", name, task: arr[name] });
+  timers.set(name, id);
+
+  self.postMessage({ type: "vuexTaskValue", name, task: null });
 
   if (now) {
     _runTask(
@@ -178,14 +178,17 @@ function run(
       errorStop,
       interval,
       selectInfo,
-      storeInfo,
-      arr
+      storeInfo
     );
   }
 }
 
 function stopInterval(intervalTask) {
-  clearInterval(intervalTask);
+  const id = timers.get(name);
+  if (id) {
+    clearInterval(intervalTask);
+    timers.delete(name);
+  }
   // 结束当前 worker
   self.close();
 }
