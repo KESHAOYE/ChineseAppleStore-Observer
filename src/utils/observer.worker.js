@@ -1,4 +1,4 @@
-import { getStock } from "@/data/api";
+import { getStock, getProvide } from "@/data/api";
 import { modelDict } from "@/constant";
 
 const timers = new Map();
@@ -16,7 +16,7 @@ async function _runTask(
     const res = await getStock({
       pl: true,
       "parts.0": selectInfo.selectSku,
-      location: `${storeInfo.address.stateName} ${storeInfo.address.city}`,
+      location: `${storeInfo.address.stateName} ${storeInfo.address.city} ${storeInfo.address.district}`,
     });
 
     const payload = res?.data ?? res;
@@ -141,7 +141,20 @@ async function _runTask(
   }
 }
 
-function run(
+async function getCompleteAddress(storeInfo) {
+  try {
+    const d = await getProvide({
+      state: storeInfo.address.stateName,
+      city: storeInfo.address.city,
+    });
+
+    return d?.district?.data[0]?.value ?? "罗湖区";
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function run(
   name,
   useServerChan,
   useDialogMessage,
@@ -152,6 +165,8 @@ function run(
   storeInfo,
   now
 ) {
+  const q = await getCompleteAddress(storeInfo);
+  storeInfo.address.district = q;
   const id = setInterval(() => {
     _runTask(
       name,
