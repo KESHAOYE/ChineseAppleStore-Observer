@@ -7,8 +7,8 @@ export function getStock(params) {
 }
 
 /** 地区/地址查询 */
-export function getProvide() {
-  return api.get("/shop/address-lookup");
+export function getProvide(params) {
+  return api.get("/shop/address-lookup", { params });
 }
 
 function normalizeStorePayload(raw) {
